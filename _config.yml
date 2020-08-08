@@ -41,22 +41,10 @@ linkedin_username:  liuju150
 # Build settings
 anchorjs: true                          # if you want to customize anchor. check out line:181 of `post.html`
 
-
-# Disqus settings
-disqus_username: liuju150
-
-# Duoshuo settings
-# duoshuo_username: kaijun
-# Share component is depend on Comment so we can NOT use share only.
-duoshuo_share: true                     # set to false if you want to use Comment without Sharing
-
-
-# Analytics settings
-# Baidu Analytics
-ba_track_id: 
-# Google Analytics
-ga_track_id: ''            # Format: UA-xxxxxx-xx
-ga_domain: 
+# http://changyan.kuaizhan.com/overview
+# 畅言云评配置 帐号：17194242616
+changyan_appid: cyuYGB0U5
+changyan_conf: prod_acc7e542d3fbe589c4a93cd448aafb1b
 
 
 # Sidebar settings
