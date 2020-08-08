@@ -25,7 +25,7 @@ pretty_urls:
 
 # Site settings
 SEOTitle: 奕晨博苑 | Giant's Blog
-header-img: img/home-bg.jpg
+header-img: https://open.saintic.com/api/bingPic/ # img/home-bg.jpg # https://open.saintic.com/api/bingPic/
 email: liuju150@outlook.com
 
 
