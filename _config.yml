@@ -32,11 +32,11 @@ email: liuju150@outlook.com
 # SNS settings
 # RSS: false
 weibo_username:     liuju150
-zhihu_username:     liuju150
+zhihu_username:     giant150
 github_username:    liuju150
-twitter_username:   liuju150
-facebook_username:  liuju150
-linkedin_username:  liuju150
+twitter_username:   
+facebook_username:  
+linkedin_username:  
 
 # Build settings
 anchorjs: true                          # if you want to customize anchor. check out line:181 of `post.html`
@@ -65,19 +65,16 @@ friends: [
         href: "https://www.giantliu.cn"
     },{
         title: "博客园",
-        href: "https://www.cnblogs.com"
+        href: "https://www.cnblogs.com/liuju150/"
     },{
-        title: "Foo",
-        href: "#"
+        title: "知呼",
+        href: "https://www.zhihu.com/people/giant150"
     },{
-        title: "Bar",
-        href: "#"
+        title: "微博",
+        href: "https://weibo.com/liuju150"
     },{
-        title: "Example Friends",
-        href: "#"
-    },{
-        title: "It helps SEO",
-        href: "#"
+        title: "GitHub",
+        href: "https://github.com/liuju150"
     }
 ]
 #Custom Setting End
@@ -102,7 +99,7 @@ external_link:
   exclude: ''
 filename_case: 0
 render_drafts: false
-post_asset_folder: false
+post_asset_folder: true
 relative_link: false
 future: true
 highlight:
