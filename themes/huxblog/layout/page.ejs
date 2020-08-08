@@ -3,7 +3,12 @@ layout: layout
 ---
 <!-- Page Header -->
 <header class="intro-header"
-    style="background-image: url('<% if(page['header-img']){config.root+page['header-img']}else{config['header-img']} %>')">
+    <% if (page["header-img"]){ %>
+        style="background-image: url('<%= config.root %><%= page["header-img"] %>')"
+    <% } else { %>
+        style="background-image: url('<%= config["header-img"] %>')"
+    <% } %>
+    >
     <div class="container">
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 ">
