@@ -1,9 +1,9 @@
 ---
 layout:     post
-title:      "Welcome to Hux Blog"
+title:      "Welcome to Giant Blog"
 subtitle:   " \"Hello World, Hello Blog\""
 date:       2014-01-29 12:00:00
-author:     "Hux"
+author:     "刘巨"
 header-img: "post-bg-2015.jpg"
 tags:
     - 生活

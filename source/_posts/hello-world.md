@@ -1,9 +1,9 @@
 ---
 layout:     post
 title:      "Hello World"
-subtitle:   " \"Hello World, Hello Blog\""
+subtitle:   " \"Hello World, Hello Giant Blog\""
 date:       2020-01-29 12:00:00
-author:     "Giant"
+author:     "刘巨"
 tags:
     - 生活
 ---

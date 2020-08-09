@@ -2,7 +2,7 @@
 layout:     post
 title:      "Example Post"
 date:       2014-09-22
-author:     "Hux"
+author:     "刘巨"
 header-img: "post-bg-js-version.jpg"
 tags:
     - 前端开发
