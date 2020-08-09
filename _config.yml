@@ -3,7 +3,7 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: Giant's Blog
+title: Giant Blog
 subtitle: '天将降大任于是人也，必先苦其心志，劳其筋骨，饿其体肤，空乏其身'
 description: '奕晨博苑'
 keywords: 奕晨博苑,Giant,GiantLiu
@@ -24,7 +24,7 @@ pretty_urls:
 #Custom Setting Start
 
 # Site settings
-SEOTitle: 奕晨博苑 | Giant's Blog
+SEOTitle: 奕晨博苑 | Giant Blog
 header-img: https://open.saintic.com/api/bingPic/ # img/home-bg.jpg # https://open.saintic.com/api/bingPic/
 email: liuju150@outlook.com
 
@@ -61,7 +61,7 @@ featured-condition-size: 1              # A tag will be featured if the size of 
 # Friends
 friends: [
     {
-        title: "Giant's Blog",
+        title: "Giant Blog",
         href: "https://www.giantliu.cn"
     },{
         title: "博客园",

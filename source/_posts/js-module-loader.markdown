@@ -112,7 +112,7 @@ CommonJS 前身叫 ServerJS ，**后来希望能更加 COMMON，成为通吃各�
 
 RequireJS 主要解决的还是 CommonJS 同步加载脚本不适合浏览器 这个问题：
 
-{% gist 65481dbbf6d16e831a6cc89c3e37e6e5 display-emails-from-database.php %}
+<!-- {% gist 65481dbbf6d16e831a6cc89c3e37e6e5 display-emails-from-database.php %} -->
 
 
 > As the comment indicates above, if require() is async, this code will not work. However, loading scripts synchronously in the browser kills performance. So, what to do?
