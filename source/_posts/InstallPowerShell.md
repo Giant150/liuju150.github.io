@@ -65,3 +65,5 @@ sudo service sshd restart
 ``` sh
 New-PSSession -HostName UserA@LinuxServer01
 ```
+
+![PowerShell连接Ubuntu](1.png)
