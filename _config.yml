@@ -61,7 +61,7 @@ featured-condition-size: 1              # A tag will be featured if the size of 
 # Friends
 friends: [
     {
-        title: "Giant Blog",
+        title: "Blog",
         href: "https://www.giantliu.cn"
     },{
         title: "博客园",
@@ -75,6 +75,9 @@ friends: [
     },{
         title: "GitHub",
         href: "https://github.com/liuju150"
+    },{
+        title: "Gitee",
+        href: "https://gitee.com/GiantLiu"
     }
 ]
 #Custom Setting End
