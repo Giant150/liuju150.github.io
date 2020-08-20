@@ -12,7 +12,7 @@
 
     <title>
         
-          Ubuntu20.4安装PowerShell - 奕晨博苑 | Giant Blog
+          Ubuntu18.04安装PowerShell - 奕晨博苑 | Giant Blog
         
     </title>
 
@@ -91,6 +91,9 @@
                     
 
                         
+                    
+
+                        
                         <li>
                             <a href="/about/">About</a>
                         </li>
@@ -98,18 +101,15 @@
                     
 
                         
-                    
-
-                        
                         <li>
-                            <a href="/archives/">Archives</a>
+                            <a href="/tags/">Tags</a>
                         </li>
                         
                     
 
                         
                         <li>
-                            <a href="/tags/">Tags</a>
+                            <a href="/archives/">Archives</a>
                         </li>
                         
                     
@@ -179,7 +179,7 @@
                           <a class="tag" href="/tags/#PowerShell" title="PowerShell">PowerShell</a>
                         
                     </div>
-                    <h1>Ubuntu20.4安装PowerShell</h1>
+                    <h1>Ubuntu18.04安装PowerShell</h1>
                     <h2 class="subheading"></h2>
                     <span class="meta">
                         Posted by 刘巨 on
@@ -202,7 +202,16 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-                <h2 id="安装命令"><a href="#安装命令" class="headerlink" title="安装命令"></a>安装命令</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Download the Microsoft repository GPG keys</span></span><br><span class="line">wget -q https://packages.microsoft.com/config/ubuntu/20.04/packages-microsoft-prod.deb</span><br><span class="line"><span class="comment"># Register the Microsoft repository GPG keys</span></span><br><span class="line">sudo dpkg -i packages-microsoft-prod.deb</span><br><span class="line"><span class="comment"># Update the list of products</span></span><br><span class="line">sudo apt-get update</span><br><span class="line"><span class="comment"># Enable the &quot;universe&quot; repositories</span></span><br><span class="line">sudo add-apt-repository universe</span><br><span class="line"><span class="comment"># Install PowerShell</span></span><br><span class="line">sudo apt-get install -y powershell</span><br><span class="line"><span class="comment"># Start PowerShell</span></span><br><span class="line">pwsh</span><br></pre></td></tr></table></figure>
+                <h2 id="安装PowerShell"><a href="#安装PowerShell" class="headerlink" title="安装PowerShell"></a>安装PowerShell</h2><p><a target="_blank" rel="noopener" href="https://docs.microsoft.com/zh-cn/powershell/scripting/install/installing-powershell-core-on-linux?view=powershell-7">安装PowerShell帮助文档</a></p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Download the Microsoft repository GPG keys</span></span><br><span class="line">wget -q https://packages.microsoft.com/config/ubuntu/18.04/packages-microsoft-prod.deb</span><br><span class="line"></span><br><span class="line"><span class="comment"># Register the Microsoft repository GPG keys</span></span><br><span class="line">sudo dpkg -i packages-microsoft-prod.deb</span><br><span class="line"></span><br><span class="line"><span class="comment"># Update the list of products</span></span><br><span class="line">sudo apt-get update</span><br><span class="line"></span><br><span class="line"><span class="comment"># Enable the &quot;universe&quot; repositories</span></span><br><span class="line">sudo add-apt-repository universe</span><br><span class="line"></span><br><span class="line"><span class="comment"># Install PowerShell</span></span><br><span class="line">sudo apt-get install -y powershell</span><br><span class="line"></span><br><span class="line"><span class="comment"># Start PowerShell</span></span><br><span class="line">pwsh</span><br></pre></td></tr></table></figure>
+
+<h2 id="通过-SSH-进行-PowerShell-远程处理"><a href="#通过-SSH-进行-PowerShell-远程处理" class="headerlink" title="通过 SSH 进行 PowerShell 远程处理"></a>通过 SSH 进行 PowerShell 远程处理</h2><p><a target="_blank" rel="noopener" href="https://docs.microsoft.com/zh-cn/powershell/scripting/learn/remoting/ssh-remoting-in-powershell-core?view=powershell-7">通过 SSH 进行 PowerShell 远程处理</a></p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 安装SSH</span></span><br><span class="line">sudo apt install openssh-client</span><br><span class="line">sudo apt install openssh-server</span><br><span class="line"></span><br><span class="line"><span class="comment"># 编辑 /etc/ssh 位置中的 sshd_config 文件。</span></span><br><span class="line"><span class="comment"># 确保已启用密码身份验证：</span></span><br><span class="line">PasswordAuthentication yes</span><br><span class="line"><span class="comment"># 添加 PowerShell 子系统条目：</span></span><br><span class="line">Subsystem powershell /usr/bin/pwsh -sshs -NoLogo -NoProfile</span><br><span class="line"></span><br><span class="line"><span class="comment"># 启用密钥身份验证（可选）</span></span><br><span class="line">PubkeyAuthentication yes</span><br></pre></td></tr></table></figure>
+
+<h2 id="重启-sshd-服务"><a href="#重启-sshd-服务" class="headerlink" title="重启 sshd 服务"></a>重启 sshd 服务</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo service sshd restart</span><br></pre></td></tr></table></figure>
+
+<h2 id="通过PowerShell-连接-Ubuntu"><a href="#通过PowerShell-连接-Ubuntu" class="headerlink" title="通过PowerShell 连接 Ubuntu"></a>通过PowerShell 连接 Ubuntu</h2><p><a target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/new-pssession?view=powershell-7#example-12--create-a-session-using-ssh">通过PowerShell 连接 Ubuntu</a></p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">New-PSSession -HostName UserA@LinuxServer01</span><br></pre></td></tr></table></figure>
 
                 <hr>
                 <ul class="pager">
@@ -219,7 +228,7 @@
                 </ul>
                 <!-- 畅言云评 -->
                 
-                    <div id="SOHUCS" sid="Ubuntu20.4安装PowerShell"></div>
+                    <div id="SOHUCS" sid="Ubuntu18.04安装PowerShell"></div>
                 
 
             </div>
