@@ -74,8 +74,26 @@ New-PSSession -HostName UserA@LinuxServer01
 1.先在Windows打开PowerShell输入ssh-keygen.exe生成公/私密钥
 ![PowerShell使用密钥文件连接Ubuntu](2.png)
 
+```powershell
+#生成公/私密钥
+#公钥id_rsa.pub
+#私钥id_rsa
+ssh-keygen.exe
+```
+
 2.把公钥复制到Ubuntu
 ![PowerShell把公钥复制到Ubuntu](3.png)
+
+```powershell
+#使用密码登录Ubuntu
+$session=New-PSSession -HostName 10.76.20.51 -UserName giant
+#复制Windows公钥到Ubunto
+Copy-Item "C:\Users\Administrator\id_rsa.pub" -Destination "/home/giant/.ssh/hncsie-liuju.pub" -ToSession $session
+#进入Ubuntu Shell
+Enter-PSSession -Session $session
+cd ./.ssh
+ls
+```
 
 3.修改Ubuntu SSH配置
 #打开RSA认证
@@ -91,9 +109,21 @@ AuthorizedKeysFile .ssh/hncsie-liuju.pub
 
 4.重启sshd服务sudo service sshd restart
 
+```bash
+#使用VI编辑sshd配置文件
+sudo vi /etc/ssh/sshd_config
+#重启sshd
+sudo service sshd restart
+```
+
 ![PowerShell连接Ubuntu](4.png)
 
-
+```powershell
+#使用私钥文件免密登录Ubuntu
+$session=New-PSSession -HostName 10.76.20.51 -UserName giant -KeyFilePath .\id_rsa
+#进入Ubuntu shell
+Enter-PSSession -Session $session
+```
 
 ## 参考文档
 

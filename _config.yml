@@ -5,7 +5,7 @@
 # Site
 title: Giant Blog
 subtitle: '天将降大任于是人也，必先苦其心志，劳其筋骨，饿其体肤，空乏其身'
-description: '奕晨博苑'
+description: '奕晨博苑 Giant Blog'
 keywords: 奕晨博苑,Giant,GiantLiu
 author: 刘巨
 language: zh-CN
@@ -24,7 +24,7 @@ pretty_urls:
 #Custom Setting Start
 
 # Site settings
-SEOTitle: 奕晨博苑 | Giant Blog
+SEOTitle: Giant Blog
 header-img: https://open.saintic.com/api/bingPic/ # img/home-bg.jpg # https://open.saintic.com/api/bingPic/
 email: liuju150@outlook.com
 
