@@ -99,12 +99,12 @@
                     
 
                         
-                    
-
-                        
                         <li>
                             <a href="/archives/">Archives</a>
                         </li>
+                        
+                    
+
                         
                     
 
@@ -223,11 +223,19 @@
 
 <p><img src="1.png" alt="PowerShell连接Ubuntu"></p>
 <h2 id="PowerShell使用密钥文件连接Ubuntu"><a href="#PowerShell使用密钥文件连接Ubuntu" class="headerlink" title="PowerShell使用密钥文件连接Ubuntu"></a>PowerShell使用密钥文件连接Ubuntu</h2><p>1.先在Windows打开PowerShell输入ssh-keygen.exe生成公/私密钥<br><img src="2.png" alt="PowerShell使用密钥文件连接Ubuntu"></p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#生成公/私密钥</span></span><br><span class="line"><span class="comment">#公钥id_rsa.pub</span></span><br><span class="line"><span class="comment">#私钥id_rsa</span></span><br><span class="line">ssh<span class="literal">-keygen</span>.exe</span><br></pre></td></tr></table></figure>
+
 <p>2.把公钥复制到Ubuntu<br><img src="3.png" alt="PowerShell把公钥复制到Ubuntu"></p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#使用密码登录Ubuntu</span></span><br><span class="line"><span class="variable">$session</span>=<span class="built_in">New-PSSession</span> <span class="literal">-HostName</span> <span class="number">10.76</span>.<span class="number">20.51</span> <span class="literal">-UserName</span> giant</span><br><span class="line"><span class="comment">#复制Windows公钥到Ubunto</span></span><br><span class="line"><span class="built_in">Copy-Item</span> <span class="string">&quot;C:\Users\Administrator\id_rsa.pub&quot;</span> <span class="literal">-Destination</span> <span class="string">&quot;/home/giant/.ssh/hncsie-liuju.pub&quot;</span> <span class="literal">-ToSession</span> <span class="variable">$session</span></span><br><span class="line"><span class="comment">#进入Ubuntu Shell</span></span><br><span class="line"><span class="built_in">Enter-PSSession</span> <span class="literal">-Session</span> <span class="variable">$session</span></span><br><span class="line"><span class="built_in">cd</span> ./.ssh</span><br><span class="line"><span class="built_in">ls</span></span><br></pre></td></tr></table></figure>
+
 <p>3.修改Ubuntu SSH配置<br>#打开RSA认证<br>RSAAuthentication yes<br>#公钥认证<br>pubkeyAuthentication yes<br>#Root权限登录<br>permitROOTlogin yes<br>#添加公钥文件<br>AuthorizedKeysFile .ssh/hncsie-liuju.pub</p>
 <p><img src="5.png" alt="Ubuntu SSH配置"></p>
 <p>4.重启sshd服务sudo service sshd restart</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#使用VI编辑sshd配置文件</span></span><br><span class="line">sudo vi /etc/ssh/sshd_config</span><br><span class="line"><span class="comment">#重启sshd</span></span><br><span class="line">sudo service sshd restart</span><br></pre></td></tr></table></figure>
+
 <p><img src="4.png" alt="PowerShell连接Ubuntu"></p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#使用私钥文件免密登录Ubuntu</span></span><br><span class="line"><span class="variable">$session</span>=<span class="built_in">New-PSSession</span> <span class="literal">-HostName</span> <span class="number">10.76</span>.<span class="number">20.51</span> <span class="literal">-UserName</span> giant <span class="literal">-KeyFilePath</span> .\id_rsa</span><br><span class="line"><span class="comment">#进入Ubuntu shell</span></span><br><span class="line"><span class="built_in">Enter-PSSession</span> <span class="literal">-Session</span> <span class="variable">$session</span></span><br></pre></td></tr></table></figure>
+
 <h2 id="参考文档"><a href="#参考文档" class="headerlink" title="参考文档"></a>参考文档</h2><p>sshd.exe，它是远程所管理的系统上必须运行的 SSH 服务器组件<br>ssh.exe，它是在用户的本地系统上运行的 SSH 客户端组件<br>ssh-keygen.exe，为 SSH 生成、管理和转换身份验证密钥<br>ssh-agent.exe，存储用于公钥身份验证的私钥<br>ssh-add.exe，将私钥添加到服务器允许的列表中<br>ssh-keyscan.exe，帮助从许多主机收集公用 SSH 主机密钥<br>sftp.exe，这是提供安全文件传输协议的服务，通过 SSH 运行<br>scp.exe 是在 SSH 上运行的文件复制实用工具</p>
 
                 <hr>
