@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 'Ubuntu18.04安装PowerShell'
+title: '使用PowerShell操作Ubuntu'
 subtitle: ''
 tags:
   - 随笔
@@ -88,6 +88,9 @@ permitROOTlogin yes
 AuthorizedKeysFile .ssh/hncsie-liuju.pub
 
 ![Ubuntu SSH配置](5.png)
+
+4.重启sshd服务sudo service sshd restart
+
 ![PowerShell连接Ubuntu](4.png)
 
 
