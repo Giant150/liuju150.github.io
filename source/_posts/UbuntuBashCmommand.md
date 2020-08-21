@@ -38,6 +38,7 @@ sudo service ssh status 查看服务状态
 sudo service ssh stop  关闭服务
 sudo service ssh restart  重启服务
 
+
 ## 防火墙
 
 sudo ufw status 查看状态
@@ -45,3 +46,9 @@ sudo ufw enable 启用防火墙
 sudo ufw allow 80 打开端口
 sudo ufw reload 重新加载配置
 
+## 文件操作
+
+mkdir命令（创建目录）
+cp命令（拷贝文件或目录）
+mv命令（移动、重命名文件或目录）
+rm命令（删除文件或目录）
