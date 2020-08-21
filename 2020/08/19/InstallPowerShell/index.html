@@ -103,13 +103,6 @@
 
                         
                         <li>
-                            <a href="/archives/">Archives</a>
-                        </li>
-                        
-                    
-
-                        
-                        <li>
                             <a href="/about/">About</a>
                         </li>
                         
@@ -118,6 +111,13 @@
                         
                         <li>
                             <a href="/tags/">Tags</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/archives/">Archives</a>
                         </li>
                         
                     
@@ -222,6 +222,11 @@
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">New-PSSession -HostName UserA@LinuxServer01</span><br></pre></td></tr></table></figure>
 
 <p><img src="1.png" alt="PowerShell连接Ubuntu"></p>
+<h2 id="PowerShell使用密钥文件连接Ubuntu"><a href="#PowerShell使用密钥文件连接Ubuntu" class="headerlink" title="PowerShell使用密钥文件连接Ubuntu"></a>PowerShell使用密钥文件连接Ubuntu</h2><p>1.先在Windows打开PowerShell输入ssh-keygen.exe生成公/私密钥<br><img src="2.png" alt="PowerShell使用密钥文件连接Ubuntu"></p>
+<p>2.把公钥复制到Ubuntu<br><img src="3.png" alt="PowerShell把公钥复制到Ubuntu"></p>
+<p>3.修改Ubuntu SSH配置<br>#打开RSA认证<br>RSAAuthentication yes<br>#公钥认证<br>pubkeyAuthentication yes<br>#Root权限登录<br>permitROOTlogin yes<br>#添加公钥文件<br>AuthorizedKeysFile .ssh/hncsie-liuju.pub</p>
+<p><img src="5.png" alt="Ubuntu SSH配置"><br><img src="4.png" alt="PowerShell连接Ubuntu"></p>
+<h2 id="参考文档"><a href="#参考文档" class="headerlink" title="参考文档"></a>参考文档</h2><p>sshd.exe，它是远程所管理的系统上必须运行的 SSH 服务器组件<br>ssh.exe，它是在用户的本地系统上运行的 SSH 客户端组件<br>ssh-keygen.exe，为 SSH 生成、管理和转换身份验证密钥<br>ssh-agent.exe，存储用于公钥身份验证的私钥<br>ssh-add.exe，将私钥添加到服务器允许的列表中<br>ssh-keyscan.exe，帮助从许多主机收集公用 SSH 主机密钥<br>sftp.exe，这是提供安全文件传输协议的服务，通过 SSH 运行<br>scp.exe 是在 SSH 上运行的文件复制实用工具</p>
 
                 <hr>
                 <ul class="pager">
