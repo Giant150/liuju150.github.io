@@ -167,3 +167,16 @@ deploy:
   type: git
   repo: https://github.com/LiuJu150/liuju150.github.io.git
   branch: release
+
+feed:
+  type: atom
+  path: atom.xml
+  limit: 20
+  hub:
+  content:
+  content_limit: 140
+  content_limit_delim: ' '
+  order_by: -date
+  icon: icon.png
+  autodiscovery: true
+  template:
