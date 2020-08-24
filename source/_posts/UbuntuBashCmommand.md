@@ -52,3 +52,14 @@ mkdir命令（创建目录）
 cp命令（拷贝文件或目录）
 mv命令（移动、重命名文件或目录）
 rm命令（删除文件或目录）
+
+## 启用root帐号
+
+```bash
+#给root帐号设置密码
+sudo passwd root
+#切换root帐号登录
+su root
+```
+
+![root](root1.png)
