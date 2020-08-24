@@ -12,11 +12,11 @@
 
     <title>
         
-          Ubuntu命令 - Giant Blog
+          部署Asp.Net Core到Docker - Giant Blog
         
     </title>
 
-    <link rel="canonical" href="https://www.giantliu.cn/2020/08/20/UbuntuBashCmommand/">
+    <link rel="canonical" href="https://www.giantliu.cn/2020/08/24/200824DeployWMSToDocker/">
 
     <!-- Bootstrap Core CSS -->
     
@@ -181,16 +181,18 @@
                 <div class="post-heading">
                     <div class="tags">
                         
-                          <a class="tag" href="/tags/#随笔" title="随笔">随笔</a>
+                          <a class="tag" href="/tags/#NetCore" title="NetCore">NetCore</a>
                         
-                          <a class="tag" href="/tags/#Ubuntu" title="Ubuntu">Ubuntu</a>
+                          <a class="tag" href="/tags/#WMS" title="WMS">WMS</a>
+                        
+                          <a class="tag" href="/tags/#Docker" title="Docker">Docker</a>
                         
                     </div>
-                    <h1>Ubuntu命令</h1>
+                    <h1>部署Asp.Net Core到Docker</h1>
                     <h2 class="subheading"></h2>
                     <span class="meta">
                         Posted by 刘巨 on
-                        2020-08-20
+                        2020-08-24
                     </span>
                 </div>
             </div>
@@ -209,31 +211,37 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-                <h2 id="开关机命令"><a href="#开关机命令" class="headerlink" title="开关机命令"></a>开关机命令</h2><h3 id="重启命令"><a href="#重启命令" class="headerlink" title="重启命令"></a>重启命令</h3><p>1、reboot<br>2、shutdown -r now 立刻重启<br>3、shutdown -r 10 过10分钟自动重启<br>4、shutdown -r 20:35 在时间为20:35时候重启</p>
-<p>如果是通过shutdown命令设置重启的话，可以用shutdown -c命令取消重启</p>
-<h3 id="关机命令"><a href="#关机命令" class="headerlink" title="关机命令"></a>关机命令</h3><p>1、halt   立刻关机（一般加-p 关闭电源）<br>2、poweroff 立刻关机<br>3、shutdown -h now 立刻关机<br>4、shutdown -h 10 10分钟后自动关机</p>
-<h3 id="查看IP"><a href="#查看IP" class="headerlink" title="查看IP"></a>查看IP</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ip addr</span><br></pre></td></tr></table></figure>
+                <h2 id="Dockerfile"><a href="#Dockerfile" class="headerlink" title="Dockerfile"></a>Dockerfile</h2><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">FROM mcr.microsoft.com/dotnet/core/aspnet:3.1</span><br><span class="line">ENV DOTNET_SYSTEM_GLOBALIZATION_INVARIANT=false</span><br><span class="line">WORKDIR /app</span><br><span class="line">COPY . .</span><br><span class="line">EXPOSE 5000</span><br><span class="line">ENTRYPOINT [&quot;dotnet&quot;,&quot;Coldairarrow.Api.dll&quot;]</span><br></pre></td></tr></table></figure>
 
-<h2 id="SSH"><a href="#SSH" class="headerlink" title="SSH"></a>SSH</h2><p>sudo service ssh status 查看服务状态<br>sudo service ssh stop  关闭服务<br>sudo service ssh restart  重启服务</p>
-<h2 id="防火墙"><a href="#防火墙" class="headerlink" title="防火墙"></a>防火墙</h2><p>sudo ufw status 查看状态<br>sudo ufw enable 启用防火墙<br>sudo ufw allow 80 打开端口<br>sudo ufw reload 重新加载配置</p>
-<h2 id="文件操作"><a href="#文件操作" class="headerlink" title="文件操作"></a>文件操作</h2><p>mkdir命令（创建目录）<br>cp命令（拷贝文件或目录）<br>mv命令（移动、重命名文件或目录）<br>rm命令（删除文件或目录）</p>
+<h2 id="拉取Asp-net-Core的镜像"><a href="#拉取Asp-net-Core的镜像" class="headerlink" title="拉取Asp.net Core的镜像"></a>拉取Asp.net Core的镜像</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo docker pull mcr.microsoft.com/dotnet/core/aspnet:3.1</span><br></pre></td></tr></table></figure>
+
+<p><img src="1.png" alt="拉取Asp.net Core的镜像"></p>
+<h2 id="构建镜像"><a href="#构建镜像" class="headerlink" title="构建镜像"></a>构建镜像</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo docker build -t wmsapi .</span><br></pre></td></tr></table></figure>
+
+<p><img src="2.png" alt="构建镜像"></p>
+<h2 id="运行镜像"><a href="#运行镜像" class="headerlink" title="运行镜像"></a>运行镜像</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">##在当前进程下运行</span></span><br><span class="line">sudo docker run -it --rm -p 5000:5000 --name api wmsapi</span><br><span class="line"></span><br><span class="line"><span class="comment">##以守护进程方式运行</span></span><br><span class="line">sudo docker run -d -p 5000:5000 --name api wmsapi</span><br></pre></td></tr></table></figure>
+
+<p><img src="3.png" alt="运行镜像"></p>
+<h2 id="查看WMS接口运行状态"><a href="#查看WMS接口运行状态" class="headerlink" title="查看WMS接口运行状态"></a>查看WMS接口运行状态</h2><p>在浏览器输入：<a target="_blank" rel="noopener" href="http://10.76.20.162:5000/swagger/">http://10.76.20.162:5000/swagger/</a><br>打开API界面，表示运行成功</p>
+<p><img src="4.png" alt="运行镜像"></p>
+<h2 id="参考文档"><a href="#参考文档" class="headerlink" title="参考文档"></a>参考文档</h2><p><a target="_blank" rel="noopener" href="https://docs.microsoft.com/zh-cn/aspnet/core/host-and-deploy/docker/building-net-docker-images?view=aspnetcore-3.1">ASP.NET Core 的 Docker 映像</a><br><a target="_blank" rel="noopener" href="https://docs.docker.com/engine/install/ubuntu/">Ubuntu Install Docker</a><br><a target="_blank" rel="noopener" href="https://www.cnblogs.com/savorboard/p/dotnetcore-docker.html">ASP.NET Core Docker部署</a></p>
 
                 <hr>
                 <ul class="pager">
                     
                         <li class="previous">
-                            <a href="/2020/08/21/200821NetCoreDeployToUbuntu/" data-toggle="tooltip" data-placement="top" title="使用PowerShell自动部署ASP.Net Core到Ubuntu">&larr; 上一篇</a>
+                            <a href="/2020/08/24/DockerCommand/" data-toggle="tooltip" data-placement="top" title="Docker常用命令说明">&larr; 上一篇</a>
                         </li>
                     
                     
                         <li class="next">
-                            <a href="/2020/08/20/InstallUbuntu18Server/" data-toggle="tooltip" data-placement="top" title="在Hyper-V中安装Ubuntu Server 18.04">下一篇 &rarr;</a>
+                            <a href="/2020/08/24/200824InstallDockerToUbuntu/" data-toggle="tooltip" data-placement="top" title="Ubuntu安装Docker">下一篇 &rarr;</a>
                         </li>
                     
                 </ul>
                 <!-- 畅言云评 -->
                 
-                    <div id="SOHUCS" sid="Ubuntu命令"></div>
+                    <div id="SOHUCS" sid="部署Asp.Net Core到Docker"></div>
                 
 
             </div>
@@ -254,9 +262,11 @@
                     <h5><a href="/tags/">FEATURED TAGS</a></h5>
                     <div class="tags">
                        
-                          <a class="tag" href="/tags/#随笔" title="随笔">随笔</a>
+                          <a class="tag" href="/tags/#NetCore" title="NetCore">NetCore</a>
                         
-                          <a class="tag" href="/tags/#Ubuntu" title="Ubuntu">Ubuntu</a>
+                          <a class="tag" href="/tags/#WMS" title="WMS">WMS</a>
+                        
+                          <a class="tag" href="/tags/#Docker" title="Docker">Docker</a>
                         
                     </div>
                 </section>

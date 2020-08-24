@@ -12,11 +12,11 @@
 
     <title>
         
-          Ubuntu命令 - Giant Blog
+          Docker常用命令说明 - Giant Blog
         
     </title>
 
-    <link rel="canonical" href="https://www.giantliu.cn/2020/08/20/UbuntuBashCmommand/">
+    <link rel="canonical" href="https://www.giantliu.cn/2020/08/24/DockerCommand/">
 
     <!-- Bootstrap Core CSS -->
     
@@ -181,16 +181,16 @@
                 <div class="post-heading">
                     <div class="tags">
                         
+                          <a class="tag" href="/tags/#Docker" title="Docker">Docker</a>
+                        
                           <a class="tag" href="/tags/#随笔" title="随笔">随笔</a>
                         
-                          <a class="tag" href="/tags/#Ubuntu" title="Ubuntu">Ubuntu</a>
-                        
                     </div>
-                    <h1>Ubuntu命令</h1>
+                    <h1>Docker常用命令说明</h1>
                     <h2 class="subheading"></h2>
                     <span class="meta">
                         Posted by 刘巨 on
-                        2020-08-20
+                        2020-08-24
                     </span>
                 </div>
             </div>
@@ -209,31 +209,40 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-                <h2 id="开关机命令"><a href="#开关机命令" class="headerlink" title="开关机命令"></a>开关机命令</h2><h3 id="重启命令"><a href="#重启命令" class="headerlink" title="重启命令"></a>重启命令</h3><p>1、reboot<br>2、shutdown -r now 立刻重启<br>3、shutdown -r 10 过10分钟自动重启<br>4、shutdown -r 20:35 在时间为20:35时候重启</p>
-<p>如果是通过shutdown命令设置重启的话，可以用shutdown -c命令取消重启</p>
-<h3 id="关机命令"><a href="#关机命令" class="headerlink" title="关机命令"></a>关机命令</h3><p>1、halt   立刻关机（一般加-p 关闭电源）<br>2、poweroff 立刻关机<br>3、shutdown -h now 立刻关机<br>4、shutdown -h 10 10分钟后自动关机</p>
-<h3 id="查看IP"><a href="#查看IP" class="headerlink" title="查看IP"></a>查看IP</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ip addr</span><br></pre></td></tr></table></figure>
+                <h2 id="查看当前已经安装的镜像"><a href="#查看当前已经安装的镜像" class="headerlink" title="查看当前已经安装的镜像"></a>查看当前已经安装的镜像</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo docker images</span><br></pre></td></tr></table></figure>
 
-<h2 id="SSH"><a href="#SSH" class="headerlink" title="SSH"></a>SSH</h2><p>sudo service ssh status 查看服务状态<br>sudo service ssh stop  关闭服务<br>sudo service ssh restart  重启服务</p>
-<h2 id="防火墙"><a href="#防火墙" class="headerlink" title="防火墙"></a>防火墙</h2><p>sudo ufw status 查看状态<br>sudo ufw enable 启用防火墙<br>sudo ufw allow 80 打开端口<br>sudo ufw reload 重新加载配置</p>
-<h2 id="文件操作"><a href="#文件操作" class="headerlink" title="文件操作"></a>文件操作</h2><p>mkdir命令（创建目录）<br>cp命令（拷贝文件或目录）<br>mv命令（移动、重命名文件或目录）<br>rm命令（删除文件或目录）</p>
+<p><img src="info1.png" alt="已经安装的镜像"></p>
+<h2 id="拉取远程镜像"><a href="#拉取远程镜像" class="headerlink" title="拉取远程镜像"></a>拉取远程镜像</h2><p><a target="_blank" rel="noopener" href="https://hub.docker.com/_/microsoft-dotnet-core">dotnet core 镜像地址</a></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo docker pull mcr.microsoft.com/dotnet/core/aspnet:3.1</span><br></pre></td></tr></table></figure>
+
+<p><img src="pull1.png" alt="拉取远程镜像"></p>
+<h2 id="移除所有的容器和镜像"><a href="#移除所有的容器和镜像" class="headerlink" title="移除所有的容器和镜像"></a>移除所有的容器和镜像</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">docker <span class="built_in">kill</span> $(docker ps -q) </span><br><span class="line">docker rm $(docker ps -a -q) </span><br><span class="line">docker rmi $(docker images -q -a)</span><br></pre></td></tr></table></figure>
+
+<h2 id="删除所有的容器"><a href="#删除所有的容器" class="headerlink" title="删除所有的容器"></a>删除所有的容器</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">docker <span class="built_in">kill</span> $(docker ps -q)</span><br><span class="line">docker rm $(docker ps -a -q)</span><br></pre></td></tr></table></figure>
+
+<h2 id="清除单个镜像"><a href="#清除单个镜像" class="headerlink" title="清除单个镜像"></a>清除单个镜像</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker rmi -f &lt;image id&gt;</span><br></pre></td></tr></table></figure>
+
+<h2 id="构建镜像"><a href="#构建镜像" class="headerlink" title="构建镜像"></a>构建镜像</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#镜像名称：wmsapi</span></span><br><span class="line"><span class="comment">#路径：当前目录(.)</span></span><br><span class="line"><span class="comment">#Tag：latest</span></span><br><span class="line">sudo docker build -t wmsapi .</span><br><span class="line"></span><br><span class="line"><span class="comment">#镜像名称：wmsapi</span></span><br><span class="line"><span class="comment">#路径：当前目录(.)</span></span><br><span class="line"><span class="comment">#Tag: 1.0</span></span><br><span class="line">sudo docker build -t wmsapi:1.0 .</span><br></pre></td></tr></table></figure>
+
+<p><img src="build1.png" alt="构建镜像"></p>
+<h2 id="运行构建的镜像"><a href="#运行构建的镜像" class="headerlink" title="运行构建的镜像"></a>运行构建的镜像</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#容器名称：api</span></span><br><span class="line"><span class="comment">#镜像：wmsapi</span></span><br><span class="line"><span class="comment">#以守护进程运行：-d</span></span><br><span class="line"><span class="comment">#端口镜像:Docker内部端口:服务器端口 -p 5000:5000</span></span><br><span class="line"><span class="comment">#如果名称存在，就删除原来的：-rm</span></span><br><span class="line">sudo docker run -rm -d -p 5000:5000 --name api wmsapi</span><br><span class="line"></span><br><span class="line"><span class="comment">#镜像版本：latest</span></span><br><span class="line">sudo docker run -rm -d -p 5000:5000 --name api wmsapi:latest</span><br></pre></td></tr></table></figure>
+
+<h2 id="查看容器"><a href="#查看容器" class="headerlink" title="查看容器"></a>查看容器</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo docker ps -a</span><br></pre></td></tr></table></figure>
+
+<p><img src="ps1.png" alt="查看容器"></p>
 
                 <hr>
                 <ul class="pager">
                     
-                        <li class="previous">
-                            <a href="/2020/08/21/200821NetCoreDeployToUbuntu/" data-toggle="tooltip" data-placement="top" title="使用PowerShell自动部署ASP.Net Core到Ubuntu">&larr; 上一篇</a>
-                        </li>
-                    
                     
                         <li class="next">
-                            <a href="/2020/08/20/InstallUbuntu18Server/" data-toggle="tooltip" data-placement="top" title="在Hyper-V中安装Ubuntu Server 18.04">下一篇 &rarr;</a>
+                            <a href="/2020/08/24/200824DeployWMSToDocker/" data-toggle="tooltip" data-placement="top" title="部署Asp.Net Core到Docker">下一篇 &rarr;</a>
                         </li>
                     
                 </ul>
                 <!-- 畅言云评 -->
                 
-                    <div id="SOHUCS" sid="Ubuntu命令"></div>
+                    <div id="SOHUCS" sid="Docker常用命令说明"></div>
                 
 
             </div>
@@ -254,9 +263,9 @@
                     <h5><a href="/tags/">FEATURED TAGS</a></h5>
                     <div class="tags">
                        
-                          <a class="tag" href="/tags/#随笔" title="随笔">随笔</a>
+                          <a class="tag" href="/tags/#Docker" title="Docker">Docker</a>
                         
-                          <a class="tag" href="/tags/#Ubuntu" title="Ubuntu">Ubuntu</a>
+                          <a class="tag" href="/tags/#随笔" title="随笔">随笔</a>
                         
                     </div>
                 </section>
