@@ -12,11 +12,11 @@
 
     <title>
         
-          Ubuntu命令 - Giant Blog
+          Ubuntu安装Docker - Giant Blog
         
     </title>
 
-    <link rel="canonical" href="https://www.giantliu.cn/2020/08/20/UbuntuBashCmommand/">
+    <link rel="canonical" href="https://www.giantliu.cn/2020/08/24/200824InstallDockerToUbuntu/">
 
     <!-- Bootstrap Core CSS -->
     
@@ -182,14 +182,16 @@
                         
                           <a class="tag" href="/tags/#随笔" title="随笔">随笔</a>
                         
+                          <a class="tag" href="/tags/#Docker" title="Docker">Docker</a>
+                        
                           <a class="tag" href="/tags/#Ubuntu" title="Ubuntu">Ubuntu</a>
                         
                     </div>
-                    <h1>Ubuntu命令</h1>
+                    <h1>Ubuntu安装Docker</h1>
                     <h2 class="subheading"></h2>
                     <span class="meta">
                         Posted by 刘巨 on
-                        2020-08-20
+                        2020-08-24
                     </span>
                 </div>
             </div>
@@ -208,31 +210,25 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-                <h2 id="开关机命令"><a href="#开关机命令" class="headerlink" title="开关机命令"></a>开关机命令</h2><h3 id="重启命令"><a href="#重启命令" class="headerlink" title="重启命令"></a>重启命令</h3><p>1、reboot<br>2、shutdown -r now 立刻重启<br>3、shutdown -r 10 过10分钟自动重启<br>4、shutdown -r 20:35 在时间为20:35时候重启</p>
-<p>如果是通过shutdown命令设置重启的话，可以用shutdown -c命令取消重启</p>
-<h3 id="关机命令"><a href="#关机命令" class="headerlink" title="关机命令"></a>关机命令</h3><p>1、halt   立刻关机（一般加-p 关闭电源）<br>2、poweroff 立刻关机<br>3、shutdown -h now 立刻关机<br>4、shutdown -h 10 10分钟后自动关机</p>
-<h3 id="查看IP"><a href="#查看IP" class="headerlink" title="查看IP"></a>查看IP</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ip addr</span><br></pre></td></tr></table></figure>
+                <h2 id="安装代码"><a href="#安装代码" class="headerlink" title="安装代码"></a>安装代码</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#安装依赖:</span></span><br><span class="line">sudo apt-get install apt-transport-https ca-certificates curl gnupg2 software-properties-common</span><br><span class="line"></span><br><span class="line"><span class="comment">#信任Docker的GPG公钥:</span></span><br><span class="line">curl -fsSL https://repo.huaweicloud.com/docker-ce/linux/ubuntu/gpg | sudo apt-key add -</span><br><span class="line"></span><br><span class="line"><span class="comment">#对于amd64架构的计算机，添加软件仓库:</span></span><br><span class="line">sudo add-apt-repository <span class="string">&quot;deb [arch=amd64] https://repo.huaweicloud.com/docker-ce/linux/ubuntu <span class="subst">$(lsb_release -cs)</span> stable&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#更新索引文件并安装</span></span><br><span class="line">sudo apt-get update</span><br><span class="line">sudo apt-get install docker-ce</span><br><span class="line"></span><br><span class="line"><span class="comment">#测试是否安装成功</span></span><br><span class="line">sudo docker run hello-world</span><br></pre></td></tr></table></figure>
 
-<h2 id="SSH"><a href="#SSH" class="headerlink" title="SSH"></a>SSH</h2><p>sudo service ssh status 查看服务状态<br>sudo service ssh stop  关闭服务<br>sudo service ssh restart  重启服务</p>
-<h2 id="防火墙"><a href="#防火墙" class="headerlink" title="防火墙"></a>防火墙</h2><p>sudo ufw status 查看状态<br>sudo ufw enable 启用防火墙<br>sudo ufw allow 80 打开端口<br>sudo ufw reload 重新加载配置</p>
-<h2 id="文件操作"><a href="#文件操作" class="headerlink" title="文件操作"></a>文件操作</h2><p>mkdir命令（创建目录）<br>cp命令（拷贝文件或目录）<br>mv命令（移动、重命名文件或目录）<br>rm命令（删除文件或目录）</p>
+<h3 id="安装依赖"><a href="#安装依赖" class="headerlink" title="安装依赖"></a>安装依赖</h3><p><img src="1.png" alt="安装依赖"></p>
+<h3 id="信任Docker的GPG公钥-添加软件仓库"><a href="#信任Docker的GPG公钥-添加软件仓库" class="headerlink" title="信任Docker的GPG公钥/添加软件仓库"></a>信任Docker的GPG公钥/添加软件仓库</h3><p><img src="2.png" alt="信任Docker的GPG公钥"></p>
+<h3 id="更新索引文件并安装"><a href="#更新索引文件并安装" class="headerlink" title="更新索引文件并安装"></a>更新索引文件并安装</h3><p><img src="3.png" alt="信任Docker的GPG公钥"><br><img src="4.png" alt="信任Docker的GPG公钥"></p>
+<h3 id="测试是否安装成功"><a href="#测试是否安装成功" class="headerlink" title="测试是否安装成功"></a>测试是否安装成功</h3><p><img src="5.png" alt="信任Docker的GPG公钥"></p>
 
                 <hr>
                 <ul class="pager">
                     
-                        <li class="previous">
-                            <a href="/2020/08/21/200821NetCoreDeployToUbuntu/" data-toggle="tooltip" data-placement="top" title="使用PowerShell自动部署ASP.Net Core到Ubuntu">&larr; 上一篇</a>
-                        </li>
-                    
                     
                         <li class="next">
-                            <a href="/2020/08/20/InstallUbuntu18Server/" data-toggle="tooltip" data-placement="top" title="在Hyper-V中安装Ubuntu Server 18.04">下一篇 &rarr;</a>
+                            <a href="/2020/08/21/200821NetCoreDeployToUbuntu/" data-toggle="tooltip" data-placement="top" title="使用PowerShell自动部署ASP.Net Core到Ubuntu">下一篇 &rarr;</a>
                         </li>
                     
                 </ul>
                 <!-- 畅言云评 -->
                 
-                    <div id="SOHUCS" sid="Ubuntu命令"></div>
+                    <div id="SOHUCS" sid="Ubuntu安装Docker"></div>
                 
 
             </div>
@@ -254,6 +250,8 @@
                     <div class="tags">
                        
                           <a class="tag" href="/tags/#随笔" title="随笔">随笔</a>
+                        
+                          <a class="tag" href="/tags/#Docker" title="Docker">Docker</a>
                         
                           <a class="tag" href="/tags/#Ubuntu" title="Ubuntu">Ubuntu</a>
                         
