@@ -1,0 +1,340 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Giant Blog</title>
+  <icon>https://www.giantliu.cn/icon.png</icon>
+  <subtitle>天将降大任于是人也，必先苦其心志，劳其筋骨，饿其体肤，空乏其身</subtitle>
+  <link href="https://www.giantliu.cn/atom.xml" rel="self"/>
+  
+  <link href="https://www.giantliu.cn/"/>
+  <updated>2020-08-24T02:29:44.513Z</updated>
+  <id>https://www.giantliu.cn/</id>
+  
+  <author>
+    <name>刘巨</name>
+    <email>liuju150@outlook.com</email>
+  </author>
+  
+  <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Ubuntu安装Docker</title>
+    <link href="https://www.giantliu.cn/2020/08/24/200824InstallDockerToUbuntu/"/>
+    <id>https://www.giantliu.cn/2020/08/24/200824InstallDockerToUbuntu/</id>
+    <published>2020-08-24T02:11:23.000Z</published>
+    <updated>2020-08-24T02:29:44.513Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;安装代码&quot;&gt;&lt;a href=&quot;#安装代码&quot; class=&quot;headerlink&quot; title=&quot;安装代码&quot;&gt;&lt;/a&gt;安装代码&lt;/h2&gt;&lt;figure class=&quot;highlight sh&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td</summary>
+        
+      
+    
+    
+    
+    
+    <category term="随笔" scheme="https://www.giantliu.cn/tags/%E9%9A%8F%E7%AC%94/"/>
+    
+    <category term="Ubuntu" scheme="https://www.giantliu.cn/tags/Ubuntu/"/>
+    
+    <category term="Docker" scheme="https://www.giantliu.cn/tags/Docker/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>使用PowerShell自动部署ASP.Net Core到Ubuntu</title>
+    <link href="https://www.giantliu.cn/2020/08/21/200821NetCoreDeployToUbuntu/"/>
+    <id>https://www.giantliu.cn/2020/08/21/200821NetCoreDeployToUbuntu/</id>
+    <published>2020-08-21T07:03:04.000Z</published>
+    <updated>2020-08-24T02:32:44.208Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;figure class=&quot;highlight powershell&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span</summary>
+        
+      
+    
+    
+    
+    
+    <category term="随笔" scheme="https://www.giantliu.cn/tags/%E9%9A%8F%E7%AC%94/"/>
+    
+    <category term="NetCore" scheme="https://www.giantliu.cn/tags/NetCore/"/>
+    
+    <category term="Ubuntu" scheme="https://www.giantliu.cn/tags/Ubuntu/"/>
+    
+    <category term="PowerShell" scheme="https://www.giantliu.cn/tags/PowerShell/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Ubuntu命令</title>
+    <link href="https://www.giantliu.cn/2020/08/20/UbuntuBashCmommand/"/>
+    <id>https://www.giantliu.cn/2020/08/20/UbuntuBashCmommand/</id>
+    <published>2020-08-20T02:02:57.000Z</published>
+    <updated>2020-08-21T02:13:53.832Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;开关机命令&quot;&gt;&lt;a href=&quot;#开关机命令&quot; class=&quot;headerlink&quot; title=&quot;开关机命令&quot;&gt;&lt;/a&gt;开关机命令&lt;/h2&gt;&lt;h3 id=&quot;重启命令&quot;&gt;&lt;a href=&quot;#重启命令&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    
+    <category term="随笔" scheme="https://www.giantliu.cn/tags/%E9%9A%8F%E7%AC%94/"/>
+    
+    <category term="Ubuntu" scheme="https://www.giantliu.cn/tags/Ubuntu/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>在Hyper-V中安装Ubuntu Server 18.04</title>
+    <link href="https://www.giantliu.cn/2020/08/20/InstallUbuntu18Server/"/>
+    <id>https://www.giantliu.cn/2020/08/20/InstallUbuntu18Server/</id>
+    <published>2020-08-20T00:40:32.000Z</published>
+    <updated>2020-08-20T02:00:50.887Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;新建虚拟机&quot;&gt;&lt;a href=&quot;#新建虚拟机&quot; class=&quot;headerlink&quot; title=&quot;新建虚拟机&quot;&gt;&lt;/a&gt;新建虚拟机&lt;/h2&gt;&lt;p&gt;设置虚拟机名称和安装位置&lt;br&gt;&lt;img src=&quot;1.png&quot;</summary>
+        
+      
+    
+    
+    
+    
+    <category term="随笔" scheme="https://www.giantliu.cn/tags/%E9%9A%8F%E7%AC%94/"/>
+    
+    <category term="Ubuntu" scheme="https://www.giantliu.cn/tags/Ubuntu/"/>
+    
+    <category term="Hyper-V" scheme="https://www.giantliu.cn/tags/Hyper-V/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>使用PowerShell操作Ubuntu</title>
+    <link href="https://www.giantliu.cn/2020/08/19/InstallPowerShell/"/>
+    <id>https://www.giantliu.cn/2020/08/19/InstallPowerShell/</id>
+    <published>2020-08-19T09:10:20.000Z</published>
+    <updated>2020-08-21T04:24:49.862Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;安装PowerShell&quot;&gt;&lt;a href=&quot;#安装PowerShell&quot; class=&quot;headerlink&quot; title=&quot;安装PowerShell&quot;&gt;&lt;/a&gt;安装PowerShell&lt;/h2&gt;&lt;p&gt;&lt;a</summary>
+        
+      
+    
+    
+    
+    
+    <category term="随笔" scheme="https://www.giantliu.cn/tags/%E9%9A%8F%E7%AC%94/"/>
+    
+    <category term="Ubuntu" scheme="https://www.giantliu.cn/tags/Ubuntu/"/>
+    
+    <category term="PowerShell" scheme="https://www.giantliu.cn/tags/PowerShell/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>个人博客创建心历路程</title>
+    <link href="https://www.giantliu.cn/2020/08/09/first-post/"/>
+    <id>https://www.giantliu.cn/2020/08/09/first-post/</id>
+    <published>2020-08-09T04:23:28.000Z</published>
+    <updated>2020-08-12T00:43:36.730Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;文章目录&quot;&gt;&lt;a href=&quot;#文章目录&quot; class=&quot;headerlink&quot; title=&quot;文章目录&quot;&gt;&lt;/a&gt;文章目录&lt;/h2&gt;&lt;ol&gt;
+&lt;li&gt;&lt;a href=&quot;#%E5%89%8D%E8%A8%80&quot;&gt;前言&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a</summary>
+        
+      
+    
+    
+    
+    
+    <category term="随笔" scheme="https://www.giantliu.cn/tags/%E9%9A%8F%E7%AC%94/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Hello World</title>
+    <link href="https://www.giantliu.cn/2020/01/29/hello-world/"/>
+    <id>https://www.giantliu.cn/2020/01/29/hello-world/</id>
+    <published>2020-01-29T04:00:00.000Z</published>
+    <updated>2020-08-12T00:43:36.740Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;Welcome to &lt;a href=&quot;https://hexo.io/&quot;&gt;Hexo&lt;/a&gt;! This is your very first post. Check &lt;a href=&quot;https://hexo.io/docs/&quot;&gt;documentation&lt;/a&gt;</summary>
+        
+      
+    
+    
+    
+    
+    <category term="生活" scheme="https://www.giantliu.cn/tags/%E7%94%9F%E6%B4%BB/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Example Post using Keynote Layout</title>
+    <link href="https://www.giantliu.cn/2015/07/09/js-module-7day/"/>
+    <id>https://www.giantliu.cn/2015/07/09/js-module-7day/</id>
+    <published>2015-07-08T16:00:00.000Z</published>
+    <updated>2020-08-12T00:43:36.741Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;blockquote&gt;
+&lt;p&gt;下滑这里查看更多内容&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;7月9日，我在公司内部进行了名为「JavaScript 模块化七日谈」分享，并将该 Slides 分享到了微博上。出乎意料地，这篇微博先后被 @JS小组 @尤小右 @寸志 等近</summary>
+        
+      
+    
+    
+    
+    
+    <category term="前端开发" scheme="https://www.giantliu.cn/tags/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/"/>
+    
+    <category term="JavaScript" scheme="https://www.giantliu.cn/tags/JavaScript/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Example Post With Default Header Image</title>
+    <link href="https://www.giantliu.cn/2015/04/14/unix-linux-note/"/>
+    <id>https://www.giantliu.cn/2015/04/14/unix-linux-note/</id>
+    <published>2015-04-13T16:00:00.000Z</published>
+    <updated>2020-08-12T00:43:36.744Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;blockquote&gt;
+&lt;p&gt;This document is not completed and will be updated anytime.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&quot;Catagory&quot;&gt;&lt;a href=&quot;#Catagory&quot;</summary>
+        
+      
+    
+    
+    
+    
+    <category term="OS" scheme="https://www.giantliu.cn/tags/OS/"/>
+    
+    <category term="Unix" scheme="https://www.giantliu.cn/tags/Unix/"/>
+    
+    <category term="Linux" scheme="https://www.giantliu.cn/tags/Linux/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Example Post</title>
+    <link href="https://www.giantliu.cn/2014/09/22/js-version/"/>
+    <id>https://www.giantliu.cn/2014/09/22/js-version/</id>
+    <published>2014-09-21T16:00:00.000Z</published>
+    <updated>2020-08-12T00:43:36.742Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;JavaScript 有着很奇怪的命名史。&lt;/p&gt;
+&lt;p&gt;1995 年，它作为网景浏览器（Netscape Navigator）的一部分首次发布，网景给这个新语言命名为 LiveScript。一年后，为了搭上当时媒体热炒 Java 的顺风车，临时改名为了</summary>
+        
+      
+    
+    
+    
+    
+    <category term="前端开发" scheme="https://www.giantliu.cn/tags/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/"/>
+    
+    <category term="JavaScript" scheme="https://www.giantliu.cn/tags/JavaScript/"/>
+    
+    <category term="翻译" scheme="https://www.giantliu.cn/tags/%E7%BF%BB%E8%AF%91/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Welcome to Giant Blog</title>
+    <link href="https://www.giantliu.cn/2014/01/29/hello-2015/"/>
+    <id>https://www.giantliu.cn/2014/01/29/hello-2015/</id>
+    <published>2014-01-29T04:00:00.000Z</published>
+    <updated>2020-08-12T00:43:36.739Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;blockquote&gt;
+&lt;p&gt;“Yeah It’s on. ”&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h2&gt;&lt;p&gt;Hux 的 Blog</summary>
+        
+      
+    
+    
+    
+    
+    <category term="生活" scheme="https://www.giantliu.cn/tags/%E7%94%9F%E6%B4%BB/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Example Post with Code Highlight</title>
+    <link href="https://www.giantliu.cn/2013/05/25/js-module-loader/"/>
+    <id>https://www.giantliu.cn/2013/05/25/js-module-loader/</id>
+    <published>2013-05-24T16:00:00.000Z</published>
+    <updated>2020-08-12T00:43:36.741Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;Foreword&quot;&gt;&lt;a href=&quot;#Foreword&quot; class=&quot;headerlink&quot; title=&quot;Foreword&quot;&gt;&lt;/a&gt;Foreword&lt;/h2&gt;&lt;blockquote&gt;
+&lt;p&gt;Here comes</summary>
+        
+      
+    
+    
+    
+    
+    <category term="前端开发" scheme="https://www.giantliu.cn/tags/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/"/>
+    
+    <category term="JavaScript" scheme="https://www.giantliu.cn/tags/JavaScript/"/>
+    
+  </entry>
+  
+</feed>
