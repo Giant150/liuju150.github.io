@@ -38,7 +38,6 @@ sudo service ssh status 查看服务状态
 sudo service ssh stop  关闭服务
 sudo service ssh restart  重启服务
 
-
 ## 防火墙
 
 sudo ufw status 查看状态
