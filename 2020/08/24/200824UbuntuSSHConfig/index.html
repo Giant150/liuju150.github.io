@@ -12,11 +12,11 @@
 
     <title>
         
-          Docker常用命令说明 - Giant Blog
+          Ubuntu系统配置SSH服务 - Giant Blog
         
     </title>
 
-    <link rel="canonical" href="https://www.giantliu.cn/2020/08/24/DockerCommand/">
+    <link rel="canonical" href="https://www.giantliu.cn/2020/08/24/200824UbuntuSSHConfig/">
 
     <!-- Bootstrap Core CSS -->
     
@@ -183,10 +183,12 @@
                         
                           <a class="tag" href="/tags/#随笔" title="随笔">随笔</a>
                         
-                          <a class="tag" href="/tags/#Docker" title="Docker">Docker</a>
+                          <a class="tag" href="/tags/#Ubuntu" title="Ubuntu">Ubuntu</a>
+                        
+                          <a class="tag" href="/tags/#SSH" title="SSH">SSH</a>
                         
                     </div>
-                    <h1>Docker常用命令说明</h1>
+                    <h1>Ubuntu系统配置SSH服务</h1>
                     <h2 class="subheading"></h2>
                     <span class="meta">
                         Posted by 刘巨 on
@@ -209,49 +211,74 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-                <h2 id="查看当前已经安装的镜像"><a href="#查看当前已经安装的镜像" class="headerlink" title="查看当前已经安装的镜像"></a>查看当前已经安装的镜像</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo docker images</span><br></pre></td></tr></table></figure>
+                <h2 id="实现目标"><a href="#实现目标" class="headerlink" title="实现目标"></a>实现目标</h2><ol>
+<li><p>在Ubuntu里配置好SSH服务</p>
+</li>
+<li><p>在Windows客户端用本地用户登录SSH (密码/RSA Key)</p>
+</li>
+<li><p>在Windows客户端用root用户登录SSH (密码/RSA Key)</p>
+</li>
+</ol>
+<p><img src="1.png" alt="Ubuntu系统信息"></p>
+<h2 id="配置SSH服务"><a href="#配置SSH服务" class="headerlink" title="配置SSH服务"></a>配置SSH服务</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#打开SSHD配置文件</span></span><br><span class="line">sudo vi /etc/ssh/sshd_config</span><br><span class="line"></span><br><span class="line"><span class="comment">#把配置文件配置如下值</span></span><br><span class="line">PermitRootLogin yes</span><br><span class="line">PubkeyAuthentication yes</span><br><span class="line">AuthorizedKeysFile .ssh/authorized_keys .ssh/authorized_keys2</span><br><span class="line">PasswordAuthentication yes</span><br><span class="line">RSAAuthentication yes</span><br><span class="line"></span><br><span class="line"><span class="comment">#重启sshd服务</span></span><br><span class="line">sudo service sshd restart</span><br></pre></td></tr></table></figure>
 
-<p><img src="info1.png" alt="已经安装的镜像"></p>
-<h2 id="拉取远程镜像"><a href="#拉取远程镜像" class="headerlink" title="拉取远程镜像"></a>拉取远程镜像</h2><p><a target="_blank" rel="noopener" href="https://hub.docker.com/_/microsoft-dotnet-core">dotnet core 镜像地址</a></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo docker pull mcr.microsoft.com/dotnet/core/aspnet:3.1</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>vi编辑说明：进入文件后，按i键启用编辑。完成后键入Esc，然后输入(保存退出:wq)(退出:q),包括冒号</p>
+</blockquote>
+<p><img src="2.png" alt="重启sshd服务"></p>
+<h2 id="SSH客户端-Windows-使用密码登录"><a href="#SSH客户端-Windows-使用密码登录" class="headerlink" title="SSH客户端(Windows)使用密码登录"></a>SSH客户端(Windows)使用密码登录</h2><figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">#本地用户帐号:giant</span><br><span class="line">#服务器IP：<span class="number">10</span>.<span class="number">76</span>.<span class="number">20</span>.<span class="number">162</span></span><br><span class="line">ssh giant@<span class="number">10</span>.<span class="number">76</span>.<span class="number">20</span>.<span class="number">162</span></span><br></pre></td></tr></table></figure>
 
-<p><img src="pull1.png" alt="拉取远程镜像"></p>
-<h2 id="移除所有的容器和镜像"><a href="#移除所有的容器和镜像" class="headerlink" title="移除所有的容器和镜像"></a>移除所有的容器和镜像</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">docker <span class="built_in">kill</span> $(docker ps -q) </span><br><span class="line">docker rm $(docker ps -a -q) </span><br><span class="line">docker rmi $(docker images -q -a)</span><br></pre></td></tr></table></figure>
+<p><img src="3.png" alt="SSH客户端使用密码登录"></p>
+<h2 id="在windows生成RSA-Key"><a href="#在windows生成RSA-Key" class="headerlink" title="在windows生成RSA Key"></a>在windows生成RSA Key</h2><figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">#在Windows里生成RSA密钥文件</span><br><span class="line">ssh-keygen.exe</span><br></pre></td></tr></table></figure>
 
-<h2 id="删除所有的容器"><a href="#删除所有的容器" class="headerlink" title="删除所有的容器"></a>删除所有的容器</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">docker <span class="built_in">kill</span> $(docker ps -q)</span><br><span class="line">docker rm $(docker ps -a -q)</span><br></pre></td></tr></table></figure>
+<p>会在指定目录下面生成两个文件</p>
+<ol>
+<li>id_rsa #私钥文件</li>
+<li>id_rsa.pub #公钥文件</li>
+</ol>
+<p><img src="4.png" alt="RSA密钥文件"></p>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">#通过SCP命令，把本的的公钥文件复制到服务器用户ssh目录/home/giant/.ssh/</span><br><span class="line">scp .\id_rsa.pub giant@<span class="number">10</span>.<span class="number">76</span>.<span class="number">20</span>.<span class="number">162</span>:/home/giant/.ssh/</span><br></pre></td></tr></table></figure>
 
-<h2 id="清除单个镜像"><a href="#清除单个镜像" class="headerlink" title="清除单个镜像"></a>清除单个镜像</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker rmi -f &lt;image id&gt;</span><br></pre></td></tr></table></figure>
+<p>然后我们通过密码登录服务器，在用户目录下面就可以看到id_rsa.pub文件</p>
+<p><img src="5.png" alt="SCP公钥文件复制到服务器"></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#通过cat命令把公钥文件输出到authorized_keys文件</span></span><br><span class="line">cat id_rsa.pub &gt;&gt; authorized_keys</span><br><span class="line"><span class="comment">#然后我们就可以把id_rsa.pub文件删除了</span></span><br><span class="line">rm id_rsa.pub</span><br></pre></td></tr></table></figure>
 
-<h2 id="构建镜像"><a href="#构建镜像" class="headerlink" title="构建镜像"></a>构建镜像</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#镜像名称：wmsapi</span></span><br><span class="line"><span class="comment">#路径：当前目录(.)</span></span><br><span class="line"><span class="comment">#Tag：latest</span></span><br><span class="line">sudo docker build -t wmsapi .</span><br><span class="line"></span><br><span class="line"><span class="comment">#镜像名称：wmsapi</span></span><br><span class="line"><span class="comment">#路径：当前目录(.)</span></span><br><span class="line"><span class="comment">#Tag: 1.0</span></span><br><span class="line">sudo docker build -t wmsapi:1.0 .</span><br></pre></td></tr></table></figure>
+<p><img src="6.png" alt="authorized_keys文件"></p>
+<h2 id="在Windows客户端使用RSAKey登录SSH"><a href="#在Windows客户端使用RSAKey登录SSH" class="headerlink" title="在Windows客户端使用RSAKey登录SSH"></a>在Windows客户端使用RSAKey登录SSH</h2><figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">#在windows客户端，我们就可以指定私钥文件免密码登录到服务器</span><br><span class="line">#-i:指定私钥文件路径</span><br><span class="line">ssh giant@<span class="number">10</span>.<span class="number">76</span>.<span class="number">20</span>.<span class="number">162</span> -i .\id_rsa</span><br></pre></td></tr></table></figure>
 
-<p><img src="build1.png" alt="构建镜像"></p>
-<h2 id="运行构建的镜像"><a href="#运行构建的镜像" class="headerlink" title="运行构建的镜像"></a>运行构建的镜像</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#容器名称：api</span></span><br><span class="line"><span class="comment">#镜像：wmsapi</span></span><br><span class="line"><span class="comment">#以守护进程运行：-d</span></span><br><span class="line"><span class="comment">#端口镜像:Docker内部端口:服务器端口 -p 5000:5000</span></span><br><span class="line"><span class="comment">#如果名称存在，就删除原来的：-rm</span></span><br><span class="line">sudo docker run -rm -d -p 5000:5000 --name api wmsapi</span><br><span class="line"></span><br><span class="line"><span class="comment">#镜像版本：latest</span></span><br><span class="line">sudo docker run -rm -d -p 5000:5000 --name api wmsapi:latest</span><br></pre></td></tr></table></figure>
+<p><img src="7.png" alt="id_rsa私钥文件免密码登录到服务器"></p>
+<h2 id="SSH客户端-Windows-使用密码登录root"><a href="#SSH客户端-Windows-使用密码登录root" class="headerlink" title="SSH客户端(Windows)使用密码登录root"></a>SSH客户端(Windows)使用密码登录root</h2><h3 id="启用root帐号"><a href="#启用root帐号" class="headerlink" title="启用root帐号"></a>启用root帐号</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#给root帐号设置密码</span></span><br><span class="line">sudo passwd root</span><br><span class="line"><span class="comment">#切换root帐号登录</span></span><br><span class="line">su root</span><br></pre></td></tr></table></figure>
 
-<h2 id="查看容器"><a href="#查看容器" class="headerlink" title="查看容器"></a>查看容器</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo docker ps -a</span><br></pre></td></tr></table></figure>
+<p><img src="root1.png" alt="启用root帐号"></p>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">#在windows使用ssh登录root用户</span><br><span class="line">ssh root@<span class="number">10</span>.<span class="number">76</span>.<span class="number">20</span>.<span class="number">162</span></span><br></pre></td></tr></table></figure>
 
-<p><img src="ps1.png" alt="查看容器"></p>
-<h2 id="启动容器"><a href="#启动容器" class="headerlink" title="启动容器"></a>启动容器</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#启动容器</span></span><br><span class="line"><span class="comment">#api:容器名称</span></span><br><span class="line">sudo docker start api</span><br><span class="line"></span><br><span class="line"><span class="comment">#停止容器</span></span><br><span class="line"><span class="comment">#api:容器名称</span></span><br><span class="line">sudo docker stop api</span><br><span class="line"></span><br><span class="line"><span class="comment">#重启容器</span></span><br><span class="line"><span class="comment">#api:容器名称</span></span><br><span class="line">sudo docker restart api</span><br></pre></td></tr></table></figure>
+<p><img src="8.png" alt="使用密码登录root"></p>
+<h2 id="在Windows客户端使用RSAKey登录root"><a href="#在Windows客户端使用RSAKey登录root" class="headerlink" title="在Windows客户端使用RSAKey登录root"></a>在Windows客户端使用RSAKey登录root</h2><figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">#先在windows使用scp把公钥文件复制到服务器/root/.ssh/</span><br><span class="line">scp .\id_rsa.pub root@<span class="number">10</span>.<span class="number">76</span>.<span class="number">20</span>.<span class="number">162</span>:/root/.ssh/</span><br></pre></td></tr></table></figure>
 
-<p><img src="start1.png" alt="启动容器"></p>
-<p><img src="stop1.png" alt="停止容器"></p>
-<p><img src="restart1.png" alt="重启容器"></p>
+<p>使用密码登录root后，使用cat把公钥文件输出到authorized_keys文件</p>
+<p><img src="9.png" alt="使用RSA Key登录root"></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#通过cat命令把公钥文件输出到authorized_keys文件</span></span><br><span class="line">cat id_rsa.pub &gt;&gt; authorized_keys</span><br><span class="line"><span class="comment">#然后我们就可以把id_rsa.pub文件删除了</span></span><br><span class="line">rm id_rsa.pub</span><br></pre></td></tr></table></figure>
+
+<p>然后我们就可以在windows客户端使用RSA Key名密码登录root</p>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh root@<span class="number">10</span>.<span class="number">76</span>.<span class="number">20</span>.<span class="number">162</span> -i .\id_rsa</span><br></pre></td></tr></table></figure>
+
+<p><img src="10.png" alt="使用RSA Key登录root"></p>
+<h2 id="备注"><a href="#备注" class="headerlink" title="备注"></a>备注</h2><ol>
+<li>为什么我们要把id_rsa.pub文件输出到authorized_keys文件<br>答：因为在sshd_config文件里，配置的AuthorizedKeysFile .ssh/authorized_keys .ssh/authorized_keys2<br>所以只要我们把公钥文件都输出到authorized_keys里面。然后其它客户端就可以用RSA Key私钥文件登录了</li>
+</ol>
 
                 <hr>
                 <ul class="pager">
                     
-                        <li class="previous">
-                            <a href="/2020/08/24/200824UbuntuSSHConfig/" data-toggle="tooltip" data-placement="top" title="Ubuntu系统配置SSH服务">&larr; 上一篇</a>
-                        </li>
-                    
                     
                         <li class="next">
-                            <a href="/2020/08/24/200824DeployWMSToDocker/" data-toggle="tooltip" data-placement="top" title="部署Asp.Net Core到Docker">下一篇 &rarr;</a>
+                            <a href="/2020/08/24/DockerCommand/" data-toggle="tooltip" data-placement="top" title="Docker常用命令说明">下一篇 &rarr;</a>
                         </li>
                     
                 </ul>
                 <!-- 畅言云评 -->
                 
-                    <div id="SOHUCS" sid="Docker常用命令说明"></div>
+                    <div id="SOHUCS" sid="Ubuntu系统配置SSH服务"></div>
                 
 
             </div>
@@ -274,7 +301,9 @@
                        
                           <a class="tag" href="/tags/#随笔" title="随笔">随笔</a>
                         
-                          <a class="tag" href="/tags/#Docker" title="Docker">Docker</a>
+                          <a class="tag" href="/tags/#Ubuntu" title="Ubuntu">Ubuntu</a>
+                        
+                          <a class="tag" href="/tags/#SSH" title="SSH">SSH</a>
                         
                     </div>
                 </section>
