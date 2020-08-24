@@ -84,3 +84,25 @@ sudo docker ps -a
 ```
 
 ![查看容器](ps1.png)
+
+## 启动容器
+
+```bash
+#启动容器
+#api:容器名称
+sudo docker start api
+
+#停止容器
+#api:容器名称
+sudo docker stop api
+
+#重启容器
+#api:容器名称
+sudo docker restart api
+```
+
+![启动容器](start1.png)
+
+![停止容器](stop1.png)
+
+![重启容器](restart1.png)
