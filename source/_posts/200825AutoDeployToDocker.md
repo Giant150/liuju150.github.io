@@ -126,7 +126,7 @@ Invoke-Command -Session $Session -ScriptBlock {docker run -d -p 5000:5000 --name
 ## 部署结果
 
 部署成功后，我们在浏览器里打开
-http://10.76.20.162:5000/swagger/
+[http://10.76.20.162:5000/swagger/](http://10.76.20.162:5000/swagger/)
 就可以看到我们发布的API接口
 
 ![API](3.png)
