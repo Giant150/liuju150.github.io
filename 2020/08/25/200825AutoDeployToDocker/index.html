@@ -104,6 +104,13 @@
 
                         
                         <li>
+                            <a href="/archives/">Archives</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
                             <a href="/about/">About</a>
                         </li>
                         
@@ -112,13 +119,6 @@
                         
                         <li>
                             <a href="/tags/">Tags</a>
-                        </li>
-                        
-                    
-
-                        
-                        <li>
-                            <a href="/archives/">Archives</a>
                         </li>
                         
                     
@@ -229,9 +229,9 @@
 <li>在Ubuntu服务器使用Docker对外提供服务</li>
 </ol>
 <h2 id="前置条件"><a href="#前置条件" class="headerlink" title="前置条件"></a>前置条件</h2><ol>
-<li>Ubuntu服务器启用了SSH，并可以使用RSA Key登录root (<a href="!--%EF%BF%BC0--">参考文档</a>)</li>
-<li>Ubuntu服务器安装了PowerShell (<a href="!--%EF%BF%BC1--">参考文档</a>)</li>
-<li>Ubuntu服务器安装了Docker (<a href="!--%EF%BF%BC2--">参考文档</a>)</li>
+<li>Ubuntu服务器启用了SSH，并可以使用RSA Key登录root 参考：<a href="/2020/08/24/200824UbuntuSSHConfig/" title="Ubuntu系统配置SSH服务">Ubuntu系统配置SSH服务</a></li>
+<li>Ubuntu服务器安装了PowerShell 参考：<a href="/2020/08/19/InstallPowerShell/" title="使用PowerShell操作Ubuntu">使用PowerShell操作Ubuntu</a></li>
+<li>Ubuntu服务器安装了Docker 参考：<a href="/2020/08/24/200824InstallDockerToUbuntu/" title="Ubuntu安装Docker">Ubuntu安装Docker</a></li>
 </ol>
 <h2 id="自动编译Asp-Net-Core-Web-API接口"><a href="#自动编译Asp-Net-Core-Web-API接口" class="headerlink" title="自动编译Asp.Net Core Web API接口"></a>自动编译Asp.Net Core Web API接口</h2><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#设置代码目录和编译输出目录</span></span><br><span class="line"><span class="variable">$CurPath</span>=(<span class="built_in">Resolve-Path</span> .).Path</span><br><span class="line"><span class="variable">$OutputPath</span>=<span class="variable">$CurPath</span>+<span class="string">&quot;\bin\publish\&quot;</span></span><br><span class="line"><span class="comment">#清空输出目录</span></span><br><span class="line"><span class="built_in">Remove-Item</span> <span class="literal">-Path</span> <span class="variable">$OutputPath</span> <span class="literal">-Force</span> <span class="literal">-Recurse</span></span><br><span class="line"><span class="comment">#调用dotnet publish命令发布程序</span></span><br><span class="line"><span class="comment">#参考：https://docs.microsoft.com/zh-cn/dotnet/core/tools/dotnet-publish</span></span><br><span class="line"><span class="built_in">Invoke-Command</span> <span class="literal">-ScriptBlock</span> &#123;<span class="keyword">param</span>(<span class="variable">$o</span>) dotnet publish <span class="literal">-o</span> <span class="variable">$o</span> <span class="literal">-c</span> <span class="string">&quot;Release&quot;</span> -<span class="literal">-no</span><span class="literal">-self</span><span class="literal">-contained</span> <span class="literal">-r</span> linux<span class="literal">-arm64</span> <span class="literal">-v</span> m -<span class="literal">-nologo</span> <span class="string">&quot;05.Coldairarrow.Api.csproj&quot;</span>&#125; <span class="literal">-ArgumentList</span> <span class="variable">$OutputPath</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">#压缩编译后的发布文件</span></span><br><span class="line"><span class="variable">$CurDateString</span>=<span class="built_in">Get-Date</span> <span class="literal">-Format</span> <span class="string">&quot;yyyyMMddHHmmss&quot;</span></span><br><span class="line"><span class="comment">#压缩文件名加上日期，以后追溯</span></span><br><span class="line"><span class="variable">$ZIPFileName</span>=<span class="string">&quot;Deploy&quot;</span>+<span class="variable">$CurDateString</span>+<span class="string">&quot;.zip&quot;</span></span><br><span class="line"><span class="variable">$ZIPFilePath</span>=<span class="variable">$CurPath</span>+<span class="string">&quot;\&quot;</span>+<span class="variable">$ZIPFileName</span></span><br><span class="line"><span class="variable">$CompressPath</span>=<span class="variable">$OutputPath</span>+<span class="string">&quot;*&quot;</span></span><br><span class="line"><span class="comment">#压缩文件</span></span><br><span class="line"><span class="comment">#Path：压缩对象，DestinationPath：输出压缩文件全路径</span></span><br><span class="line"><span class="built_in">Compress-Archive</span> <span class="literal">-Path</span> <span class="variable">$CompressPath</span> <span class="literal">-DestinationPath</span> <span class="variable">$ZIPFilePath</span></span><br></pre></td></tr></table></figure>
 
