@@ -14,6 +14,12 @@ date: 2020-08-24 12:34:38
 sudo docker images
 ```
 
+## 查看当前已经生成的容器
+
+```bash
+sudo docker ps -a
+```
+
 ![已经安装的镜像](info1.png)
 
 ## 拉取远程镜像
@@ -39,6 +45,12 @@ docker rmi $(docker images -q -a)
 ```bash
 docker kill $(docker ps -q)
 docker rm $(docker ps -a -q)
+```
+
+## 清除单个容器
+
+```bash
+docker rm <container id>
 ```
 
 ## 清除单个镜像
