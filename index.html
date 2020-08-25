@@ -100,9 +100,6 @@
                     
 
                         
-                    
-
-                        
                         <li>
                             <a href="/about/">About</a>
                         </li>
@@ -110,15 +107,18 @@
                     
 
                         
+                    
+
+                        
                         <li>
-                            <a href="/archives/">Archives</a>
+                            <a href="/tags/">Tags</a>
                         </li>
                         
                     
 
                         
                         <li>
-                            <a href="/tags/">Tags</a>
+                            <a href="/archives/">Archives</a>
                         </li>
                         
                     
@@ -202,6 +202,28 @@
 
 <div class="post-preview">
 
+    <a href="/2020/08/25/200825AutoDeployToDocker/">
+        <h2 class="post-title">
+            自动部署Asp.Net Core至Docker
+        </h2>
+        <h3 class="post-subtitle">
+            在Windows编译生成自动发布至Ubuntu服务器，并启动Docker容器
+        </h3>
+        <div class="post-content-preview">
+            本文简介最近在开发一个管理系统，代码框架是用的前后台分离的方式后台使用的是Asp.Net Core平台，开发所有业务，向前台提供Rest API接口。使用的认证方式是JWT前端有两个项目，一个是Web端，一个是Mobild端都是使用Vue + Ant Design of Vue架构
+后端的开发工具使用的是Visual Studio 2019前端的开发工具使用的是Visual Studio C......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by 刘巨 on
+        2020-08-25
+    </p>
+
+</div>
+<hr>
+
+<div class="post-preview">
+
     <a href="/2020/08/24/200824UbuntuSSHConfig/">
         <h2 class="post-title">
             Ubuntu系统配置SSH服务
@@ -242,12 +264,14 @@
         <div class="post-content-preview">
             查看当前已经安装的镜像1sudo docker images
 
+查看当前已经生成的容器1sudo docker ps -a
+
 
 拉取远程镜像dotnet core 镜像地址
 1sudo docker pull mcr.microsoft.com/dotnet/core/aspnet:3.1
 
 
-移除所有的容器和镜像123docker kill $(docker ps -q) docker rm $(docker ps -a -q) docker rmi......
+移除所有的容器和镜像123docker kill $(docker ps -q) docker r......
         </div>
     </a>
     <p class="post-meta">
@@ -417,28 +441,6 @@
 </div>
 <hr>
 
-<div class="post-preview">
-
-    <a href="/2020/01/29/hello-world/">
-        <h2 class="post-title">
-            Hello World
-        </h2>
-        <h3 class="post-subtitle">
-             "Hello World, Hello Giant Blog"
-        </h3>
-        <div class="post-content-preview">
-            Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.
-Qu......
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by 刘巨 on
-        2020-01-29
-    </p>
-
-</div>
-<hr>
-
 
 
 <!-- Pager -->
@@ -480,26 +482,26 @@ Qu......
                     
                     
                     <a href="/tags/#NetCore" title="NetCore"
-                        rel="2">NetCore</a>
+                        rel="3">NetCore</a>
                     
                     
                     
                     <a href="/tags/#Ubuntu" title="Ubuntu"
-                        rel="6">Ubuntu</a>
+                        rel="7">Ubuntu</a>
                     
                     
                     
                     <a href="/tags/#PowerShell" title="PowerShell"
-                        rel="2">PowerShell</a>
+                        rel="3">PowerShell</a>
+                    
+                    
                     
                     
                     
                     
                     
                     <a href="/tags/#Docker" title="Docker"
-                        rel="3">Docker</a>
-                    
-                    
+                        rel="4">Docker</a>
                     
                     
                     

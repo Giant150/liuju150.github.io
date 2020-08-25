@@ -100,9 +100,6 @@
                     
 
                         
-                    
-
-                        
                         <li>
                             <a href="/about/">About</a>
                         </li>
@@ -110,15 +107,18 @@
                     
 
                         
+                    
+
+                        
                         <li>
-                            <a href="/archives/">Archives</a>
+                            <a href="/tags/">Tags</a>
                         </li>
                         
                     
 
                         
                         <li>
-                            <a href="/tags/">Tags</a>
+                            <a href="/archives/">Archives</a>
                         </li>
                         
                     
@@ -211,6 +211,8 @@
 
                 <h2 id="查看当前已经安装的镜像"><a href="#查看当前已经安装的镜像" class="headerlink" title="查看当前已经安装的镜像"></a>查看当前已经安装的镜像</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo docker images</span><br></pre></td></tr></table></figure>
 
+<h2 id="查看当前已经生成的容器"><a href="#查看当前已经生成的容器" class="headerlink" title="查看当前已经生成的容器"></a>查看当前已经生成的容器</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo docker ps -a</span><br></pre></td></tr></table></figure>
+
 <p><img src="info1.png" alt="已经安装的镜像"></p>
 <h2 id="拉取远程镜像"><a href="#拉取远程镜像" class="headerlink" title="拉取远程镜像"></a>拉取远程镜像</h2><p><a target="_blank" rel="noopener" href="https://hub.docker.com/_/microsoft-dotnet-core">dotnet core 镜像地址</a></p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo docker pull mcr.microsoft.com/dotnet/core/aspnet:3.1</span><br></pre></td></tr></table></figure>
@@ -219,6 +221,8 @@
 <h2 id="移除所有的容器和镜像"><a href="#移除所有的容器和镜像" class="headerlink" title="移除所有的容器和镜像"></a>移除所有的容器和镜像</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">docker <span class="built_in">kill</span> $(docker ps -q) </span><br><span class="line">docker rm $(docker ps -a -q) </span><br><span class="line">docker rmi $(docker images -q -a)</span><br></pre></td></tr></table></figure>
 
 <h2 id="删除所有的容器"><a href="#删除所有的容器" class="headerlink" title="删除所有的容器"></a>删除所有的容器</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">docker <span class="built_in">kill</span> $(docker ps -q)</span><br><span class="line">docker rm $(docker ps -a -q)</span><br></pre></td></tr></table></figure>
+
+<h2 id="清除单个容器"><a href="#清除单个容器" class="headerlink" title="清除单个容器"></a>清除单个容器</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker rm &lt;container id&gt;</span><br></pre></td></tr></table></figure>
 
 <h2 id="清除单个镜像"><a href="#清除单个镜像" class="headerlink" title="清除单个镜像"></a>清除单个镜像</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker rmi -f &lt;image id&gt;</span><br></pre></td></tr></table></figure>
 
