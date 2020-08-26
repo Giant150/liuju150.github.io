@@ -6,7 +6,7 @@
   <link href="https://www.giantliu.cn/atom.xml" rel="self"/>
   
   <link href="https://www.giantliu.cn/"/>
-  <updated>2020-08-26T01:10:48.740Z</updated>
+  <updated>2020-08-26T11:39:16.535Z</updated>
   <id>https://www.giantliu.cn/</id>
   
   <author>
@@ -17,11 +17,34 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>Git命令说明</title>
+    <link href="https://www.giantliu.cn/2020/08/26/GitCommand/"/>
+    <id>https://www.giantliu.cn/2020/08/26/GitCommand/</id>
+    <published>2020-08-26T08:16:18.000Z</published>
+    <updated>2020-08-26T11:39:16.535Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;Git同步源仓库代码&quot;&gt;&lt;a href=&quot;#Git同步源仓库代码&quot; class=&quot;headerlink&quot; title=&quot;Git同步源仓库代码&quot;&gt;&lt;/a&gt;Git同步源仓库代码&lt;/h2&gt;&lt;figure class=&quot;highlight</summary>
+        
+      
+    
+    
+    
+    
+    <category term="随笔" scheme="https://www.giantliu.cn/tags/%E9%9A%8F%E7%AC%94/"/>
+    
+  </entry>
+  
+  <entry>
     <title>Ubuntu设置固定IP地址</title>
     <link href="https://www.giantliu.cn/2020/08/26/200826UbuntuIPConfig/"/>
     <id>https://www.giantliu.cn/2020/08/26/200826UbuntuIPConfig/</id>
     <published>2020-08-26T00:52:03.000Z</published>
-    <updated>2020-08-26T01:10:48.740Z</updated>
+    <updated>2020-08-26T09:01:00.778Z</updated>
     
     
       
@@ -49,7 +72,7 @@
     <link href="https://www.giantliu.cn/2020/08/25/200825AutoDeployToDocker/"/>
     <id>https://www.giantliu.cn/2020/08/25/200825AutoDeployToDocker/</id>
     <published>2020-08-25T01:39:01.000Z</published>
-    <updated>2020-08-25T04:36:15.559Z</updated>
+    <updated>2020-08-26T09:00:51.463Z</updated>
     
     
       
@@ -78,7 +101,7 @@
     <link href="https://www.giantliu.cn/2020/08/24/200824UbuntuSSHConfig/"/>
     <id>https://www.giantliu.cn/2020/08/24/200824UbuntuSSHConfig/</id>
     <published>2020-08-24T07:53:31.000Z</published>
-    <updated>2020-08-24T09:28:22.014Z</updated>
+    <updated>2020-08-26T09:00:36.436Z</updated>
     
     
       
@@ -105,7 +128,7 @@
     <link href="https://www.giantliu.cn/2020/08/24/DockerCommand/"/>
     <id>https://www.giantliu.cn/2020/08/24/DockerCommand/</id>
     <published>2020-08-24T04:34:38.000Z</published>
-    <updated>2020-08-25T08:25:45.214Z</updated>
+    <updated>2020-08-26T09:01:13.175Z</updated>
     
     
       
@@ -130,7 +153,7 @@
     <link href="https://www.giantliu.cn/2020/08/24/200824DeployWMSToDocker/"/>
     <id>https://www.giantliu.cn/2020/08/24/200824DeployWMSToDocker/</id>
     <published>2020-08-24T02:50:21.000Z</published>
-    <updated>2020-08-24T04:30:31.059Z</updated>
+    <updated>2020-08-26T08:59:57.032Z</updated>
     
     
       
@@ -146,9 +169,9 @@
     
     <category term="NetCore" scheme="https://www.giantliu.cn/tags/NetCore/"/>
     
-    <category term="WMS" scheme="https://www.giantliu.cn/tags/WMS/"/>
-    
     <category term="Docker" scheme="https://www.giantliu.cn/tags/Docker/"/>
+    
+    <category term="WMS" scheme="https://www.giantliu.cn/tags/WMS/"/>
     
   </entry>
   
@@ -157,7 +180,7 @@
     <link href="https://www.giantliu.cn/2020/08/24/200824InstallDockerToUbuntu/"/>
     <id>https://www.giantliu.cn/2020/08/24/200824InstallDockerToUbuntu/</id>
     <published>2020-08-24T02:11:23.000Z</published>
-    <updated>2020-08-24T02:29:44.513Z</updated>
+    <updated>2020-08-26T08:57:29.908Z</updated>
     
     
       
@@ -184,7 +207,7 @@
     <link href="https://www.giantliu.cn/2020/08/21/200821NetCoreDeployToUbuntu/"/>
     <id>https://www.giantliu.cn/2020/08/21/200821NetCoreDeployToUbuntu/</id>
     <published>2020-08-21T07:03:04.000Z</published>
-    <updated>2020-08-24T02:32:44.208Z</updated>
+    <updated>2020-08-26T09:35:03.476Z</updated>
     
     
       
@@ -213,7 +236,7 @@
     <link href="https://www.giantliu.cn/2020/08/20/UbuntuBashCmommand/"/>
     <id>https://www.giantliu.cn/2020/08/20/UbuntuBashCmommand/</id>
     <published>2020-08-20T02:02:57.000Z</published>
-    <updated>2020-08-24T09:30:42.105Z</updated>
+    <updated>2020-08-26T09:01:45.655Z</updated>
     
     
       
@@ -238,7 +261,7 @@
     <link href="https://www.giantliu.cn/2020/08/20/InstallUbuntu18Server/"/>
     <id>https://www.giantliu.cn/2020/08/20/InstallUbuntu18Server/</id>
     <published>2020-08-20T00:40:32.000Z</published>
-    <updated>2020-08-20T02:00:50.887Z</updated>
+    <updated>2020-08-26T09:01:36.978Z</updated>
     
     
       
@@ -265,7 +288,7 @@
     <link href="https://www.giantliu.cn/2020/08/19/InstallPowerShell/"/>
     <id>https://www.giantliu.cn/2020/08/19/InstallPowerShell/</id>
     <published>2020-08-19T09:10:20.000Z</published>
-    <updated>2020-08-21T04:24:49.862Z</updated>
+    <updated>2020-08-26T09:36:14.715Z</updated>
     
     
       
