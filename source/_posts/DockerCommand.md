@@ -35,8 +35,8 @@ sudo docker pull mcr.microsoft.com/dotnet/core/aspnet:3.1
 ## 移除所有的容器和镜像
 
 ```bash
-docker kill $(docker ps -q) 
-docker rm $(docker ps -a -q) 
+docker kill $(docker ps -q)
+docker rm $(docker ps -a -q)
 docker rmi $(docker images -q -a)
 ```
 
@@ -118,3 +118,9 @@ sudo docker restart api
 ![停止容器](stop1.png)
 
 ![重启容器](restart1.png)
+
+## 进入容器Bash
+
+```bash
+docker exec -it {container} bash
+```
