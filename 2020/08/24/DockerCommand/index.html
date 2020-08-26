@@ -104,14 +104,14 @@
 
                         
                         <li>
-                            <a href="/tags/">Tags</a>
+                            <a href="/archives/">Archives</a>
                         </li>
                         
                     
 
                         
                         <li>
-                            <a href="/archives/">Archives</a>
+                            <a href="/tags/">Tags</a>
                         </li>
                         
                     
@@ -218,7 +218,7 @@
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo docker pull mcr.microsoft.com/dotnet/core/aspnet:3.1</span><br></pre></td></tr></table></figure>
 
 <p><img src="pull1.png" alt="拉取远程镜像"></p>
-<h2 id="移除所有的容器和镜像"><a href="#移除所有的容器和镜像" class="headerlink" title="移除所有的容器和镜像"></a>移除所有的容器和镜像</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">docker <span class="built_in">kill</span> $(docker ps -q) </span><br><span class="line">docker rm $(docker ps -a -q) </span><br><span class="line">docker rmi $(docker images -q -a)</span><br></pre></td></tr></table></figure>
+<h2 id="移除所有的容器和镜像"><a href="#移除所有的容器和镜像" class="headerlink" title="移除所有的容器和镜像"></a>移除所有的容器和镜像</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">docker <span class="built_in">kill</span> $(docker ps -q)</span><br><span class="line">docker rm $(docker ps -a -q)</span><br><span class="line">docker rmi $(docker images -q -a)</span><br></pre></td></tr></table></figure>
 
 <h2 id="删除所有的容器"><a href="#删除所有的容器" class="headerlink" title="删除所有的容器"></a>删除所有的容器</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">docker <span class="built_in">kill</span> $(docker ps -q)</span><br><span class="line">docker rm $(docker ps -a -q)</span><br></pre></td></tr></table></figure>
 
@@ -239,6 +239,7 @@
 <p><img src="start1.png" alt="启动容器"></p>
 <p><img src="stop1.png" alt="停止容器"></p>
 <p><img src="restart1.png" alt="重启容器"></p>
+<h2 id="进入容器Bash"><a href="#进入容器Bash" class="headerlink" title="进入容器Bash"></a>进入容器Bash</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker <span class="built_in">exec</span> -it &#123;container&#125; bash</span><br></pre></td></tr></table></figure>
 
                 <hr>
                 <ul class="pager">

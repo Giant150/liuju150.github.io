@@ -12,11 +12,11 @@
 
     <title>
         
-          使用PowerShell操作Ubuntu - Giant Blog
+          Ubuntu设置固定IP地址 - Giant Blog
         
     </title>
 
-    <link rel="canonical" href="https://www.giantliu.cn/2020/08/19/InstallPowerShell/">
+    <link rel="canonical" href="https://www.giantliu.cn/2020/08/26/200826UbuntuIPConfig/">
 
     <!-- Bootstrap Core CSS -->
     
@@ -185,14 +185,12 @@
                         
                           <a class="tag" href="/tags/#Ubuntu" title="Ubuntu">Ubuntu</a>
                         
-                          <a class="tag" href="/tags/#PowerShell" title="PowerShell">PowerShell</a>
-                        
                     </div>
-                    <h1>使用PowerShell操作Ubuntu</h1>
+                    <h1>Ubuntu设置固定IP地址</h1>
                     <h2 class="subheading"></h2>
                     <span class="meta">
                         Posted by 刘巨 on
-                        2020-08-19
+                        2020-08-26
                     </span>
                 </div>
             </div>
@@ -211,50 +209,43 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-                <h2 id="安装PowerShell"><a href="#安装PowerShell" class="headerlink" title="安装PowerShell"></a>安装PowerShell</h2><p><a target="_blank" rel="noopener" href="https://docs.microsoft.com/zh-cn/powershell/scripting/install/installing-powershell-core-on-linux?view=powershell-7">安装PowerShell帮助文档</a></p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Download the Microsoft repository GPG keys</span></span><br><span class="line">wget -q https://packages.microsoft.com/config/ubuntu/18.04/packages-microsoft-prod.deb</span><br><span class="line"></span><br><span class="line"><span class="comment"># Register the Microsoft repository GPG keys</span></span><br><span class="line">sudo dpkg -i packages-microsoft-prod.deb</span><br><span class="line"></span><br><span class="line"><span class="comment"># Update the list of products</span></span><br><span class="line">sudo apt-get update</span><br><span class="line"></span><br><span class="line"><span class="comment"># Enable the &quot;universe&quot; repositories</span></span><br><span class="line">sudo add-apt-repository universe</span><br><span class="line"></span><br><span class="line"><span class="comment"># Install PowerShell</span></span><br><span class="line">sudo apt-get install -y powershell</span><br><span class="line"></span><br><span class="line"><span class="comment"># Start PowerShell</span></span><br><span class="line">pwsh</span><br></pre></td></tr></table></figure>
+                <h2 id="Ubuntu基本信息"><a href="#Ubuntu基本信息" class="headerlink" title="Ubuntu基本信息"></a>Ubuntu基本信息</h2><ul>
+<li>版本：18.04</li>
+</ul>
+<p><img src="1.png" alt="Ubuntu基本信息"></p>
+<h2 id="默认网络配置信息"><a href="#默认网络配置信息" class="headerlink" title="默认网络配置信息"></a>默认网络配置信息</h2><ul>
+<li><p>配置文件：/etc/netplan/50-cloud-init.yaml</p>
+</li>
+<li><p>默认配置：DHCP 自动获取IP</p>
+</li>
+</ul>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># This file is generated from information provided by</span></span><br><span class="line"><span class="comment"># the datasource.  Changes to it will not persist across an instance.</span></span><br><span class="line"><span class="comment"># To disable cloud-init&#x27;s network configuration capabilities, write a file</span></span><br><span class="line"><span class="comment"># /etc/cloud/cloud.cfg.d/99-disable-network-config.cfg with the following:</span></span><br><span class="line"><span class="comment"># network: &#123;config: disabled&#125;</span></span><br><span class="line"><span class="attr">network:</span></span><br><span class="line">    <span class="attr">ethernets:</span></span><br><span class="line">        <span class="attr">eth0:</span></span><br><span class="line">            <span class="attr">dhcp4:</span> <span class="literal">true</span></span><br><span class="line">    <span class="attr">version:</span> <span class="number">2</span></span><br></pre></td></tr></table></figure>
 
-<h2 id="通过-SSH-进行-PowerShell-远程处理"><a href="#通过-SSH-进行-PowerShell-远程处理" class="headerlink" title="通过 SSH 进行 PowerShell 远程处理"></a>通过 SSH 进行 PowerShell 远程处理</h2><p><a target="_blank" rel="noopener" href="https://docs.microsoft.com/zh-cn/powershell/scripting/learn/remoting/ssh-remoting-in-powershell-core?view=powershell-7">通过 SSH 进行 PowerShell 远程处理</a></p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 安装SSH</span></span><br><span class="line">sudo apt install openssh-client</span><br><span class="line">sudo apt install openssh-server</span><br><span class="line"></span><br><span class="line"><span class="comment"># 编辑 /etc/ssh 位置中的 sshd_config 文件。</span></span><br><span class="line"><span class="comment"># 确保已启用密码身份验证：</span></span><br><span class="line">PasswordAuthentication yes</span><br><span class="line"><span class="comment"># 添加 PowerShell 子系统条目：</span></span><br><span class="line">Subsystem powershell /usr/bin/pwsh -sshs -NoLogo -NoProfile</span><br><span class="line"></span><br><span class="line"><span class="comment"># 启用密钥身份验证（可选）</span></span><br><span class="line">PubkeyAuthentication yes</span><br></pre></td></tr></table></figure>
+<p><img src="2.png" alt="Ubuntu默认网络配置信息"></p>
+<h2 id="设置为固定IP"><a href="#设置为固定IP" class="headerlink" title="设置为固定IP"></a>设置为固定IP</h2><ul>
+<li>修改后的配置文件：/etc/netplan/50-cloud-init.yaml</li>
+</ul>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># This file is generated from information provided by</span></span><br><span class="line"><span class="comment"># the datasource.  Changes to it will not persist across an instance.</span></span><br><span class="line"><span class="comment"># To disable cloud-init&#x27;s network configuration capabilities, write a file</span></span><br><span class="line"><span class="comment"># /etc/cloud/cloud.cfg.d/99-disable-network-config.cfg with the following:</span></span><br><span class="line"><span class="comment"># network: &#123;config: disabled&#125;</span></span><br><span class="line"><span class="attr">network:</span></span><br><span class="line">    <span class="attr">ethernets:</span></span><br><span class="line">        <span class="attr">eth0:</span></span><br><span class="line">            <span class="attr">dhcp4:</span> <span class="literal">false</span></span><br><span class="line">            <span class="attr">addresses:</span> [<span class="number">10.76</span><span class="number">.20</span><span class="number">.162</span><span class="string">/24</span>]</span><br><span class="line">            <span class="attr">gateway4:</span> <span class="number">10.76</span><span class="number">.20</span><span class="number">.1</span></span><br><span class="line">            <span class="attr">nameservers:</span></span><br><span class="line">                <span class="attr">addresses:</span> [<span class="number">114.114</span><span class="number">.114</span><span class="number">.114</span>,<span class="number">8.8</span><span class="number">.8</span><span class="number">.8</span>]</span><br><span class="line">    <span class="attr">version:</span> <span class="number">2</span></span><br></pre></td></tr></table></figure>
 
-<h2 id="重启-sshd-服务"><a href="#重启-sshd-服务" class="headerlink" title="重启 sshd 服务"></a>重启 sshd 服务</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo service sshd restart</span><br></pre></td></tr></table></figure>
+<p><img src="3.png" alt="Ubuntu固定IP配置信息"></p>
+<h2 id="应用新的配置"><a href="#应用新的配置" class="headerlink" title="应用新的配置"></a>应用新的配置</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#应用新的配置</span></span><br><span class="line">netplan apply</span><br></pre></td></tr></table></figure>
 
-<h2 id="通过PowerShell-连接-Ubuntu"><a href="#通过PowerShell-连接-Ubuntu" class="headerlink" title="通过PowerShell 连接 Ubuntu"></a>通过PowerShell 连接 Ubuntu</h2><p><a target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/new-pssession?view=powershell-7#example-12--create-a-session-using-ssh">通过PowerShell 连接 Ubuntu</a></p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">New-PSSession -HostName UserA@LinuxServer01</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#查看IP信息</span></span><br><span class="line">ip addr</span><br></pre></td></tr></table></figure>
 
-<p><img src="1.png" alt="PowerShell连接Ubuntu"></p>
-<h2 id="PowerShell使用密钥文件连接Ubuntu"><a href="#PowerShell使用密钥文件连接Ubuntu" class="headerlink" title="PowerShell使用密钥文件连接Ubuntu"></a>PowerShell使用密钥文件连接Ubuntu</h2><p>1.先在Windows打开PowerShell输入ssh-keygen.exe生成公/私密钥<br><img src="2.png" alt="PowerShell使用密钥文件连接Ubuntu"></p>
-<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#生成公/私密钥</span></span><br><span class="line"><span class="comment">#公钥id_rsa.pub</span></span><br><span class="line"><span class="comment">#私钥id_rsa</span></span><br><span class="line">ssh<span class="literal">-keygen</span>.exe</span><br></pre></td></tr></table></figure>
-
-<p>2.把公钥复制到Ubuntu<br><img src="3.png" alt="PowerShell把公钥复制到Ubuntu"></p>
-<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#使用密码登录Ubuntu</span></span><br><span class="line"><span class="variable">$session</span>=<span class="built_in">New-PSSession</span> <span class="literal">-HostName</span> <span class="number">10.76</span>.<span class="number">20.51</span> <span class="literal">-UserName</span> giant</span><br><span class="line"><span class="comment">#复制Windows公钥到Ubunto</span></span><br><span class="line"><span class="built_in">Copy-Item</span> <span class="string">&quot;C:\Users\Administrator\id_rsa.pub&quot;</span> <span class="literal">-Destination</span> <span class="string">&quot;/home/giant/.ssh/hncsie-liuju.pub&quot;</span> <span class="literal">-ToSession</span> <span class="variable">$session</span></span><br><span class="line"><span class="comment">#进入Ubuntu Shell</span></span><br><span class="line"><span class="built_in">Enter-PSSession</span> <span class="literal">-Session</span> <span class="variable">$session</span></span><br><span class="line"><span class="built_in">cd</span> ./.ssh</span><br><span class="line"><span class="built_in">ls</span></span><br></pre></td></tr></table></figure>
-
-<p>3.修改Ubuntu SSH配置<br>#打开RSA认证<br>RSAAuthentication yes<br>#公钥认证<br>pubkeyAuthentication yes<br>#Root权限登录<br>permitROOTlogin yes<br>#添加公钥文件<br>AuthorizedKeysFile .ssh/hncsie-liuju.pub</p>
-<p><img src="5.png" alt="Ubuntu SSH配置"></p>
-<p>4.重启sshd服务sudo service sshd restart</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#使用VI编辑sshd配置文件</span></span><br><span class="line">sudo vi /etc/ssh/sshd_config</span><br><span class="line"><span class="comment">#重启sshd</span></span><br><span class="line">sudo service sshd restart</span><br></pre></td></tr></table></figure>
-
-<p><img src="4.png" alt="PowerShell连接Ubuntu"></p>
-<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#使用私钥文件免密登录Ubuntu</span></span><br><span class="line"><span class="variable">$session</span>=<span class="built_in">New-PSSession</span> <span class="literal">-HostName</span> <span class="number">10.76</span>.<span class="number">20.51</span> <span class="literal">-UserName</span> giant <span class="literal">-KeyFilePath</span> .\id_rsa</span><br><span class="line"><span class="comment">#进入Ubuntu shell</span></span><br><span class="line"><span class="built_in">Enter-PSSession</span> <span class="literal">-Session</span> <span class="variable">$session</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="参考文档"><a href="#参考文档" class="headerlink" title="参考文档"></a>参考文档</h2><p>sshd.exe，它是远程所管理的系统上必须运行的 SSH 服务器组件<br>ssh.exe，它是在用户的本地系统上运行的 SSH 客户端组件<br>ssh-keygen.exe，为 SSH 生成、管理和转换身份验证密钥<br>ssh-agent.exe，存储用于公钥身份验证的私钥<br>ssh-add.exe，将私钥添加到服务器允许的列表中<br>ssh-keyscan.exe，帮助从许多主机收集公用 SSH 主机密钥<br>sftp.exe，这是提供安全文件传输协议的服务，通过 SSH 运行<br>scp.exe 是在 SSH 上运行的文件复制实用工具</p>
+<p><img src="4.png" alt="Ubuntu IP信息"></p>
 
                 <hr>
                 <ul class="pager">
                     
-                        <li class="previous">
-                            <a href="/2020/08/20/InstallUbuntu18Server/" data-toggle="tooltip" data-placement="top" title="在Hyper-V中安装Ubuntu Server 18.04">&larr; 上一篇</a>
-                        </li>
-                    
                     
                         <li class="next">
-                            <a href="/2020/08/09/first-post/" data-toggle="tooltip" data-placement="top" title="个人博客创建心历路程">下一篇 &rarr;</a>
+                            <a href="/2020/08/25/200825AutoDeployToDocker/" data-toggle="tooltip" data-placement="top" title="自动部署Asp.Net Core至Docker">下一篇 &rarr;</a>
                         </li>
                     
                 </ul>
                 <!-- 畅言云评 -->
                 
-                    <div id="SOHUCS" sid="使用PowerShell操作Ubuntu"></div>
+                    <div id="SOHUCS" sid="Ubuntu设置固定IP地址"></div>
                 
 
             </div>
@@ -278,8 +269,6 @@
                           <a class="tag" href="/tags/#随笔" title="随笔">随笔</a>
                         
                           <a class="tag" href="/tags/#Ubuntu" title="Ubuntu">Ubuntu</a>
-                        
-                          <a class="tag" href="/tags/#PowerShell" title="PowerShell">PowerShell</a>
                         
                     </div>
                 </section>
