@@ -2,6 +2,7 @@
 layout: post
 title: 'Ubuntu设置固定IP地址'
 subtitle: ''
+header-img: "img/ubuntu.jpg"
 tags:
   - 随笔
   - Ubuntu

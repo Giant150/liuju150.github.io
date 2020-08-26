@@ -2,6 +2,7 @@
 layout: post
 title: 'Ubuntu命令'
 subtitle: ''
+header-img: "img/ubuntu.jpg"
 tags:
   - 随笔
   - Ubuntu

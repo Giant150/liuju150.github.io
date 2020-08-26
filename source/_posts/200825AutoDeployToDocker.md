@@ -2,6 +2,7 @@
 layout: post
 title: '自动部署Asp.Net Core至Docker'
 subtitle: '在Windows编译生成自动发布至Ubuntu服务器，并启动Docker容器'
+header-img: "img/docker.png"
 tags:
   - NetCore
   - Ubuntu

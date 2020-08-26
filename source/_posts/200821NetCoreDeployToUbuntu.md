@@ -2,6 +2,7 @@
 layout: post
 title: '使用PowerShell自动部署ASP.Net Core到Ubuntu'
 subtitle: ''
+header-img: "img/powershell.png"
 tags:
   - 随笔
   - NetCore

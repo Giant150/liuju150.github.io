@@ -2,6 +2,7 @@
 layout: post
 title: 'Docker常用命令说明'
 subtitle: ''
+header-img: "img/docker.png"
 tags:
   - 随笔
   - Docker

@@ -10,7 +10,7 @@ layout: layout
 <style type="text/css">
     header.intro-header{
         <% if (page["header-img"]){ %>
-            background-image: url('<%= config.root %><%= page.path.replace('index.html', '') %><%= page["header-img"] %>')
+            background-image: url('<%= config.root %><%= page["header-img"] %>')
         <% } else { %>
             background-image: url('<%= config["header-img"] %>')
         <% } %>

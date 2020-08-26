@@ -2,6 +2,7 @@
 layout: post
 title: 'Ubuntu安装Docker'
 subtitle: ''
+header-img: "img/docker.png"
 tags:
   - 随笔
   - Docker

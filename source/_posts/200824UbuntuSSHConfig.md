@@ -2,6 +2,7 @@
 layout: post
 title: 'Ubuntu系统配置SSH服务'
 subtitle: ''
+header-img: "img/ubuntu.jpg"
 tags:
   - 随笔
   - Ubuntu

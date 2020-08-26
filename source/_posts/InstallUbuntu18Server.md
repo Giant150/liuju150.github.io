@@ -2,6 +2,7 @@
 layout: post
 title: '在Hyper-V中安装Ubuntu Server 18.04'
 subtitle: ''
+header-img: "img/ubuntu.jpg"
 tags:
   - 随笔
   - Hyper-V
