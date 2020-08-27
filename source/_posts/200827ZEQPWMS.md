@@ -13,7 +13,22 @@ date: 2020-08-27 11:22:19
 
 ## ZEQP仓储管理系统
 
-本系统是使用 [Colder.Admin.AntdVue](https://github.com/Coldairarrow/Colder.Admin.AntdVue)框架进行功能开发
+代码框架是用的前后台分离的方式
+后台使用的是Asp.Net Core平台，开发所有业务，向前台提供Rest API接口。
+使用的认证方式是JWT
+前端有两个项目，一个是Web端，一个是Mobile端
+都是使用Vue + Ant Design of Vue架构
+
+后端的开发工具使用的是Visual Studio 2019
+前端的开发工具使用的是Visual Studio Code
+
+开源地址：[GitHub](https://github.com/zeqp/WMS)
+系统介绍：[个人博客](https://www.giantliu.cn)
+> 本系统是使用 [Colder.Admin.AntdVue](https://github.com/Coldairarrow/Colder.Admin.AntdVue)框架进行功能开发
+
+## 版权声明
+
+木兰宽松许可证, 第2版：[MulanPSL2](https://license.coscl.org.cn/MulanPSL2/)
 
 ## 运行环境要求
 
@@ -37,8 +52,6 @@ date: 2020-08-27 11:22:19
 ## 联系方式
 
 ![ZEQP WMS QQ群](QQGroup1QrCode.png)
-
-[个人博客](https://www.giantliu.cn)
 
 ## 功能清单
 

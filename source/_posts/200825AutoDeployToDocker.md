@@ -16,7 +16,7 @@ date: 2020-08-25 09:39:01
 最近在开发一个管理系统，代码框架是用的前后台分离的方式
 后台使用的是Asp.Net Core平台，开发所有业务，向前台提供Rest API接口。
 使用的认证方式是JWT
-前端有两个项目，一个是Web端，一个是Mobild端
+前端有两个项目，一个是Web端，一个是Mobile端
 都是使用Vue + Ant Design of Vue架构
 
 后端的开发工具使用的是Visual Studio 2019
