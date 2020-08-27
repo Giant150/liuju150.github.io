@@ -6,7 +6,7 @@
   <link href="https://www.giantliu.cn/atom.xml" rel="self"/>
   
   <link href="https://www.giantliu.cn/"/>
-  <updated>2020-08-27T04:14:51.169Z</updated>
+  <updated>2020-08-27T04:19:41.361Z</updated>
   <id>https://www.giantliu.cn/</id>
   
   <author>
@@ -21,7 +21,7 @@
     <link href="https://www.giantliu.cn/2020/08/27/200827ZEQPWMS/"/>
     <id>https://www.giantliu.cn/2020/08/27/200827ZEQPWMS/</id>
     <published>2020-08-27T03:22:19.000Z</published>
-    <updated>2020-08-27T04:14:51.169Z</updated>
+    <updated>2020-08-27T04:19:41.361Z</updated>
     
     
       
@@ -198,9 +198,9 @@
     
     <category term="NetCore" scheme="https://www.giantliu.cn/tags/NetCore/"/>
     
-    <category term="Docker" scheme="https://www.giantliu.cn/tags/Docker/"/>
-    
     <category term="WMS" scheme="https://www.giantliu.cn/tags/WMS/"/>
+    
+    <category term="Docker" scheme="https://www.giantliu.cn/tags/Docker/"/>
     
   </entry>
   
