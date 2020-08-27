@@ -6,7 +6,7 @@
   <link href="https://www.giantliu.cn/atom.xml" rel="self"/>
   
   <link href="https://www.giantliu.cn/"/>
-  <updated>2020-08-26T11:39:16.535Z</updated>
+  <updated>2020-08-27T04:14:51.169Z</updated>
   <id>https://www.giantliu.cn/</id>
   
   <author>
@@ -15,6 +15,35 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>ZEQP WMS仓储管理系统简介</title>
+    <link href="https://www.giantliu.cn/2020/08/27/200827ZEQPWMS/"/>
+    <id>https://www.giantliu.cn/2020/08/27/200827ZEQPWMS/</id>
+    <published>2020-08-27T03:22:19.000Z</published>
+    <updated>2020-08-27T04:14:51.169Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;ZEQP仓储管理系统&quot;&gt;&lt;a href=&quot;#ZEQP仓储管理系统&quot; class=&quot;headerlink&quot; title=&quot;ZEQP仓储管理系统&quot;&gt;&lt;/a&gt;ZEQP仓储管理系统&lt;/h2&gt;&lt;p&gt;本系统是使用 &lt;a</summary>
+        
+      
+    
+    
+    
+    
+    <category term="随笔" scheme="https://www.giantliu.cn/tags/%E9%9A%8F%E7%AC%94/"/>
+    
+    <category term="NetCore" scheme="https://www.giantliu.cn/tags/NetCore/"/>
+    
+    <category term="WMS" scheme="https://www.giantliu.cn/tags/WMS/"/>
+    
+    <category term="Vue" scheme="https://www.giantliu.cn/tags/Vue/"/>
+    
+  </entry>
   
   <entry>
     <title>Git命令说明</title>
