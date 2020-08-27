@@ -2,7 +2,7 @@
 layout: post
 title: 'ZEQP WMS仓储管理系统简介'
 subtitle: ''
-header-img: "img/dotnet.png"
+header-img: "img/dotnet.jpg"
 tags:
   - 随笔
   - NetCore
