@@ -12,11 +12,11 @@
 
     <title>
         
-          ZEQP WMS仓储管理系统简介 - Giant Blog
+          在Docker中安装MySql - Giant Blog
         
     </title>
 
-    <link rel="canonical" href="https://www.giantliu.cn/2020/08/27/200827ZEQPWMS/">
+    <link rel="canonical" href="https://www.giantliu.cn/2020/08/28/200828DockerInstallMySql/">
 
     <!-- Bootstrap Core CSS -->
     
@@ -170,7 +170,7 @@
 <style type="text/css">
     header.intro-header{
         
-            background-image: url('/img/dotnet.jpg')
+            background-image: url('/img/docker.png')
         
     }
 </style>
@@ -183,18 +183,16 @@
                         
                           <a class="tag" href="/tags/#随笔" title="随笔">随笔</a>
                         
-                          <a class="tag" href="/tags/#NetCore" title="NetCore">NetCore</a>
+                          <a class="tag" href="/tags/#Docker" title="Docker">Docker</a>
                         
-                          <a class="tag" href="/tags/#WMS" title="WMS">WMS</a>
-                        
-                          <a class="tag" href="/tags/#Vue" title="Vue">Vue</a>
+                          <a class="tag" href="/tags/#MySql" title="MySql">MySql</a>
                         
                     </div>
-                    <h1>ZEQP WMS仓储管理系统简介</h1>
+                    <h1>在Docker中安装MySql</h1>
                     <h2 class="subheading"></h2>
                     <span class="meta">
                         Posted by 刘巨 on
-                        2020-08-27
+                        2020-08-28
                     </span>
                 </div>
             </div>
@@ -213,127 +211,25 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-                <h2 id="ZEQP仓储管理系统"><a href="#ZEQP仓储管理系统" class="headerlink" title="ZEQP仓储管理系统"></a>ZEQP仓储管理系统</h2><p>代码框架是用的前后台分离的方式<br>后台使用的是Asp.Net Core平台，开发所有业务，向前台提供Rest API接口。<br>使用的认证方式是JWT<br>前端有两个项目，一个是Web端，一个是Mobile端<br>都是使用Vue + Ant Design of Vue架构</p>
-<p>后端的开发工具使用的是Visual Studio 2019<br>前端的开发工具使用的是Visual Studio Code</p>
-<p>开源地址：<a target="_blank" rel="noopener" href="https://github.com/zeqp/WMS">GitHub</a><br>系统介绍：<a href="https://www.giantliu.cn/">个人博客</a></p>
-<blockquote>
-<p>本系统是使用 <a target="_blank" rel="noopener" href="https://github.com/Coldairarrow/Colder.Admin.AntdVue">Colder.Admin.AntdVue</a>框架进行功能开发</p>
-</blockquote>
-<h2 id="版权声明"><a href="#版权声明" class="headerlink" title="版权声明"></a>版权声明</h2><p>木兰宽松许可证, 第2版：<a target="_blank" rel="noopener" href="https://license.coscl.org.cn/MulanPSL2/">MulanPSL2</a></p>
-<h2 id="运行环境要求"><a href="#运行环境要求" class="headerlink" title="运行环境要求"></a>运行环境要求</h2><p>操作系统：具体可以参考 <a target="_blank" rel="noopener" href="https://docs.microsoft.com/zh-cn/dotnet/core/install/dependencies?tabs=netcore31&pivots=os-windows">.Net Core依赖和要求</a></p>
-<ul>
-<li><p>Windows</p>
-<ul>
-<li>Windows 7 SP1+</li>
-<li>Windows 10 1607+</li>
-<li>Windows Server 2012 R2+</li>
-</ul>
-</li>
-<li><p>Linux</p>
-<ul>
-<li>CentOS 7+</li>
-<li>Debian 9+</li>
-<li>Ubuntu 16.04+</li>
-</ul>
-</li>
-<li><p>macOS</p>
-<ul>
-<li>High Sierra (10.13+)</li>
-</ul>
-</li>
-<li><p>运行平台：.Net Core 3.1</p>
-</li>
-<li><p>数据库：MySQL 5.5 (开发是MySQL，运行可以是MSSQL/MySQL)</p>
-</li>
-</ul>
-<h2 id="联系方式"><a href="#联系方式" class="headerlink" title="联系方式"></a>联系方式</h2><p><img src="QQGroup1QrCode.png" alt="ZEQP WMS QQ群"></p>
-<h2 id="功能清单"><a href="#功能清单" class="headerlink" title="功能清单"></a>功能清单</h2><ul>
-<li>基本资料<ul>
-<li>仓库管理</li>
-<li>巷道管理</li>
-<li>货架管理</li>
-<li>货区管理</li>
-<li>货位管理</li>
-<li>托盘类型管理</li>
-<li>托盘管理</li>
-<li>客户管理</li>
-<li>供应商管理</li>
-<li>计量单位</li>
-<li>物料类型</li>
-<li>物料管理</li>
-<li>条码类型管理</li>
-</ul>
-</li>
-<li>仓库作业<ul>
-<li>入库管理</li>
-<li>出库管理</li>
-<li>报损管理</li>
-<li>移库管理</li>
-<li>调拨管理</li>
-<li>盘点管理</li>
-</ul>
-</li>
-<li>业务操作<ul>
-<li>收货管理</li>
-<li>发货管理</li>
-</ul>
-</li>
-<li>报表管理<ul>
-<li>仓库统计</li>
-<li>库存台帐</li>
-<li>库存报表</li>
-<li>库存明细</li>
-<li>入库明细</li>
-<li>出库明细</li>
-</ul>
-</li>
-<li>系统设置<ul>
-<li>用户管理</li>
-<li>角色管理</li>
-<li>部门管理</li>
-<li>密钥管理</li>
-<li>权限管理</li>
-<li>操作日志</li>
-<li>系统日志</li>
-<li>仓库权限</li>
-<li>数据字典</li>
-<li>系统参数</li>
-</ul>
-</li>
-</ul>
-<h2 id="系统界面截图"><a href="#系统界面截图" class="headerlink" title="系统界面截图"></a>系统界面截图</h2><h3 id="Rest-API"><a href="#Rest-API" class="headerlink" title="Rest API"></a>Rest API</h3><p><img src="API1.png" alt="Rest API"></p>
-<p><img src="API2.png" alt="Rest API"></p>
-<p><img src="API3.png" alt="Rest API"></p>
-<h3 id="前端界面"><a href="#前端界面" class="headerlink" title="前端界面"></a>前端界面</h3><p><img src="Web1.png" alt="WMS Web"></p>
-<p><img src="Web2.png" alt="WMS Web"></p>
-<p><img src="Web3.png" alt="WMS Web"></p>
-<p><img src="Web4.png" alt="WMS Web"></p>
-<p><img src="Web5.png" alt="WMS Web"></p>
-<p><img src="Web6.png" alt="WMS Web"></p>
-<h3 id="PDA界面"><a href="#PDA界面" class="headerlink" title="PDA界面"></a>PDA界面</h3><p><img src="PDA1.png" alt="WMS PDA"></p>
-<p><img src="PDA2.png" alt="WMS PDA"></p>
-<p><img src="PDA3.png" alt="WMS PDA"></p>
-<p><img src="PDA4.png" alt="WMS PDA"></p>
-<p><img src="PDA5.png" alt="WMS PDA"></p>
-<p><img src="PDA6.png" alt="WMS PDA"></p>
-<p><img src="PDA7.png" alt="WMS PDA"></p>
+                <h2 id="安装代码"><a href="#安装代码" class="headerlink" title="安装代码"></a>安装代码</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#拉取MySql镜像</span></span><br><span class="line">docker pull mysql</span><br><span class="line"><span class="comment">#运行MySql容器</span></span><br><span class="line"><span class="comment">#MYSQL_ROOT_PASSWORD：root用户密码</span></span><br><span class="line"><span class="comment">#p：端口映射 本地端口:容器端口</span></span><br><span class="line"><span class="comment">#d:守护方式运行</span></span><br><span class="line"><span class="comment">#character：字符集UTF-8</span></span><br><span class="line">docker run --name wmsmysql -e MYSQL_ROOT_PASSWORD=ABCabc123 -p 33060:3306 -d mysql --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci</span><br></pre></td></tr></table></figure>
+
+<h2 id="网上资源"><a href="#网上资源" class="headerlink" title="网上资源"></a>网上资源</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># docker 中下载 mysql</span></span><br><span class="line">docker pull mysql</span><br><span class="line"></span><br><span class="line"><span class="comment">#启动</span></span><br><span class="line">docker run --name mysql -p 3306:3306 -e MYSQL_ROOT_PASSWORD=Lzslov123! -d mysql</span><br><span class="line"></span><br><span class="line"><span class="comment">#进入容器</span></span><br><span class="line">docker <span class="built_in">exec</span> -it mysql bash</span><br><span class="line"></span><br><span class="line"><span class="comment">#登录mysql</span></span><br><span class="line">mysql -u root -p</span><br><span class="line">ALTER USER <span class="string">&#x27;root&#x27;</span>@<span class="string">&#x27;localhost&#x27;</span> IDENTIFIED BY <span class="string">&#x27;Lzslov123!&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">#添加远程登录用户</span></span><br><span class="line">CREATE USER <span class="string">&#x27;liaozesong&#x27;</span>@<span class="string">&#x27;%&#x27;</span> IDENTIFIED WITH mysql_native_password BY <span class="string">&#x27;Lzslov123!&#x27;</span>;</span><br><span class="line">GRANT ALL PRIVILEGES ON *.* TO <span class="string">&#x27;liaozesong&#x27;</span>@<span class="string">&#x27;%&#x27;</span>;</span><br></pre></td></tr></table></figure>
+
+<h2 id="参考文档"><a href="#参考文档" class="headerlink" title="参考文档"></a>参考文档</h2><p><a target="_blank" rel="noopener" href="https://hub.docker.com/_/mysql">Docker MySql WMS</a></p>
+<a href="/2020/08/24/200824InstallDockerToUbuntu/" title="Ubuntu安装Docker">Ubuntu安装Docker</a>
 
                 <hr>
                 <ul class="pager">
                     
-                        <li class="previous">
-                            <a href="/2020/08/28/200828DockerInstallMySql/" data-toggle="tooltip" data-placement="top" title="在Docker中安装MySql">&larr; 上一篇</a>
-                        </li>
-                    
                     
                         <li class="next">
-                            <a href="/2020/08/26/GitCommand/" data-toggle="tooltip" data-placement="top" title="Git命令说明">下一篇 &rarr;</a>
+                            <a href="/2020/08/27/200827ZEQPWMS/" data-toggle="tooltip" data-placement="top" title="ZEQP WMS仓储管理系统简介">下一篇 &rarr;</a>
                         </li>
                     
                 </ul>
                 <!-- 畅言云评 -->
                 
-                    <div id="SOHUCS" sid="ZEQP WMS仓储管理系统简介"></div>
+                    <div id="SOHUCS" sid="在Docker中安装MySql"></div>
                 
 
             </div>
@@ -356,11 +252,9 @@
                        
                           <a class="tag" href="/tags/#随笔" title="随笔">随笔</a>
                         
-                          <a class="tag" href="/tags/#NetCore" title="NetCore">NetCore</a>
+                          <a class="tag" href="/tags/#Docker" title="Docker">Docker</a>
                         
-                          <a class="tag" href="/tags/#WMS" title="WMS">WMS</a>
-                        
-                          <a class="tag" href="/tags/#Vue" title="Vue">Vue</a>
+                          <a class="tag" href="/tags/#MySql" title="MySql">MySql</a>
                         
                     </div>
                 </section>
