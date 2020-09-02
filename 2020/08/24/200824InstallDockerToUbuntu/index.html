@@ -177,7 +177,7 @@
 <header class="intro-header" >
     <div class="container">
         <div class="row">
-            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+            <div class="col-lg-12 col-md-12">
                 <div class="post-heading">
                     <div class="tags">
                         
@@ -207,8 +207,8 @@
 
     <!-- Post Container -->
             <div class="
-                col-lg-8 col-lg-offset-2
-                col-md-10 col-md-offset-1
+                col-lg-12
+                col-md-12
                 post-container">
 
                 <h2 id="安装代码"><a href="#安装代码" class="headerlink" title="安装代码"></a>安装代码</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#安装依赖:</span></span><br><span class="line">sudo apt-get install apt-transport-https ca-certificates curl gnupg2 software-properties-common</span><br><span class="line"></span><br><span class="line"><span class="comment">#信任Docker的GPG公钥:</span></span><br><span class="line">curl -fsSL https://repo.huaweicloud.com/docker-ce/linux/ubuntu/gpg | sudo apt-key add -</span><br><span class="line"></span><br><span class="line"><span class="comment">#对于amd64架构的计算机，添加软件仓库:</span></span><br><span class="line">sudo add-apt-repository <span class="string">&quot;deb [arch=amd64] https://repo.huaweicloud.com/docker-ce/linux/ubuntu <span class="subst">$(lsb_release -cs)</span> stable&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#更新索引文件并安装</span></span><br><span class="line">sudo apt-get update</span><br><span class="line">sudo apt-get install docker-ce</span><br><span class="line"></span><br><span class="line"><span class="comment">#测试是否安装成功</span></span><br><span class="line">sudo docker run hello-world</span><br></pre></td></tr></table></figure>
@@ -231,7 +231,6 @@
                         </li>
                     
                 </ul>
-
             </div>
     <!-- Side Catalog Container -->
         
@@ -239,8 +238,8 @@
     <!-- Sidebar Container -->
 
             <div class="
-                col-lg-8 col-lg-offset-2
-                col-md-10 col-md-offset-1
+                col-lg-12
+                col-md-12
                 sidebar-container">
 
                 <!-- Featured Tags -->
