@@ -41,11 +41,6 @@ linkedin_username:
 # Build settings
 anchorjs: true                          # if you want to customize anchor. check out line:181 of `post.html`
 
-# http://changyan.kuaizhan.com/overview
-# 畅言云评配置 帐号：17194242616
-changyan_appid: cyuYGB0U5
-changyan_conf: prod_acc7e542d3fbe589c4a93cd448aafb1b
-
 
 # Sidebar settings
 sidebar: true                           # whether or not using Sidebar.
