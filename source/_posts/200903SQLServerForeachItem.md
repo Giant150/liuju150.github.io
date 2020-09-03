@@ -39,6 +39,52 @@ end
 drop table #temp --删除临时表temp
 ```
 
+## 修改表字段类型
+
+```sql
+select 
+	ROW_NUMBER() over(order by t.name,c.name) as RowId,
+	t.name as tName,c.name as cName,c.is_nullable as cNull
+into #temp
+from sys.columns c
+inner join sys.tables t on t.object_id=c.object_id
+where c.user_type_id=106 and t.type='U' and c.precision=38 and c.scale=30
+
+declare @CurRowId int --当前索引
+select @CurRowId=MIN(RowId) from #temp
+print @CurRowId
+while(@CurRowId is not null)
+begin
+	print @CurRowId
+	declare @TableName varchar(128)
+	declare @ColumnName varchar(128)
+	declare @Nullable bit
+	select @TableName=tName,@ColumnName=cName,@Nullable=cNull from #temp where RowId=@CurRowId
+
+	declare @sql varchar(1000)
+
+	if(@Nullable=0)
+	begin
+		set @sql='ALTER TABLE '+@TableName+' ALTER COLUMN '+@ColumnName+' decimal(22,5) NOT NULL'
+	end
+	else
+	begin
+		set @sql='ALTER TABLE '+@TableName+' ALTER COLUMN '+@ColumnName+' decimal(22,5) NULL'
+	end
+	print @sql
+	begin try
+		exec(@sql)
+	end try
+	begin catch
+	 print @sql+' 执行报错'
+	 print ERROR_MESSAGE()
+	end catch
+
+	select @CurRowId=MIN(RowId) from #temp where RowId>@CurRowId
+end
+drop table #temp
+```
+
 ## 结语
 
 对于SqlServer遍历数据，有很多方法。只文只记录一个通用的方式
