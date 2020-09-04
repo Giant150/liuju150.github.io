@@ -6,7 +6,7 @@
   <link href="https://www.giantliu.cn/atom.xml" rel="self"/>
   
   <link href="https://www.giantliu.cn/"/>
-  <updated>2020-09-03T07:11:14.230Z</updated>
+  <updated>2020-09-04T09:24:08.804Z</updated>
   <id>https://www.giantliu.cn/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>UOS体验安装</title>
+    <link href="https://www.giantliu.cn/2020/09/04/200904InstallUOS/"/>
+    <id>https://www.giantliu.cn/2020/09/04/200904InstallUOS/</id>
+    <published>2020-09-04T08:42:28.000Z</published>
+    <updated>2020-09-04T09:24:08.804Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;UOS简介&quot;&gt;&lt;a href=&quot;#UOS简介&quot; class=&quot;headerlink&quot; title=&quot;UOS简介&quot;&gt;&lt;/a&gt;UOS简介&lt;/h2&gt;&lt;p&gt;统信桌面操作系统（Uniontech</summary>
+        
+      
+    
+    
+    
+    
+    <category term="随笔" scheme="https://www.giantliu.cn/tags/%E9%9A%8F%E7%AC%94/"/>
+    
+  </entry>
   
   <entry>
     <title>SqlServer遍历数据</title>
@@ -523,32 +546,6 @@
     <category term="JavaScript" scheme="https://www.giantliu.cn/tags/JavaScript/"/>
     
     <category term="翻译" scheme="https://www.giantliu.cn/tags/%E7%BF%BB%E8%AF%91/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Welcome to Giant Blog</title>
-    <link href="https://www.giantliu.cn/2014/01/29/hello-2015/"/>
-    <id>https://www.giantliu.cn/2014/01/29/hello-2015/</id>
-    <published>2014-01-29T04:00:00.000Z</published>
-    <updated>2020-08-12T00:43:36.739Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;blockquote&gt;
-&lt;p&gt;“Yeah It’s on. ”&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;h2 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h2&gt;&lt;p&gt;Hux 的 Blog</summary>
-        
-      
-    
-    
-    
-    
-    <category term="生活" scheme="https://www.giantliu.cn/tags/%E7%94%9F%E6%B4%BB/"/>
     
   </entry>
   
