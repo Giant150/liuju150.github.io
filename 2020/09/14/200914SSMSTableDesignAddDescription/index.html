@@ -12,11 +12,11 @@
 
     <title>
         
-          Giant Blog
+          SSMS表设计器显示说明(注释)字段 - Giant Blog
         
     </title>
 
-    <link rel="canonical" href="https://www.giantliu.cn/archives/page/2/">
+    <link rel="canonical" href="https://www.giantliu.cn/2020/09/14/200914SSMSTableDesignAddDescription/">
 
     <!-- Bootstrap Core CSS -->
     
@@ -161,7 +161,180 @@
 
 
     <!-- Main Content -->
-    <!-- Default Archive layout, we use archives instead. -->
+    
+<!-- Image to hack wechat -->
+<!-- <img src="https://www.giantliu.cn/img/icon_wechat.png" width="0" height="0"> -->
+<!-- <img src="{{ site.baseurl }}/{% if page.header-img %}{{ page.header-img }}{% else %}{{ site.header-img }}{% endif %}" width="0" height="0"> -->
+
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        
+            background-image: url('https://open.saintic.com/api/bingPic/')
+        
+    }
+</style>
+<header class="intro-header" >
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 col-md-12">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                          <a class="tag" href="/tags/#随笔" title="随笔">随笔</a>
+                        
+                          <a class="tag" href="/tags/#SqlServer" title="SqlServer">SqlServer</a>
+                        
+                    </div>
+                    <h1>SSMS表设计器显示说明(注释)字段</h1>
+                    <h2 class="subheading">SQL Server Management Studio</h2>
+                    <span class="meta">
+                        Posted by 刘巨 on
+                        2020-09-14
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+    <!-- Post Container -->
+            <div class="
+                col-lg-12
+                col-md-12
+                post-container">
+
+                <h2 id="SSMS表设计器默认"><a href="#SSMS表设计器默认" class="headerlink" title="SSMS表设计器默认"></a>SSMS表设计器默认</h2><p>当我们新建表/设计表 的时候，SSMS会帮我们打开默认表设计器<br>如下图。只会显示“列名”，“数据类型”，“允许Null值”这三个列<br><img src="1.png" alt="SSMS默认表设计器"></p>
+<p>但是大多数的时候，我们还要修改表字段的“默认值”，“说明/注释”<br>每次都要到设计器下面的“列属性”里去找默认值/说明<br>然后去修改。不能直接在设计器主界面修改。<br>所以我们希望在表设计器后面加上“默认值”，“说明”字段，这样加快设计</p>
+<h2 id="修改方法"><a href="#修改方法" class="headerlink" title="修改方法"></a>修改方法</h2><p>打开“注册表编辑器”<br>找到以下项<br>“HKEY_CURRENT_USER\SOFTWARE\Microsoft\SQL Server Management Studio\14.0\DataProject”<br>这里面14.0是SSMS的版本，不同的版本这个值不同。<br>然后找到以下两个字符串的配置项<br>SSVPropViewColumnsSQL70<br>SSVPropViewColumnsSQL80<br>这两个项的默认值都是1,2,6;<br>把这两个项目都修改为1,2,6,7,17;</p>
+<p>字段对应值索引为：</p>
+<ol>
+<li>Column Name</li>
+<li>Data Type</li>
+<li>Length</li>
+<li>Precision</li>
+<li>Scale</li>
+<li>Allow Nulls</li>
+<li>Default Value</li>
+<li>Identity</li>
+<li>Identity Seed</li>
+<li>Identity Increment</li>
+<li>Row GUID</li>
+<li>Nullable</li>
+<li>Condensed Type</li>
+<li>Not for Replication</li>
+<li>Formula</li>
+<li>Collation</li>
+<li>Description</li>
+</ol>
+<p><img src="2.png" alt="SSMS默认表设计器"></p>
+<h2 id="修改后的效果"><a href="#修改后的效果" class="headerlink" title="修改后的效果"></a>修改后的效果</h2><p><img src="3.png" alt="SSMS默认表设计器"></p>
+
+                <hr>
+                <ul class="pager">
+                    
+                    
+                        <li class="next">
+                            <a href="/2020/09/04/200904InstallUOS/" data-toggle="tooltip" data-placement="top" title="国产系统UOS安装体验">下一篇 &rarr;</a>
+                        </li>
+                    
+                </ul>
+            </div>
+    <!-- Side Catalog Container -->
+        
+
+    <!-- Sidebar Container -->
+
+            <div class="
+                col-lg-12
+                col-md-12
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                       
+                          <a class="tag" href="/tags/#随笔" title="随笔">随笔</a>
+                        
+                          <a class="tag" href="/tags/#SqlServer" title="SqlServer">SqlServer</a>
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+                <hr>
+                <h5>FRIENDS</h5>
+                <ul class="list-inline">
+
+                    
+                        <li><a href="https://www.cnblogs.com/liuju150/" target="_blank">博客园</a></li>
+                    
+                        <li><a href="https://www.zhihu.com/people/giant150" target="_blank">知呼</a></li>
+                    
+                        <li><a href="https://weibo.com/liuju150" target="_blank">微博</a></li>
+                    
+                        <li><a href="https://github.com/liuju150" target="_blank">GitHub</a></li>
+                    
+                        <li><a href="https://gitee.com/GiantLiu" target="_blank">Gitee</a></li>
+                    
+                        <li><a href="https://giantliu.gitee.io" target="_blank">Gitee Blog</a></li>
+                    
+                        <li><a href="https://blog.giantliu.cn" target="_blank">Blog</a></li>
+                    
+                </ul>
+                
+            </div>
+
+        </div>
+    </div>
+</article>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("https://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js",function(){
+        anchors.options = {
+          visible: 'always',
+          placement: 'right',
+          icon: '#'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+<style>
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
+
+
 
     <!-- Footer -->
     <!-- Footer -->

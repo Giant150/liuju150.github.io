@@ -6,7 +6,7 @@
   <link href="https://www.giantliu.cn/atom.xml" rel="self"/>
   
   <link href="https://www.giantliu.cn/"/>
-  <updated>2020-09-07T01:46:59.688Z</updated>
+  <updated>2020-09-14T05:39:45.271Z</updated>
   <id>https://www.giantliu.cn/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>SSMS表设计器显示说明(注释)字段</title>
+    <link href="https://www.giantliu.cn/2020/09/14/200914SSMSTableDesignAddDescription/"/>
+    <id>https://www.giantliu.cn/2020/09/14/200914SSMSTableDesignAddDescription/</id>
+    <published>2020-09-14T03:23:00.000Z</published>
+    <updated>2020-09-14T05:39:45.271Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;SSMS表设计器默认&quot;&gt;&lt;a href=&quot;#SSMS表设计器默认&quot; class=&quot;headerlink&quot; title=&quot;SSMS表设计器默认&quot;&gt;&lt;/a&gt;SSMS表设计器默认&lt;/h2&gt;&lt;p&gt;当我们新建表/设计表</summary>
+        
+      
+    
+    
+    
+    
+    <category term="随笔" scheme="https://www.giantliu.cn/tags/%E9%9A%8F%E7%AC%94/"/>
+    
+    <category term="SqlServer" scheme="https://www.giantliu.cn/tags/SqlServer/"/>
+    
+  </entry>
   
   <entry>
     <title>国产系统UOS安装体验</title>
@@ -518,34 +543,6 @@
     <category term="Unix" scheme="https://www.giantliu.cn/tags/Unix/"/>
     
     <category term="Linux" scheme="https://www.giantliu.cn/tags/Linux/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Example Post</title>
-    <link href="https://www.giantliu.cn/2014/09/22/js-version/"/>
-    <id>https://www.giantliu.cn/2014/09/22/js-version/</id>
-    <published>2014-09-21T16:00:00.000Z</published>
-    <updated>2020-08-12T00:43:36.742Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;p&gt;JavaScript 有着很奇怪的命名史。&lt;/p&gt;
-&lt;p&gt;1995 年，它作为网景浏览器（Netscape Navigator）的一部分首次发布，网景给这个新语言命名为 LiveScript。一年后，为了搭上当时媒体热炒 Java 的顺风车，临时改名为了</summary>
-        
-      
-    
-    
-    
-    
-    <category term="前端开发" scheme="https://www.giantliu.cn/tags/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/"/>
-    
-    <category term="JavaScript" scheme="https://www.giantliu.cn/tags/JavaScript/"/>
-    
-    <category term="翻译" scheme="https://www.giantliu.cn/tags/%E7%BF%BB%E8%AF%91/"/>
     
   </entry>
   
