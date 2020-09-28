@@ -6,7 +6,7 @@
   <link href="https://www.giantliu.cn/atom.xml" rel="self"/>
   
   <link href="https://www.giantliu.cn/"/>
-  <updated>2020-09-14T05:43:22.185Z</updated>
+  <updated>2020-09-28T06:40:01.696Z</updated>
   <id>https://www.giantliu.cn/</id>
   
   <author>
@@ -15,6 +15,32 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>树莓派系统安装</title>
+    <link href="https://www.giantliu.cn/2020/09/28/200928RaspberryPiOSInstall/"/>
+    <id>https://www.giantliu.cn/2020/09/28/200928RaspberryPiOSInstall/</id>
+    <published>2020-09-28T01:12:21.000Z</published>
+    <updated>2020-09-28T06:40:01.696Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;目录&quot;&gt;&lt;a href=&quot;#目录&quot; class=&quot;headerlink&quot; title=&quot;目录&quot;&gt;&lt;/a&gt;目录&lt;/h2&gt;&lt;ol&gt;
+&lt;li&gt;前言&lt;/li&gt;
+&lt;li&gt;下载Raspberry Pi OS&lt;/li&gt;
+&lt;li&gt;烧录Raspberry Pi</summary>
+        
+      
+    
+    
+    
+    
+    <category term="树莓派" scheme="https://www.giantliu.cn/tags/%E6%A0%91%E8%8E%93%E6%B4%BE/"/>
+    
+  </entry>
   
   <entry>
     <title>SSMS表设计器显示说明(注释)字段</title>
@@ -299,9 +325,9 @@
     
     <category term="NetCore" scheme="https://www.giantliu.cn/tags/NetCore/"/>
     
-    <category term="WMS" scheme="https://www.giantliu.cn/tags/WMS/"/>
-    
     <category term="Docker" scheme="https://www.giantliu.cn/tags/Docker/"/>
+    
+    <category term="WMS" scheme="https://www.giantliu.cn/tags/WMS/"/>
     
   </entry>
   
@@ -513,36 +539,6 @@
     <category term="前端开发" scheme="https://www.giantliu.cn/tags/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/"/>
     
     <category term="JavaScript" scheme="https://www.giantliu.cn/tags/JavaScript/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Example Post With Default Header Image</title>
-    <link href="https://www.giantliu.cn/2015/04/14/unix-linux-note/"/>
-    <id>https://www.giantliu.cn/2015/04/14/unix-linux-note/</id>
-    <published>2015-04-13T16:00:00.000Z</published>
-    <updated>2020-08-12T00:43:36.744Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;blockquote&gt;
-&lt;p&gt;This document is not completed and will be updated anytime.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;h2 id=&quot;Catagory&quot;&gt;&lt;a href=&quot;#Catagory&quot;</summary>
-        
-      
-    
-    
-    
-    
-    <category term="OS" scheme="https://www.giantliu.cn/tags/OS/"/>
-    
-    <category term="Unix" scheme="https://www.giantliu.cn/tags/Unix/"/>
-    
-    <category term="Linux" scheme="https://www.giantliu.cn/tags/Linux/"/>
     
   </entry>
   
