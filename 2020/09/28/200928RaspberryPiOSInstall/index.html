@@ -104,14 +104,14 @@
 
                         
                         <li>
-                            <a href="/archives/">Archives</a>
+                            <a href="/about/">About</a>
                         </li>
                         
                     
 
                         
                         <li>
-                            <a href="/about/">About</a>
+                            <a href="/archives/">Archives</a>
                         </li>
                         
                     
@@ -270,6 +270,8 @@
 <li>有关配置工具信息</li>
 </ol>
 <h2 id="修改网络"><a href="#修改网络" class="headerlink" title="修改网络"></a>修改网络</h2><h3 id="配置网卡为固定IP地址"><a href="#配置网卡为固定IP地址" class="headerlink" title="配置网卡为固定IP地址"></a>配置网卡为固定IP地址</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">nano /etc/dhcpcd.conf</span><br><span class="line"></span><br><span class="line"><span class="comment"># Example static IP configuration:</span></span><br><span class="line">interface eth0</span><br><span class="line">static ip_address=10.76.20.230/24</span><br><span class="line">static routers=10.76.20.1</span><br><span class="line">static domain_name_servers=114.114.114.114 8.8.8.8</span><br></pre></td></tr></table></figure>
+
+<h3 id="配置无线网卡为固定IP"><a href="#配置无线网卡为固定IP" class="headerlink" title="配置无线网卡为固定IP"></a>配置无线网卡为固定IP</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">nano /etc/dhcpcd.conf</span><br><span class="line"></span><br><span class="line"><span class="comment"># Example static IP configuration:</span></span><br><span class="line">interface wlan0</span><br><span class="line">static ip_address=10.76.1.252/24</span><br><span class="line">static routers=10.76.1.1</span><br><span class="line">static domain_name_servers=114.114.114.114 8.8.8.8</span><br></pre></td></tr></table></figure>
 
 <p><img src="staticIP.png" alt="staticIP"></p>
 <p>可以通过 ip addr查看当前所有IP<br><img src="ipaddr.png" alt="ipaddr"></p>

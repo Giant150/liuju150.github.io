@@ -104,14 +104,14 @@
 
                         
                         <li>
-                            <a href="/archives/">Archives</a>
+                            <a href="/about/">About</a>
                         </li>
                         
                     
 
                         
                         <li>
-                            <a href="/about/">About</a>
+                            <a href="/archives/">Archives</a>
                         </li>
                         
                     
@@ -217,6 +217,13 @@
 <h3 id="信任Docker的GPG公钥-添加软件仓库"><a href="#信任Docker的GPG公钥-添加软件仓库" class="headerlink" title="信任Docker的GPG公钥/添加软件仓库"></a>信任Docker的GPG公钥/添加软件仓库</h3><p><img src="2.png" alt="信任Docker的GPG公钥"></p>
 <h3 id="更新索引文件并安装"><a href="#更新索引文件并安装" class="headerlink" title="更新索引文件并安装"></a>更新索引文件并安装</h3><p><img src="3.png" alt="信任Docker的GPG公钥"><br><img src="4.png" alt="信任Docker的GPG公钥"></p>
 <h3 id="测试是否安装成功"><a href="#测试是否安装成功" class="headerlink" title="测试是否安装成功"></a>测试是否安装成功</h3><p><img src="5.png" alt="信任Docker的GPG公钥"></p>
+<h2 id="方式二"><a href="#方式二" class="headerlink" title="方式二"></a>方式二</h2><p>脚本安装是最推荐的方式，只需要输入下面的命令，等待自动安装好即可。<br>sudo curl -fsSL <a target="_blank" rel="noopener" href="https://get.docker.com/">https://get.docker.com</a> | sh</p>
+<h2 id="Docker镜像加速"><a href="#Docker镜像加速" class="headerlink" title="Docker镜像加速"></a>Docker镜像加速</h2><p>创建或修改 /etc/docker/daemon.json</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="string">&quot;registry-mirrors&quot;</span>: [</span><br><span class="line">        <span class="string">&quot;https://hub-mirror.c.163.com&quot;</span>,</span><br><span class="line">        <span class="string">&quot;https://1nj0zren.mirror.aliyuncs.com&quot;</span>,</span><br><span class="line">        <span class="string">&quot;http://f1361db2.m.daocloud.io&quot;</span>,</span><br><span class="line">        <span class="string">&quot;https://registry.docker-cn.com&quot;</span></span><br><span class="line">    ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#重启Docker</span></span><br><span class="line">service docker restart</span><br><span class="line"><span class="comment">#检查加速器是否生效</span></span><br><span class="line">docker info</span><br></pre></td></tr></table></figure>
+
+<h2 id="卸载Docker"><a href="#卸载Docker" class="headerlink" title="卸载Docker"></a>卸载Docker</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#查看 Docker 的磁盘使用情况（类似于 Linux 上的 df 命令）：</span></span><br><span class="line">docker system df</span><br><span class="line"><span class="comment">#清理磁盘，删除关闭的容器、无用的数据卷和网络，以及 dangling 镜像（即无 tag 的镜像）</span></span><br><span class="line">docker system prune</span><br><span class="line"></span><br><span class="line"><span class="comment">#批量删除所有的孤儿 volume（即没有任何容器用到的 volume）</span></span><br><span class="line">docker volume rm $(docker volume ls -q)</span><br><span class="line"></span><br><span class="line"><span class="comment">#清理后可以查看下目前使用的所有 volume：</span></span><br><span class="line">docker volume ls</span><br><span class="line"></span><br><span class="line"><span class="comment">#使用 docker inspect 命令可以查看某个 volume 的具体信息，比如挂载在本机的那个目录路径下：</span></span><br><span class="line">docker inspect edgex_log-data</span><br><span class="line"></span><br><span class="line"><span class="comment"># 卸载</span></span><br><span class="line">sudo apt-get purge docker-ce docker-ce-cli containerd.io</span><br><span class="line">sudo rm -rf /var/lib/docker</span><br><span class="line">sudo rm -rf /var/lib/containerd</span><br></pre></td></tr></table></figure>
 
                 <hr>
                 <ul class="pager">
