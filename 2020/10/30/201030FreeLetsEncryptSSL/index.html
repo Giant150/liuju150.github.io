@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="奕晨博苑 Giant Blog">
+    <meta name="keyword"  content="">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+          免费申请HTTPS证书 - Giant Blog
+        
+    </title>
+
+    <link rel="canonical" href="https://www.giantliu.cn/2020/10/30/201030FreeLetsEncryptSSL/">
+
+    <!-- Bootstrap Core CSS -->
+    
+<link rel="stylesheet" href="/css/bootstrap.min.css">
+
+
+    <!-- Custom CSS -->
+    
+<link rel="stylesheet" href="/css/hux-blog.min.css">
+
+
+    <!-- Pygments Highlight CSS -->
+    
+<link rel="stylesheet" href="/css/highlight.css">
+
+
+    <!-- Custom Fonts -->
+    <!-- <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+    <!-- Hux change font-awesome CDN to qiniu -->
+    <link href="https://cdn.staticfile.org/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+
+    <!-- Hux Delete, sad but pending in China
+    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/
+    css'>
+    -->
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- ga & ba script hoook -->
+    <script>
+      var _hmt = _hmt || [];
+      (function() {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?d82d45effacb37116464fe90db51d3da";
+        var s = document.getElementsByTagName("script")[0]; 
+        s.parentNode.insertBefore(hm, s);
+      })();
+      </script>
+<meta name="generator" content="Hexo 5.0.0"><link rel="alternate" href="/atom.xml" title="Giant Blog" type="application/atom+xml">
+</head>
+
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Giant Blog</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+
+                    
+
+                        
+                        <li>
+                            <a href="/archives/">Archives</a>
+                        </li>
+                        
+                    
+
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/tags/">Tags</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/about/">About</a>
+                        </li>
+                        
+                    
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+    <!-- Main Content -->
+    
+<!-- Image to hack wechat -->
+<!-- <img src="https://www.giantliu.cn/img/icon_wechat.png" width="0" height="0"> -->
+<!-- <img src="{{ site.baseurl }}/{% if page.header-img %}{{ page.header-img }}{% else %}{{ site.header-img }}{% endif %}" width="0" height="0"> -->
+
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        
+            background-image: url('/img/win.jpg')
+        
+    }
+</style>
+<header class="intro-header" >
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 col-md-12">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                          <a class="tag" href="/tags/#随笔" title="随笔">随笔</a>
+                        
+                    </div>
+                    <h1>免费申请HTTPS证书</h1>
+                    <h2 class="subheading">免费申请Lets Encrypt支持所有子域名的通配符证书</h2>
+                    <span class="meta">
+                        Posted by 刘巨 on
+                        2020-10-30
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+    <!-- Post Container -->
+            <div class="
+                col-lg-12
+                col-md-12
+                post-container">
+
+                <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>在阿里云买了一个域名giantliu.cn<br>部署了自己的博客系统 <a href="https://www.giantliu.cn/">https://www.giantliu.cn/</a><br>所有用https证书是Let’s Encrypt免费申请的<br>因为申请的免费证书有效期是3个月，今天正好原来的过期了<br>这里要重新申请新的证书。所以在这里记录一下<br><img src="2.png" alt="Free Let&#39;s Encrypt SSL"><br><img src="3.png" alt="Free Let&#39;s Encrypt SSL"></p>
+<h2 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h2><p>1.<a href="#%E5%AE%89%E8%A3%85Certbot">安装Certbot</a><br>2.<a href="#%E7%94%B3%E8%AF%B7%E8%AF%81%E4%B9%A6">申请证书</a><br>3.<a href="#%E8%BD%AC%E6%8D%A2%E8%AF%81%E4%B9%A6%E6%A0%BC%E5%BC%8F">转换证书格式</a><br>4.<a href="#%E5%AE%89%E8%A3%85%E8%AF%81%E4%B9%A6">安装证书</a></p>
+<h2 id="安装Certbot"><a href="#安装Certbot" class="headerlink" title="安装Certbot"></a>安装Certbot</h2><p>Certbot是辅助申请Let’s Encrypt证书的工作<br>打开Certbot官网 <a target="_blank" rel="noopener" href="https://certbot.eff.org/">官网地址</a><br>第一步是选择申请证书的种类，这样Certbot可以根据选择的种类<br>来帮助你在不同的环境里申请证书</p>
+<p>这里我选择None of the above On Windows<br><img src="6.png" alt="Free Let&#39;s Encrypt SSL"></p>
+<p>然后下面会提示我们申请证书的步骤</p>
+<p><img src="7.png" alt="Free Let&#39;s Encrypt SSL"><br><img src="8.png" alt="Free Let&#39;s Encrypt SSL"><br><img src="9.png" alt="Free Let&#39;s Encrypt SSL"><br><img src="10.png" alt="Free Let&#39;s Encrypt SSL"></p>
+<p>这里主要的步骤是在要在C盘创建一个目录C:\Certbot并且当前用户有权限操作<br>然后下载Certbot安装文件 <a target="_blank" rel="noopener" href="https://dl.eff.org/certbot-beta-installer-win32.exe">下载地址</a><br>下载后安装<br><img src="11.png" alt="Free Let&#39;s Encrypt SSL"><br>然后我们以管理员方式运行命令行</p>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">certbot --<span class="built_in">help</span></span><br></pre></td></tr></table></figure>
+
+<p>如果出现以下信息，就表示Certbot安装成功了<br><img src="12.png" alt="Free Let&#39;s Encrypt SSL"></p>
+<h2 id="申请证书"><a href="#申请证书" class="headerlink" title="申请证书"></a>申请证书</h2><p>因为我们要申请的证书是通配符证书<br>这样我只要申请了giantliu.cn的通配符证书后<br>那以giantliu.cn的所有子域都可以用这一个证书</p>
+<p>输入以下命令</p>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">#以下命令表以以DNS的方式验证giantliu.cn的域名来申请通配符证书</span><br><span class="line">#通配符证书的域名为*.giantliu.cn</span><br><span class="line">certbot certonly -d *.giantliu.cn --manual --preferred-challenges dns</span><br></pre></td></tr></table></figure>
+
+<p>输入命令后，会出现几个要互交的地方<br>1.输入你的email地址:邮件地址<br>2.阅读服务说明书并同意:A<br>3.步是别人要用共享你的邮件地址，给你推送相关信息：Y<br>4.问你是不是有这个域名的所有权<br>因为它要你解析一个TXT记录到固定地址来验证你是有这个域名的所有权的：Y<br>然后最下面就是要你解释一个TXT记录到_acme-challenge.giantliu.cn<br>值为：amJUh7UHWPm-CXCTaKtYIinUR3dYpmPWmgxKsnryZLo</p>
+<p>到了这一步后，不要急于按回车结束<br>因为你还没有解析记录，不然会申请不成功的</p>
+<p><img src="13.png" alt="Free Let&#39;s Encrypt SSL"></p>
+<p>接下来，因为我的域名解析是在阿里云做的，<br>所以我跑到阿里云的域名解析那里添加了一条TXT记录</p>
+<p><img src="14.png" alt="Free Let&#39;s Encrypt SSL"></p>
+<p>添加的记录并不一定马上解析成功，所以我们要验证这个TXT记录是不是已经生效<br>我们打开一个新的命令行，输入以下命令<br>查询看得到的值是不是正确，如果与结果一至<br>那么我们就可以在原来的申请证书的命令行按回车继续我们的申请</p>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nslookup -qt=TXT _acme-challenge.giantliu.cn</span><br></pre></td></tr></table></figure>
+
+<p><img src="15.png" alt="Free Let&#39;s Encrypt SSL"></p>
+<p>按下回车后，Certbot会去验证我们的DNS记录<br>然后如果验证成功，会把申请到的证书保存到我们的<br>C:\Certbot\live\giantliu.cn</p>
+<p><img src="16.png" alt="Free Let&#39;s Encrypt SSL"><br><img src="17.png" alt="Free Let&#39;s Encrypt SSL"></p>
+<h2 id="转换证书格式"><a href="#转换证书格式" class="headerlink" title="转换证书格式"></a>转换证书格式</h2><p>因为我的博客服务器是用的IIS<br>而IIS所使用的证书为pfx，所以我们要把申请的证书pem格式转换成pfx格式</p>
+<p>我们输入以下openssl命令（要安装openssl工具）</p>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">openssl pkcs12 -export -out giantliu.pfx -inkey privkey.pem -<span class="keyword">in</span> fullchain.pem -certfile cert.pem</span><br></pre></td></tr></table></figure>
+
+<p><img src="18.png" alt="Free Let&#39;s Encrypt SSL"><br><img src="19.png" alt="Free Let&#39;s Encrypt SSL"></p>
+<h2 id="安装证书"><a href="#安装证书" class="headerlink" title="安装证书"></a>安装证书</h2><p>然后我们把转换后的证书giantliu.pfx复制到服务器<br>点右键安装证书，一直下一步到密码<br><img src="20.png" alt="Free Let&#39;s Encrypt SSL"></p>
+<p>然后输入证书密码，输入刚刚用openssl转换时输入的密码<br>然后一直下一步，直到完成<br><img src="21.png" alt="Free Let&#39;s Encrypt SSL"></p>
+<p>这样证书就已经导入到服务器了<br>然后在IIS管理器里面就可以看到我才申请的证书<br><img src="22.png" alt="Free Let&#39;s Encrypt SSL"><br>接下来就可以把原来的网站绑定的证书换成新的证书<br>然后再看来我的博客，<br>HTTPS又回来了<br><img src="23.png" alt="Free Let&#39;s Encrypt SSL"></p>
+
+                <hr>
+                <ul class="pager">
+                    
+                    
+                        <li class="next">
+                            <a href="/2020/09/28/200928RaspberryPiOSInstall/" data-toggle="tooltip" data-placement="top" title="树莓派系统安装">下一篇 &rarr;</a>
+                        </li>
+                    
+                </ul>
+            </div>
+    <!-- Side Catalog Container -->
+        
+
+    <!-- Sidebar Container -->
+
+            <div class="
+                col-lg-12
+                col-md-12
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                       
+                          <a class="tag" href="/tags/#随笔" title="随笔">随笔</a>
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+                <hr>
+                <h5>FRIENDS</h5>
+                <ul class="list-inline">
+
+                    
+                        <li><a href="https://www.cnblogs.com/liuju150/" target="_blank">博客园</a></li>
+                    
+                        <li><a href="https://www.zhihu.com/people/giant150" target="_blank">知呼</a></li>
+                    
+                        <li><a href="https://weibo.com/liuju150" target="_blank">微博</a></li>
+                    
+                        <li><a href="https://github.com/liuju150" target="_blank">GitHub</a></li>
+                    
+                        <li><a href="https://gitee.com/GiantLiu" target="_blank">Gitee</a></li>
+                    
+                        <li><a href="https://giantliu.gitee.io" target="_blank">Gitee Blog</a></li>
+                    
+                        <li><a href="https://blog.giantliu.cn" target="_blank">Blog</a></li>
+                    
+                </ul>
+                
+            </div>
+
+        </div>
+    </div>
+</article>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("https://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js",function(){
+        anchors.options = {
+          visible: 'always',
+          placement: 'right',
+          icon: '#'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+<style>
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
+
+
+
+    <!-- Footer -->
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                
+                
+                
+                    <li>
+                        <a target="_blank" href="https://www.zhihu.com/people/giant150">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa  fa-stack-1x fa-inverse">知</i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+                    <li>
+                        <a target="_blank" href="http://weibo.com/liuju150">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-weibo fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                
+                    <li>
+                        <a target="_blank"  href="https://github.com/liuju150">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; Giant Blog 2020 <br />
+                    <a target="_blank" href="http://www.beian.miit.gov.cn/">湘ICP备20015826号-1</a>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+
+<script src="/js/jquery.min.js"></script>
+
+
+<!-- Bootstrap Core JavaScript -->
+
+<script src="/js/bootstrap.min.js"></script>
+
+
+<!-- Custom Theme JavaScript -->
+
+<script src="/js/hux-blog.min.js"></script>
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- 
+     Because of the native support for backtick-style fenced code blocks 
+     right within the Markdown is landed in Github Pages, 
+     From V1.6, There is no need for Highlight.js, 
+     so Huxblog drops it officially.
+
+     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0  
+     - https://help.github.com/articles/creating-and-highlighting-code-blocks/    
+-->
+<!--
+    <script>
+        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
+            hljs.initHighlightingOnLoad();
+        })
+    </script>
+    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
+-->
+
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("https://www.giantliu.cn/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("https://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+<!-- Side Catalog -->
+
+
+
+</body>
+
+</html>

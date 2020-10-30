@@ -6,7 +6,7 @@
   <link href="https://www.giantliu.cn/atom.xml" rel="self"/>
   
   <link href="https://www.giantliu.cn/"/>
-  <updated>2020-09-30T06:59:04.618Z</updated>
+  <updated>2020-10-30T08:30:17.711Z</updated>
   <id>https://www.giantliu.cn/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>免费申请HTTPS证书</title>
+    <link href="https://www.giantliu.cn/2020/10/30/201030FreeLetsEncryptSSL/"/>
+    <id>https://www.giantliu.cn/2020/10/30/201030FreeLetsEncryptSSL/</id>
+    <published>2020-10-30T05:48:01.000Z</published>
+    <updated>2020-10-30T08:30:17.711Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h2&gt;&lt;p&gt;在阿里云买了一个域名giantliu.cn&lt;br&gt;部署了自己的博客系统 &lt;a</summary>
+        
+      
+    
+    
+    
+    
+    <category term="随笔" scheme="https://www.giantliu.cn/tags/%E9%9A%8F%E7%AC%94/"/>
+    
+  </entry>
   
   <entry>
     <title>树莓派系统安装</title>
@@ -135,9 +158,9 @@
     
     
     
-    <category term="Docker" scheme="https://www.giantliu.cn/tags/Docker/"/>
-    
     <category term="随笔" scheme="https://www.giantliu.cn/tags/%E9%9A%8F%E7%AC%94/"/>
+    
+    <category term="Docker" scheme="https://www.giantliu.cn/tags/Docker/"/>
     
     <category term="MySql" scheme="https://www.giantliu.cn/tags/MySql/"/>
     
@@ -162,11 +185,11 @@
     
     
     
+    <category term="随笔" scheme="https://www.giantliu.cn/tags/%E9%9A%8F%E7%AC%94/"/>
+    
     <category term="NetCore" scheme="https://www.giantliu.cn/tags/NetCore/"/>
     
     <category term="WMS" scheme="https://www.giantliu.cn/tags/WMS/"/>
-    
-    <category term="随笔" scheme="https://www.giantliu.cn/tags/%E9%9A%8F%E7%AC%94/"/>
     
     <category term="Vue" scheme="https://www.giantliu.cn/tags/Vue/"/>
     
@@ -244,11 +267,11 @@
     
     <category term="NetCore" scheme="https://www.giantliu.cn/tags/NetCore/"/>
     
-    <category term="Docker" scheme="https://www.giantliu.cn/tags/Docker/"/>
-    
     <category term="Ubuntu" scheme="https://www.giantliu.cn/tags/Ubuntu/"/>
     
     <category term="PowerShell" scheme="https://www.giantliu.cn/tags/PowerShell/"/>
+    
+    <category term="Docker" scheme="https://www.giantliu.cn/tags/Docker/"/>
     
   </entry>
   
@@ -298,9 +321,9 @@
     
     
     
-    <category term="Docker" scheme="https://www.giantliu.cn/tags/Docker/"/>
-    
     <category term="随笔" scheme="https://www.giantliu.cn/tags/%E9%9A%8F%E7%AC%94/"/>
+    
+    <category term="Docker" scheme="https://www.giantliu.cn/tags/Docker/"/>
     
   </entry>
   
@@ -350,11 +373,11 @@
     
     
     
-    <category term="Docker" scheme="https://www.giantliu.cn/tags/Docker/"/>
-    
     <category term="随笔" scheme="https://www.giantliu.cn/tags/%E9%9A%8F%E7%AC%94/"/>
     
     <category term="Ubuntu" scheme="https://www.giantliu.cn/tags/Ubuntu/"/>
+    
+    <category term="Docker" scheme="https://www.giantliu.cn/tags/Docker/"/>
     
   </entry>
   
@@ -377,9 +400,9 @@
     
     
     
-    <category term="NetCore" scheme="https://www.giantliu.cn/tags/NetCore/"/>
-    
     <category term="随笔" scheme="https://www.giantliu.cn/tags/%E9%9A%8F%E7%AC%94/"/>
+    
+    <category term="NetCore" scheme="https://www.giantliu.cn/tags/NetCore/"/>
     
     <category term="Ubuntu" scheme="https://www.giantliu.cn/tags/Ubuntu/"/>
     
@@ -511,34 +534,6 @@
     
     
     <category term="生活" scheme="https://www.giantliu.cn/tags/%E7%94%9F%E6%B4%BB/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Example Post using Keynote Layout</title>
-    <link href="https://www.giantliu.cn/2015/07/09/js-module-7day/"/>
-    <id>https://www.giantliu.cn/2015/07/09/js-module-7day/</id>
-    <published>2015-07-08T16:00:00.000Z</published>
-    <updated>2020-08-12T00:43:36.741Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;blockquote&gt;
-&lt;p&gt;下滑这里查看更多内容&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;7月9日，我在公司内部进行了名为「JavaScript 模块化七日谈」分享，并将该 Slides 分享到了微博上。出乎意料地，这篇微博先后被 @JS小组 @尤小右 @寸志 等近</summary>
-        
-      
-    
-    
-    
-    
-    <category term="前端开发" scheme="https://www.giantliu.cn/tags/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/"/>
-    
-    <category term="JavaScript" scheme="https://www.giantliu.cn/tags/JavaScript/"/>
     
   </entry>
   
