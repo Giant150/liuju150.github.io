@@ -46,3 +46,53 @@ sudo docker run hello-world
 ### 测试是否安装成功
 
 ![信任Docker的GPG公钥](5.png)
+
+## 方式二
+
+脚本安装是最推荐的方式，只需要输入下面的命令，等待自动安装好即可。
+sudo curl -fsSL https://get.docker.com | sh
+
+## Docker镜像加速
+
+创建或修改 /etc/docker/daemon.json
+
+```bash
+{
+    "registry-mirrors": [
+        "https://hub-mirror.c.163.com",
+        "https://1nj0zren.mirror.aliyuncs.com",
+        "http://f1361db2.m.daocloud.io",
+        "https://registry.docker-cn.com"
+    ]
+}
+```
+
+```bash
+#重启Docker
+service docker restart
+#检查加速器是否生效
+docker info
+```
+
+## 卸载Docker
+
+```bash
+#查看 Docker 的磁盘使用情况（类似于 Linux 上的 df 命令）：
+docker system df
+#清理磁盘，删除关闭的容器、无用的数据卷和网络，以及 dangling 镜像（即无 tag 的镜像）
+docker system prune
+
+#批量删除所有的孤儿 volume（即没有任何容器用到的 volume）
+docker volume rm $(docker volume ls -q)
+
+#清理后可以查看下目前使用的所有 volume：
+docker volume ls
+
+#使用 docker inspect 命令可以查看某个 volume 的具体信息，比如挂载在本机的那个目录路径下：
+docker inspect edgex_log-data
+
+# 卸载
+sudo apt-get purge docker-ce docker-ce-cli containerd.io
+sudo rm -rf /var/lib/docker
+sudo rm -rf /var/lib/containerd
+```

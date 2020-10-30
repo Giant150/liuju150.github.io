@@ -172,6 +172,18 @@ static routers=10.76.20.1
 static domain_name_servers=114.114.114.114 8.8.8.8
 ```
 
+### 配置无线网卡为固定IP
+
+```bash
+nano /etc/dhcpcd.conf
+
+# Example static IP configuration:
+interface wlan0
+static ip_address=10.76.1.252/24
+static routers=10.76.1.1
+static domain_name_servers=114.114.114.114 8.8.8.8
+```
+
 ![staticIP](staticIP.png)
 
 可以通过 ip addr查看当前所有IP
