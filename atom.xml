@@ -135,9 +135,9 @@
     
     
     
-    <category term="随笔" scheme="https://www.giantliu.cn/tags/%E9%9A%8F%E7%AC%94/"/>
-    
     <category term="Docker" scheme="https://www.giantliu.cn/tags/Docker/"/>
+    
+    <category term="随笔" scheme="https://www.giantliu.cn/tags/%E9%9A%8F%E7%AC%94/"/>
     
     <category term="MySql" scheme="https://www.giantliu.cn/tags/MySql/"/>
     
@@ -162,11 +162,11 @@
     
     
     
-    <category term="随笔" scheme="https://www.giantliu.cn/tags/%E9%9A%8F%E7%AC%94/"/>
-    
     <category term="NetCore" scheme="https://www.giantliu.cn/tags/NetCore/"/>
     
     <category term="WMS" scheme="https://www.giantliu.cn/tags/WMS/"/>
+    
+    <category term="随笔" scheme="https://www.giantliu.cn/tags/%E9%9A%8F%E7%AC%94/"/>
     
     <category term="Vue" scheme="https://www.giantliu.cn/tags/Vue/"/>
     
@@ -244,11 +244,11 @@
     
     <category term="NetCore" scheme="https://www.giantliu.cn/tags/NetCore/"/>
     
+    <category term="Docker" scheme="https://www.giantliu.cn/tags/Docker/"/>
+    
     <category term="Ubuntu" scheme="https://www.giantliu.cn/tags/Ubuntu/"/>
     
     <category term="PowerShell" scheme="https://www.giantliu.cn/tags/PowerShell/"/>
-    
-    <category term="Docker" scheme="https://www.giantliu.cn/tags/Docker/"/>
     
   </entry>
   
@@ -298,9 +298,9 @@
     
     
     
-    <category term="随笔" scheme="https://www.giantliu.cn/tags/%E9%9A%8F%E7%AC%94/"/>
-    
     <category term="Docker" scheme="https://www.giantliu.cn/tags/Docker/"/>
+    
+    <category term="随笔" scheme="https://www.giantliu.cn/tags/%E9%9A%8F%E7%AC%94/"/>
     
   </entry>
   
@@ -325,9 +325,9 @@
     
     <category term="NetCore" scheme="https://www.giantliu.cn/tags/NetCore/"/>
     
-    <category term="Docker" scheme="https://www.giantliu.cn/tags/Docker/"/>
-    
     <category term="WMS" scheme="https://www.giantliu.cn/tags/WMS/"/>
+    
+    <category term="Docker" scheme="https://www.giantliu.cn/tags/Docker/"/>
     
   </entry>
   
@@ -350,11 +350,11 @@
     
     
     
+    <category term="Docker" scheme="https://www.giantliu.cn/tags/Docker/"/>
+    
     <category term="随笔" scheme="https://www.giantliu.cn/tags/%E9%9A%8F%E7%AC%94/"/>
     
     <category term="Ubuntu" scheme="https://www.giantliu.cn/tags/Ubuntu/"/>
-    
-    <category term="Docker" scheme="https://www.giantliu.cn/tags/Docker/"/>
     
   </entry>
   
@@ -377,9 +377,9 @@
     
     
     
-    <category term="随笔" scheme="https://www.giantliu.cn/tags/%E9%9A%8F%E7%AC%94/"/>
-    
     <category term="NetCore" scheme="https://www.giantliu.cn/tags/NetCore/"/>
+    
+    <category term="随笔" scheme="https://www.giantliu.cn/tags/%E9%9A%8F%E7%AC%94/"/>
     
     <category term="Ubuntu" scheme="https://www.giantliu.cn/tags/Ubuntu/"/>
     
