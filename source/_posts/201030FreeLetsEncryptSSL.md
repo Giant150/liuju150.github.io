@@ -1,7 +1,8 @@
 ---
 layout: post
 title: '免费申请HTTPS证书'
-subtitle: '免费申请Let's Encrypt支持所有子域名的通配符证书'
+subtitle: '免费申请Lets Encrypt支持所有子域名的通配符证书'
+header-img: "img/win.jpg"
 tags:
   - 随笔
 date: 2020-10-30 13:48:01
