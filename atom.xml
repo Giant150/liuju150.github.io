@@ -6,7 +6,7 @@
   <link href="https://www.giantliu.cn/atom.xml" rel="self"/>
   
   <link href="https://www.giantliu.cn/"/>
-  <updated>2021-02-25T04:39:29.525Z</updated>
+  <updated>2021-06-18T03:22:51.763Z</updated>
   <id>https://www.giantliu.cn/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>为模型添加通用扩展属性</title>
+    <link href="https://www.giantliu.cn/2021/06/18/20210618WMSAddExpandAttr/"/>
+    <id>https://www.giantliu.cn/2021/06/18/20210618WMSAddExpandAttr/</id>
+    <published>2021-06-18T01:59:22.000Z</published>
+    <updated>2021-06-18T03:22:51.763Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;扩展属性介绍&quot;&gt;&lt;a href=&quot;#扩展属性介绍&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    
+    <category term="WMS" scheme="https://www.giantliu.cn/tags/WMS/"/>
+    
+  </entry>
   
   <entry>
     <title>EF Core的Code First模式</title>
@@ -396,9 +419,9 @@
     
     <category term="NetCore" scheme="https://www.giantliu.cn/tags/NetCore/"/>
     
-    <category term="WMS" scheme="https://www.giantliu.cn/tags/WMS/"/>
-    
     <category term="Docker" scheme="https://www.giantliu.cn/tags/Docker/"/>
+    
+    <category term="WMS" scheme="https://www.giantliu.cn/tags/WMS/"/>
     
   </entry>
   
@@ -507,33 +530,6 @@
     <category term="Ubuntu" scheme="https://www.giantliu.cn/tags/Ubuntu/"/>
     
     <category term="Hyper-V" scheme="https://www.giantliu.cn/tags/Hyper-V/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>使用PowerShell操作Ubuntu</title>
-    <link href="https://www.giantliu.cn/2020/08/19/InstallPowerShell/"/>
-    <id>https://www.giantliu.cn/2020/08/19/InstallPowerShell/</id>
-    <published>2020-08-19T09:10:20.000Z</published>
-    <updated>2020-08-26T09:36:14.715Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h2 id=&quot;安装PowerShell&quot;&gt;&lt;a href=&quot;#安装PowerShell&quot; class=&quot;headerlink&quot; title=&quot;安装PowerShell&quot;&gt;&lt;/a&gt;安装PowerShell&lt;/h2&gt;&lt;p&gt;&lt;a</summary>
-        
-      
-    
-    
-    
-    
-    <category term="随笔" scheme="https://www.giantliu.cn/tags/%E9%9A%8F%E7%AC%94/"/>
-    
-    <category term="Ubuntu" scheme="https://www.giantliu.cn/tags/Ubuntu/"/>
-    
-    <category term="PowerShell" scheme="https://www.giantliu.cn/tags/PowerShell/"/>
     
   </entry>
   
