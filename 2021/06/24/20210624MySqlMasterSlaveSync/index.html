@@ -12,11 +12,11 @@
 
     <title>
         
-          免费申请HTTPS证书 - Giant Blog
+          MySql数据库主从同步/双向同步 - Giant Blog
         
     </title>
 
-    <link rel="canonical" href="https://www.giantliu.cn/2020/10/30/201030FreeLetsEncryptSSL/">
+    <link rel="canonical" href="https://www.giantliu.cn/2021/06/24/20210624MySqlMasterSlaveSync/">
 
     <!-- Bootstrap Core CSS -->
     
@@ -170,7 +170,7 @@
 <style type="text/css">
     header.intro-header{
         
-            background-image: url('/img/win.jpg')
+            background-image: url('/img/bg1.jpg')
         
     }
 </style>
@@ -184,11 +184,11 @@
                           <a class="tag" href="/tags/#随笔" title="随笔">随笔</a>
                         
                     </div>
-                    <h1>免费申请HTTPS证书</h1>
-                    <h2 class="subheading">免费申请Lets Encrypt支持所有子域名的通配符证书</h2>
+                    <h1>MySql数据库主从同步/双向同步</h1>
+                    <h2 class="subheading">主从同步,主主同步,双向同步,双机热备</h2>
                     <span class="meta">
                         Posted by 刘巨 on
-                        2020-10-30
+                        2021-06-24
                     </span>
                 </div>
             </div>
@@ -207,50 +207,39 @@
                 col-md-12
                 post-container">
 
-                <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>在阿里云买了一个域名giantliu.cn<br>部署了自己的博客系统 <a href="https://www.giantliu.cn/">https://www.giantliu.cn/</a><br>所有用https证书是Let’s Encrypt免费申请的<br>因为申请的免费证书有效期是3个月，今天正好原来的过期了<br>这里要重新申请新的证书。所以在这里记录一下<br><img src="2.png" alt="Free Let&#39;s Encrypt SSL"><br><img src="3.png" alt="Free Let&#39;s Encrypt SSL"></p>
-<h2 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h2><p>1.<a href="#%E5%AE%89%E8%A3%85Certbot">安装Certbot</a><br>2.<a href="#%E7%94%B3%E8%AF%B7%E8%AF%81%E4%B9%A6">申请证书</a><br>3.<a href="#%E8%BD%AC%E6%8D%A2%E8%AF%81%E4%B9%A6%E6%A0%BC%E5%BC%8F">转换证书格式</a><br>4.<a href="#%E5%AE%89%E8%A3%85%E8%AF%81%E4%B9%A6">安装证书</a></p>
-<h2 id="安装Certbot"><a href="#安装Certbot" class="headerlink" title="安装Certbot"></a>安装Certbot</h2><p>Certbot是辅助申请Let’s Encrypt证书的工作<br>打开Certbot官网 <a target="_blank" rel="noopener" href="https://certbot.eff.org/">官网地址</a><br>第一步是选择申请证书的种类，这样Certbot可以根据选择的种类<br>来帮助你在不同的环境里申请证书</p>
-<p>这里我选择None of the above On Windows<br><img src="6.png" alt="Free Let&#39;s Encrypt SSL"></p>
-<p>然后下面会提示我们申请证书的步骤</p>
-<p><img src="7.png" alt="Free Let&#39;s Encrypt SSL"><br><img src="8.png" alt="Free Let&#39;s Encrypt SSL"><br><img src="9.png" alt="Free Let&#39;s Encrypt SSL"><br><img src="10.png" alt="Free Let&#39;s Encrypt SSL"></p>
-<p>这里主要的步骤是在要在C盘创建一个目录C:\Certbot并且当前用户有权限操作<br>然后下载Certbot安装文件 <a target="_blank" rel="noopener" href="https://dl.eff.org/certbot-beta-installer-win32.exe">下载地址</a><br>下载后安装<br><img src="11.png" alt="Free Let&#39;s Encrypt SSL"><br>然后我们以管理员方式运行命令行</p>
-<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">certbot --<span class="built_in">help</span></span><br></pre></td></tr></table></figure>
+                <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>最近做个项目,买了两台服务器做双机热备<br>服务器1IP(Master):192.168.21.245<br>服务器2IP(Slave) : 192.168.21.244</p>
+<h2 id="配置Master"><a href="#配置Master" class="headerlink" title="配置Master"></a>配置Master</h2><h3 id="修改配置文件my-ini"><a href="#修改配置文件my-ini" class="headerlink" title="修改配置文件my.ini"></a>修改配置文件my.ini</h3><p>1.找到MySql的配置文件my.ini,加入/修改为以下配置</p>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">server-id</span>=<span class="number">1</span></span><br><span class="line"><span class="attr">log-bin</span>=mysql-bin</span><br><span class="line"><span class="attr">binlog-ignore-db</span>=mysql,information_schema</span><br><span class="line"><span class="attr">sync_binlog</span>=<span class="number">1</span></span><br><span class="line"><span class="attr">binlog_checksum</span>=none</span><br><span class="line"><span class="attr">binlog_format</span>=mixed</span><br><span class="line"><span class="attr">auto-increment-increment</span>=<span class="number">2</span></span><br><span class="line"><span class="attr">auto-increment-offset</span>=<span class="number">1</span></span><br><span class="line"><span class="attr">slave-skip-errors</span>=all</span><br></pre></td></tr></table></figure>
 
-<p>如果出现以下信息，就表示Certbot安装成功了<br><img src="12.png" alt="Free Let&#39;s Encrypt SSL"></p>
-<h2 id="申请证书"><a href="#申请证书" class="headerlink" title="申请证书"></a>申请证书</h2><p>因为我们要申请的证书是通配符证书<br>这样我只要申请了giantliu.cn的通配符证书后<br>那以giantliu.cn的所有子域都可以用这一个证书</p>
-<p>输入以下命令</p>
-<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">#以下命令表以以DNS的方式验证giantliu.cn的域名来申请通配符证书</span><br><span class="line">#通配符证书的域名为*.giantliu.cn</span><br><span class="line">certbot certonly -d *.giantliu.cn --manual --preferred-challenges dns</span><br></pre></td></tr></table></figure>
+<p>2.然后重启MySql服务<br>我们用root帐号来做主从同步(一般情况下最好新建一个帐号来做)<br>打开MySql命令行给帐号授主从同步权限</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">授权</span></span><br><span class="line">grant replication slave,replication client on *.* to root@&#x27;%&#x27; identified by &quot;root password&quot;;</span><br><span class="line"><span class="meta">#</span><span class="bash">刷新权限</span></span><br><span class="line">flush privileges;</span><br><span class="line"><span class="meta">#</span><span class="bash">锁定表,只能读取</span></span><br><span class="line">FLUSH TABLES WITH READ LOCK;</span><br><span class="line"><span class="meta">#</span><span class="bash">查看主数据库日志记录状态</span></span><br><span class="line">show master status;</span><br></pre></td></tr></table></figure>
 
-<p>输入命令后，会出现几个要互交的地方<br>1.输入你的email地址:邮件地址<br>2.阅读服务说明书并同意:A<br>3.步是别人要用共享你的邮件地址，给你推送相关信息：Y<br>4.问你是不是有这个域名的所有权<br>因为它要你解析一个TXT记录到固定地址来验证你是有这个域名的所有权的：Y<br>然后最下面就是要你解释一个TXT记录到_acme-challenge.giantliu.cn<br>值为：amJUh7UHWPm-CXCTaKtYIinUR3dYpmPWmgxKsnryZLo</p>
-<p>到了这一步后，不要急于按回车结束<br>因为你还没有解析记录，不然会申请不成功的</p>
-<p><img src="13.png" alt="Free Let&#39;s Encrypt SSL"></p>
-<p>接下来，因为我的域名解析是在阿里云做的，<br>所以我跑到阿里云的域名解析那里添加了一条TXT记录</p>
-<p><img src="14.png" alt="Free Let&#39;s Encrypt SSL"></p>
-<p>添加的记录并不一定马上解析成功，所以我们要验证这个TXT记录是不是已经生效<br>我们打开一个新的命令行，输入以下命令<br>查询看得到的值是不是正确，如果与结果一至<br>那么我们就可以在原来的申请证书的命令行按回车继续我们的申请</p>
-<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nslookup -qt=TXT _acme-challenge.giantliu.cn</span><br></pre></td></tr></table></figure>
+<p><img src="1.png" alt="MySql主从同步"></p>
+<p>3.把主数据库备份,然后在从数据库还原.以达到两边数据一至</p>
+<h2 id="配置Slave数据库"><a href="#配置Slave数据库" class="headerlink" title="配置Slave数据库"></a>配置Slave数据库</h2><p>1.找到MySql的配置文件my.ini,加入/修改为以下配置</p>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">server-id</span>=<span class="number">2</span></span><br><span class="line"><span class="attr">log-bin</span>=mysql-bin</span><br><span class="line"><span class="attr">binlog-ignore-db</span>=mysql,information_schema</span><br><span class="line"><span class="attr">sync_binlog</span>=<span class="number">1</span></span><br><span class="line"><span class="attr">binlog_checksum</span>=none</span><br><span class="line"><span class="attr">binlog_format</span>=mixed</span><br><span class="line"><span class="attr">auto-increment-increment</span>=<span class="number">2</span></span><br><span class="line"><span class="attr">auto-increment-offset</span>=<span class="number">2</span></span><br><span class="line"><span class="attr">slave-skip-errors</span>=all</span><br></pre></td></tr></table></figure>
 
-<p><img src="15.png" alt="Free Let&#39;s Encrypt SSL"></p>
-<p>按下回车后，Certbot会去验证我们的DNS记录<br>然后如果验证成功，会把申请到的证书保存到我们的<br>C:\Certbot\live\giantliu.cn</p>
-<p><img src="16.png" alt="Free Let&#39;s Encrypt SSL"><br><img src="17.png" alt="Free Let&#39;s Encrypt SSL"></p>
-<h2 id="转换证书格式"><a href="#转换证书格式" class="headerlink" title="转换证书格式"></a>转换证书格式</h2><p>因为我的博客服务器是用的IIS<br>而IIS所使用的证书为pfx，所以我们要把申请的证书pem格式转换成pfx格式</p>
-<p>我们输入以下openssl命令（要安装openssl工具）</p>
-<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">openssl pkcs12 -export -out giantliu.pfx -inkey privkey.pem -<span class="keyword">in</span> fullchain.pem -certfile cert.pem</span><br></pre></td></tr></table></figure>
+<p>2.然后重启MySql服务<br>我们用root帐号来做主从同步(一般情况下最好新建一个帐号来做)<br>打开MySql命令行给帐号授主从同步权限</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">授权</span></span><br><span class="line">grant replication slave,replication client on *.* to root@&#x27;%&#x27; identified by &quot;root password&quot;;</span><br><span class="line"><span class="meta">#</span><span class="bash">刷新权限</span></span><br><span class="line">flush privileges;</span><br><span class="line"><span class="meta">#</span><span class="bash">查看主数据库日志记录状态</span></span><br><span class="line">show master status;</span><br><span class="line"><span class="meta">#</span><span class="bash">重置Slave同步状态 如果以前配置了同步的话</span></span><br><span class="line">reset slave;</span><br><span class="line"><span class="meta">#</span><span class="bash">停止同步</span></span><br><span class="line">stop slave;</span><br><span class="line"><span class="meta">#</span><span class="bash">配置从主服务器数据库同步master_log_file和master_log_pos参数是在主数据库中show master status查找出来</span></span><br><span class="line">change master to master_host=&#x27;192.168.21.245&#x27;,master_user=&#x27;root&#x27;,master_password=&#x27;root password&#x27;,master_log_file=&#x27;mysql-bin.000023&#x27;,master_log_pos=440286;</span><br><span class="line"><span class="meta">#</span><span class="bash">启用同步</span></span><br><span class="line">start slave;</span><br><span class="line"><span class="meta">#</span><span class="bash">查询同步状态</span></span><br><span class="line">show slave status;</span><br></pre></td></tr></table></figure>
 
-<p><img src="18.png" alt="Free Let&#39;s Encrypt SSL"><br><img src="19.png" alt="Free Let&#39;s Encrypt SSL"></p>
-<h2 id="安装证书"><a href="#安装证书" class="headerlink" title="安装证书"></a>安装证书</h2><p>然后我们把转换后的证书giantliu.pfx复制到服务器<br>点右键安装证书，一直下一步到密码<br><img src="20.png" alt="Free Let&#39;s Encrypt SSL"></p>
-<p>然后输入证书密码，输入刚刚用openssl转换时输入的密码<br>然后一直下一步，直到完成<br><img src="21.png" alt="Free Let&#39;s Encrypt SSL"></p>
-<p>这样证书就已经导入到服务器了<br>然后在IIS管理器里面就可以看到我才申请的证书<br><img src="22.png" alt="Free Let&#39;s Encrypt SSL"><br>接下来就可以把原来的网站绑定的证书换成新的证书<br>然后再看来我的博客，<br>HTTPS又回来了<br><img src="23.png" alt="Free Let&#39;s Encrypt SSL"></p>
+<p><img src="2.png" alt="MySql主从同步"></p>
+<p>到这里的话,从数据库Slaver的数据会与主数据库Master同步已经成功了<br>如果用show slave statu显示如下状态,表示成功</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">   Slave_IO_State: Waiting for master to send event</span><br><span class="line">      Master_Host: 192.168.21.245</span><br><span class="line">      Master_User: root</span><br><span class="line">      Master_Port: 3306</span><br><span class="line"> Slave_IO_Running: Yes</span><br><span class="line">Slave_SQL_Running: Yes</span><br></pre></td></tr></table></figure>
+
+<h2 id="主数据Master同步从数据库Slave的数据"><a href="#主数据Master同步从数据库Slave的数据" class="headerlink" title="主数据Master同步从数据库Slave的数据"></a>主数据Master同步从数据库Slave的数据</h2><p>同样在主数据库中运行以下命令</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">解锁主数据库表</span></span><br><span class="line">unlock tables;</span><br><span class="line"><span class="meta">#</span><span class="bash">重置Slave同步状态 如果以前配置了同步的话</span></span><br><span class="line">reset slave;</span><br><span class="line"><span class="meta">#</span><span class="bash">停止同步</span></span><br><span class="line">stop slave;</span><br><span class="line"><span class="meta">#</span><span class="bash">配置从Slave服务器数据库同步 master_log_file和master_log_pos参数是在Slave数据库中show master status查找出来</span></span><br><span class="line">change master to master_host=&#x27;192.168.21.244&#x27;,master_user=&#x27;root&#x27;,master_password=&#x27;root password&#x27;,master_log_file=&#x27;mysql-bin.000024&#x27;,master_log_pos=150;</span><br><span class="line"><span class="meta">#</span><span class="bash">启用同步</span></span><br><span class="line">start slave;</span><br><span class="line"><span class="meta">#</span><span class="bash">查询同步状态</span></span><br><span class="line">show slave status;</span><br></pre></td></tr></table></figure>
+
+<p>如果用show slave statu显示如下状态,表示成功</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">   Slave_IO_State: Waiting for master to send event</span><br><span class="line">      Master_Host: 192.168.21.244</span><br><span class="line">      Master_User: root</span><br><span class="line">      Master_Port: 3306</span><br><span class="line"> Slave_IO_Running: Yes</span><br><span class="line">Slave_SQL_Running: Yes</span><br></pre></td></tr></table></figure>
+
+<h2 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h2><p>今天配置同步的时候,用show slave status看到如下错误<br>The slave I/O thread stops because master and slave have equal MySQL server UUIDs; these UUIDs must be different for replication to work…<br>主要是我的data目录是复制过去的.所以在data目录下面auto.cnf里的server-uuid这个配置是一样的<br>所以我们要把两台服务器的auto.cnf里面的server-uuid值修改为不一样就可以了.<br>这个同my.ini里配置的server-id一样.不能重复.不然同步数据会报错</p>
 
                 <hr>
                 <ul class="pager">
                     
-                        <li class="previous">
-                            <a href="/2021/01/29/210129ShowServerInfoInTop/" data-toggle="tooltip" data-placement="top" title="桌面置顶显示服务器信息">&larr; 上一篇</a>
-                        </li>
-                    
                     
                         <li class="next">
-                            <a href="/2020/09/28/200928RaspberryPiOSInstall/" data-toggle="tooltip" data-placement="top" title="树莓派系统安装">下一篇 &rarr;</a>
+                            <a href="/2021/06/18/20210618WMSAddExpandAttr/" data-toggle="tooltip" data-placement="top" title="为模型添加通用扩展属性">下一篇 &rarr;</a>
                         </li>
                     
                 </ul>

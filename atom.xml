@@ -6,7 +6,7 @@
   <link href="https://www.giantliu.cn/atom.xml" rel="self"/>
   
   <link href="https://www.giantliu.cn/"/>
-  <updated>2021-06-18T03:22:51.763Z</updated>
+  <updated>2021-06-24T06:10:59.996Z</updated>
   <id>https://www.giantliu.cn/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>MySql数据库主从同步/双向同步</title>
+    <link href="https://www.giantliu.cn/2021/06/24/20210624MySqlMasterSlaveSync/"/>
+    <id>https://www.giantliu.cn/2021/06/24/20210624MySqlMasterSlaveSync/</id>
+    <published>2021-06-24T05:12:16.000Z</published>
+    <updated>2021-06-24T06:10:59.996Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h2&gt;&lt;p&gt;最近做个项目,买了两台服务器做双机热备&lt;br&gt;服务器1IP(Master):192.168.21.245&lt;br&gt;服务器2IP(Slave)</summary>
+        
+      
+    
+    
+    
+    
+    <category term="随笔" scheme="https://www.giantliu.cn/tags/%E9%9A%8F%E7%AC%94/"/>
+    
+  </entry>
   
   <entry>
     <title>为模型添加通用扩展属性</title>
@@ -503,33 +526,6 @@
     <category term="随笔" scheme="https://www.giantliu.cn/tags/%E9%9A%8F%E7%AC%94/"/>
     
     <category term="Ubuntu" scheme="https://www.giantliu.cn/tags/Ubuntu/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>在Hyper-V中安装Ubuntu Server 18.04</title>
-    <link href="https://www.giantliu.cn/2020/08/20/InstallUbuntu18Server/"/>
-    <id>https://www.giantliu.cn/2020/08/20/InstallUbuntu18Server/</id>
-    <published>2020-08-20T00:40:32.000Z</published>
-    <updated>2020-08-26T09:01:36.978Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h2 id=&quot;新建虚拟机&quot;&gt;&lt;a href=&quot;#新建虚拟机&quot; class=&quot;headerlink&quot; title=&quot;新建虚拟机&quot;&gt;&lt;/a&gt;新建虚拟机&lt;/h2&gt;&lt;p&gt;设置虚拟机名称和安装位置&lt;br&gt;&lt;img src=&quot;1.png&quot;</summary>
-        
-      
-    
-    
-    
-    
-    <category term="随笔" scheme="https://www.giantliu.cn/tags/%E9%9A%8F%E7%AC%94/"/>
-    
-    <category term="Ubuntu" scheme="https://www.giantliu.cn/tags/Ubuntu/"/>
-    
-    <category term="Hyper-V" scheme="https://www.giantliu.cn/tags/Hyper-V/"/>
     
   </entry>
   
