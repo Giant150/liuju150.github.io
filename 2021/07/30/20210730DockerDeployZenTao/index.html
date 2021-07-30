@@ -12,11 +12,11 @@
 
     <title>
         
-          Hello World - Giant Blog
+          Docker部署禅道系统 - Giant Blog
         
     </title>
 
-    <link rel="canonical" href="https://www.giantliu.cn/2020/01/29/hello-world/">
+    <link rel="canonical" href="https://www.giantliu.cn/2021/07/30/20210730DockerDeployZenTao/">
 
     <!-- Bootstrap Core CSS -->
     
@@ -181,14 +181,14 @@
                 <div class="post-heading">
                     <div class="tags">
                         
-                          <a class="tag" href="/tags/#生活" title="生活">生活</a>
+                          <a class="tag" href="/tags/#随笔" title="随笔">随笔</a>
                         
                     </div>
-                    <h1>Hello World</h1>
-                    <h2 class="subheading"> &#34;Hello World, Hello Giant Blog&#34;</h2>
+                    <h1>Docker部署禅道系统</h1>
+                    <h2 class="subheading">禅道是专业的研发项目管理软件</h2>
                     <span class="meta">
                         Posted by 刘巨 on
-                        2020-01-29
+                        2021-07-30
                     </span>
                 </div>
             </div>
@@ -207,30 +207,16 @@
                 col-md-12
                 post-container">
 
-                <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+                <h2 id="Docker命令"><a href="#Docker命令" class="headerlink" title="Docker命令"></a>Docker命令</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#摘取禅道镜像</span></span><br><span class="line">sudo docker pull easysoft/zentao</span><br><span class="line"></span><br><span class="line"><span class="comment">#在宿主机创建数据目录zentaopms,mysqldata</span></span><br><span class="line"><span class="comment">#设置目录的读写权限</span></span><br><span class="line">sudo mkdir zentaopms</span><br><span class="line">sudo chmod 777 ./zentaopms</span><br><span class="line">sudo mkdir mysqldata</span><br><span class="line">sudo chmod 777 ./mysqldata</span><br><span class="line"></span><br><span class="line"><span class="comment">#创建容器并运行</span></span><br><span class="line">sudo docker run --name zentao -p 80:80 -v /home/giant/www/zentaopms:/www/zentaopms -v /home/giant/www/mysqldata:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=123456 -d easysoft/zentao</span><br><span class="line"></span><br><span class="line"><span class="comment">#修改防火墙</span></span><br><span class="line">sudo ufw allow 80</span><br></pre></td></tr></table></figure>
 
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+<h2 id="参考引用"><a href="#参考引用" class="headerlink" title="参考引用"></a>参考引用</h2><p><a target="_blank" rel="noopener" href="https://www.zentao.net/book/zentaopmshelp/405.html">https://www.zentao.net/book/zentaopmshelp/405.html</a></p>
 
                 <hr>
                 <ul class="pager">
                     
-                        <li class="previous">
-                            <a href="/2020/08/09/first-post/" data-toggle="tooltip" data-placement="top" title="个人博客创建心历路程">&larr; 上一篇</a>
-                        </li>
-                    
                     
                         <li class="next">
-                            <a href="/2015/07/09/js-module-7day/" data-toggle="tooltip" data-placement="top" title="Example Post using Keynote Layout">下一篇 &rarr;</a>
+                            <a href="/2021/06/24/20210624MySqlMasterSlaveSync/" data-toggle="tooltip" data-placement="top" title="MySql数据库主从同步/双向同步">下一篇 &rarr;</a>
                         </li>
                     
                 </ul>
@@ -252,7 +238,7 @@
                     <h5><a href="/tags/">FEATURED TAGS</a></h5>
                     <div class="tags">
                        
-                          <a class="tag" href="/tags/#生活" title="生活">生活</a>
+                          <a class="tag" href="/tags/#随笔" title="随笔">随笔</a>
                         
                     </div>
                 </section>
