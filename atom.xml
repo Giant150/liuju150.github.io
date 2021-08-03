@@ -6,7 +6,7 @@
   <link href="https://www.giantliu.cn/atom.xml" rel="self"/>
   
   <link href="https://www.giantliu.cn/"/>
-  <updated>2021-07-30T09:08:00.331Z</updated>
+  <updated>2021-08-03T02:39:02.954Z</updated>
   <id>https://www.giantliu.cn/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>使用Excel做数据导入导出操作</title>
+    <link href="https://www.giantliu.cn/2021/08/03/20210803WMSExcelImportExport/"/>
+    <id>https://www.giantliu.cn/2021/08/03/20210803WMSExcelImportExport/</id>
+    <published>2021-08-03T02:05:30.000Z</published>
+    <updated>2021-08-03T02:39:02.954Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;创建模型&quot;&gt;&lt;a href=&quot;#创建模型&quot; class=&quot;headerlink&quot; title=&quot;创建模型&quot;&gt;&lt;/a&gt;创建模型&lt;/h2&gt;&lt;p&gt;如下图所示,在Api项目的Models文件夹下创建导入导出模型&lt;br&gt;&lt;img src=&quot;1.png&quot;</summary>
+        
+      
+    
+    
+    
+    
+    <category term="WMS" scheme="https://www.giantliu.cn/tags/WMS/"/>
+    
+  </entry>
   
   <entry>
     <title>Docker部署禅道系统</title>
@@ -465,9 +488,9 @@
     
     <category term="NetCore" scheme="https://www.giantliu.cn/tags/NetCore/"/>
     
-    <category term="WMS" scheme="https://www.giantliu.cn/tags/WMS/"/>
-    
     <category term="Docker" scheme="https://www.giantliu.cn/tags/Docker/"/>
+    
+    <category term="WMS" scheme="https://www.giantliu.cn/tags/WMS/"/>
     
   </entry>
   
@@ -495,35 +518,6 @@
     <category term="Ubuntu" scheme="https://www.giantliu.cn/tags/Ubuntu/"/>
     
     <category term="Docker" scheme="https://www.giantliu.cn/tags/Docker/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>使用PowerShell自动部署ASP.Net Core到Ubuntu</title>
-    <link href="https://www.giantliu.cn/2020/08/21/200821NetCoreDeployToUbuntu/"/>
-    <id>https://www.giantliu.cn/2020/08/21/200821NetCoreDeployToUbuntu/</id>
-    <published>2020-08-21T07:03:04.000Z</published>
-    <updated>2020-08-26T09:35:03.476Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;figure class=&quot;highlight powershell&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span</summary>
-        
-      
-    
-    
-    
-    
-    <category term="随笔" scheme="https://www.giantliu.cn/tags/%E9%9A%8F%E7%AC%94/"/>
-    
-    <category term="NetCore" scheme="https://www.giantliu.cn/tags/NetCore/"/>
-    
-    <category term="Ubuntu" scheme="https://www.giantliu.cn/tags/Ubuntu/"/>
-    
-    <category term="PowerShell" scheme="https://www.giantliu.cn/tags/PowerShell/"/>
     
   </entry>
   

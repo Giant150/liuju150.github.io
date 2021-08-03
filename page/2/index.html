@@ -100,9 +100,6 @@
                     
 
                         
-                    
-
-                        
                         <li>
                             <a href="/about/">About</a>
                         </li>
@@ -110,15 +107,18 @@
                     
 
                         
+                    
+
+                        
                         <li>
-                            <a href="/archives/">Archives</a>
+                            <a href="/tags/">Tags</a>
                         </li>
                         
                     
 
                         
                         <li>
-                            <a href="/tags/">Tags</a>
+                            <a href="/archives/">Archives</a>
                         </li>
                         
                     
@@ -199,6 +199,28 @@
 
             <!-- Main Content -->
 
+
+<div class="post-preview">
+
+    <a href="/2020/09/03/200903SQLServerForeachItem/">
+        <h2 class="post-title">
+            SqlServer遍历数据
+        </h2>
+        <h3 class="post-subtitle">
+            批量修改数据库表名前缀为大写
+        </h3>
+        <div class="post-content-preview">
+            前言数据库原有表名为：bas_LocTemp要修改后表名为：BAS_LocTemp
+代码1234567891011121314151617181920--给要遍历的数据增加行号，如果有ID可以用ID字段，并保存到临时表tempselect ROW_NUMBER() over(order by name) as RowId,name as TableName into #temp from s......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by 刘巨 on
+        2020-09-03
+    </p>
+
+</div>
+<hr>
 
 <div class="post-preview">
 
@@ -420,27 +442,6 @@
 </div>
 <hr>
 
-<div class="post-preview">
-
-    <a href="/2020/08/21/200821NetCoreDeployToUbuntu/">
-        <h2 class="post-title">
-            使用PowerShell自动部署ASP.Net Core到Ubuntu
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            123456789101112131415161718192021222324252627282930313233343536373839404142434445Write-Host &#x27;Build Starting&#x27; -ForegroundColor Yellow# 发布程序到指定目录$CurPath=(Resolve-Path .).Path$OutputPath=$C......
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by 刘巨 on
-        2020-08-21
-    </p>
-
-</div>
-<hr>
-
 
 
 <!-- Pager -->
@@ -500,13 +501,13 @@
                     
                     
                     
-                    <a href="/tags/#WMS" title="WMS"
-                        rel="3">WMS</a>
-                    
-                    
-                    
                     <a href="/tags/#Docker" title="Docker"
                         rel="5">Docker</a>
+                    
+                    
+                    
+                    <a href="/tags/#WMS" title="WMS"
+                        rel="4">WMS</a>
                     
                     
                     
