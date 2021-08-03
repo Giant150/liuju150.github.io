@@ -30,3 +30,17 @@ sudo ufw allow 80
 ## 参考引用
 
 [https://www.zentao.net/book/zentaopmshelp/405.html](https://www.zentao.net/book/zentaopmshelp/405.html)
+
+## Docker容器安装Git
+
+```bash
+#进入Docker容器
+sudo docker exec -it {容器Id} bash
+#把更新源修改为华为云
+sed -i "s@http://.*archive.ubuntu.com@http://repo.huaweicloud.com@g" /etc/apt/sources.list
+sed -i "s@http://.*security.ubuntu.com@http://repo.huaweicloud.com@g" /etc/apt/sources.list
+#更新索引
+apt-get update
+#安装Git
+apt-get install -y git
+```
