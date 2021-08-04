@@ -100,6 +100,9 @@
                     
 
                         
+                    
+
+                        
                         <li>
                             <a href="/about/">About</a>
                         </li>
@@ -107,18 +110,15 @@
                     
 
                         
-                    
-
-                        
                         <li>
-                            <a href="/tags/">Tags</a>
+                            <a href="/archives/">Archives</a>
                         </li>
                         
                     
 
                         
                         <li>
-                            <a href="/archives/">Archives</a>
+                            <a href="/tags/">Tags</a>
                         </li>
                         
                     
@@ -210,6 +210,11 @@
                 <h2 id="Docker命令"><a href="#Docker命令" class="headerlink" title="Docker命令"></a>Docker命令</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#摘取禅道镜像</span></span><br><span class="line">sudo docker pull easysoft/zentao</span><br><span class="line"></span><br><span class="line"><span class="comment">#在宿主机创建数据目录zentaopms,mysqldata</span></span><br><span class="line"><span class="comment">#设置目录的读写权限</span></span><br><span class="line">sudo mkdir zentaopms</span><br><span class="line">sudo chmod 777 ./zentaopms</span><br><span class="line">sudo mkdir mysqldata</span><br><span class="line">sudo chmod 777 ./mysqldata</span><br><span class="line"></span><br><span class="line"><span class="comment">#创建容器并运行</span></span><br><span class="line">sudo docker run --name zentao -p 80:80 -v /home/giant/www/zentaopms:/www/zentaopms -v /home/giant/www/mysqldata:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=123456 -d easysoft/zentao</span><br><span class="line"></span><br><span class="line"><span class="comment">#修改防火墙</span></span><br><span class="line">sudo ufw allow 80</span><br></pre></td></tr></table></figure>
 
 <h2 id="参考引用"><a href="#参考引用" class="headerlink" title="参考引用"></a>参考引用</h2><p><a target="_blank" rel="noopener" href="https://www.zentao.net/book/zentaopmshelp/405.html">https://www.zentao.net/book/zentaopmshelp/405.html</a></p>
+<h2 id="Docker容器安装Git"><a href="#Docker容器安装Git" class="headerlink" title="Docker容器安装Git"></a>Docker容器安装Git</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#进入Docker容器</span></span><br><span class="line">sudo docker <span class="built_in">exec</span> -it &#123;容器Id&#125; bash</span><br><span class="line"><span class="comment">#把更新源修改为华为云</span></span><br><span class="line">sed -i <span class="string">&quot;s@http://.*archive.ubuntu.com@http://repo.huaweicloud.com@g&quot;</span> /etc/apt/sources.list</span><br><span class="line">sed -i <span class="string">&quot;s@http://.*security.ubuntu.com@http://repo.huaweicloud.com@g&quot;</span> /etc/apt/sources.list</span><br><span class="line"><span class="comment">#更新索引</span></span><br><span class="line">apt-get update</span><br><span class="line"><span class="comment">#安装Git</span></span><br><span class="line">apt-get install -y git</span><br></pre></td></tr></table></figure>
+
+<h2 id="Docker-安装cron"><a href="#Docker-安装cron" class="headerlink" title="Docker 安装cron"></a>Docker 安装cron</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#安装cron</span></span><br><span class="line">apt-get -y install cron</span><br><span class="line"><span class="comment">#启动cron</span></span><br><span class="line">service cron start</span><br><span class="line"><span class="comment">#配置cron</span></span><br><span class="line">crontab -e</span><br><span class="line"></span><br><span class="line"><span class="comment">#每5分钟执行一次拉取,在指定目录</span></span><br><span class="line"><span class="comment">#    */5 * * * * git -C /home/Giant.Admin pull</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#重启cron</span></span><br><span class="line">service cron restart</span><br></pre></td></tr></table></figure>
+
+<h2 id="配置禅道做版本库DevOps"><a href="#配置禅道做版本库DevOps" class="headerlink" title="配置禅道做版本库DevOps"></a>配置禅道做版本库DevOps</h2><p><img src="1.png" alt="禅道Docker"></p>
 
                 <hr>
                 <ul class="pager">
