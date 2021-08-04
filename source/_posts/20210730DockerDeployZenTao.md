@@ -44,3 +44,24 @@ apt-get update
 #安装Git
 apt-get install -y git
 ```
+
+## Docker 安装cron
+
+```bash
+#安装cron
+apt-get -y install cron
+#启动cron
+service cron start
+#配置cron
+crontab -e
+
+#每5分钟执行一次拉取,在指定目录
+#    */5 * * * * git -C /home/Giant.Admin pull
+
+#重启cron
+service cron restart
+```
+
+## 配置禅道做版本库DevOps
+
+![禅道Docker](1.png)
