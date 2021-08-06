@@ -6,7 +6,7 @@
   <link href="https://www.giantliu.cn/atom.xml" rel="self"/>
   
   <link href="https://www.giantliu.cn/"/>
-  <updated>2021-08-03T02:39:02.954Z</updated>
+  <updated>2021-08-06T07:38:39.991Z</updated>
   <id>https://www.giantliu.cn/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>WMS中单据打印功能</title>
+    <link href="https://www.giantliu.cn/2021/08/06/20210806WMSDocumentPrint/"/>
+    <id>https://www.giantliu.cn/2021/08/06/20210806WMSDocumentPrint/</id>
+    <published>2021-08-06T07:10:05.000Z</published>
+    <updated>2021-08-06T07:38:39.991Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;获取打印数据&quot;&gt;&lt;a href=&quot;#获取打印数据&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    
+    <category term="WMS" scheme="https://www.giantliu.cn/tags/WMS/"/>
+    
+  </entry>
   
   <entry>
     <title>使用Excel做数据导入导出操作</title>
@@ -491,33 +514,6 @@
     <category term="Docker" scheme="https://www.giantliu.cn/tags/Docker/"/>
     
     <category term="WMS" scheme="https://www.giantliu.cn/tags/WMS/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Ubuntu安装Docker</title>
-    <link href="https://www.giantliu.cn/2020/08/24/200824InstallDockerToUbuntu/"/>
-    <id>https://www.giantliu.cn/2020/08/24/200824InstallDockerToUbuntu/</id>
-    <published>2020-08-24T02:11:23.000Z</published>
-    <updated>2020-09-30T01:17:08.041Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h2 id=&quot;安装代码&quot;&gt;&lt;a href=&quot;#安装代码&quot; class=&quot;headerlink&quot; title=&quot;安装代码&quot;&gt;&lt;/a&gt;安装代码&lt;/h2&gt;&lt;figure class=&quot;highlight sh&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td</summary>
-        
-      
-    
-    
-    
-    
-    <category term="随笔" scheme="https://www.giantliu.cn/tags/%E9%9A%8F%E7%AC%94/"/>
-    
-    <category term="Ubuntu" scheme="https://www.giantliu.cn/tags/Ubuntu/"/>
-    
-    <category term="Docker" scheme="https://www.giantliu.cn/tags/Docker/"/>
     
   </entry>
   

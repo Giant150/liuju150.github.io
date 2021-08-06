@@ -104,14 +104,14 @@
 
                         
                         <li>
-                            <a href="/about/">About</a>
+                            <a href="/archives/">Archives</a>
                         </li>
                         
                     
 
                         
                         <li>
-                            <a href="/archives/">Archives</a>
+                            <a href="/about/">About</a>
                         </li>
                         
                     
@@ -199,6 +199,29 @@
 
             <!-- Main Content -->
 
+
+<div class="post-preview">
+
+    <a href="/2021/08/06/20210806WMSDocumentPrint/">
+        <h2 class="post-title">
+            WMS中单据打印功能
+        </h2>
+        <h3 class="post-subtitle">
+            一步步了解单据打印功能是怎么实现的
+        </h3>
+        <div class="post-content-preview">
+            获取打印数据因为我们要打印的话，我们要知道要打印哪些内容。我们要把打印的内容组装成对应的数据所以我们一般写一个获取打印数据的接口WMS的Business层，只管处理数据，不处理打印模板所有获取打印数据的接口返回值永远是PrintModel
+PrintModel里有两个属性
+一般打印来说，都是单头与明细数据Main就是单头要打印的数据明细数据是DataSet可以有多个明细与子明细组成根据现实情......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by 刘巨 on
+        2021-08-06
+    </p>
+
+</div>
+<hr>
 
 <div class="post-preview">
 
@@ -416,28 +439,6 @@ Raspberry Pi OS (32-bit) with desktop an......
 </div>
 <hr>
 
-<div class="post-preview">
-
-    <a href="/2020/09/04/200904InstallUOS/">
-        <h2 class="post-title">
-            国产系统UOS安装体验
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            UOS简介统信桌面操作系统（Uniontech OS）个人正式版是统信软件基于Linux内核打造，专为个人消费者用户设计，满足丰富场景需求，提供舒适、流畅、愉悦的使用体验。
-极致体验将用户体验与设计美学完美结合，系统和应用界面均保持了界面的直观性、操作的即时性和便利性、活力的界面风格。拥有时尚模式和高效模式两种桌面风格，提供白色和黑色主题，适应不同用户使用习惯，为您带来舒适、流畅、愉悦的使用......
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by 刘巨 on
-        2020-09-04
-    </p>
-
-</div>
-<hr>
-
 
 
 <!-- Pager -->
@@ -493,15 +494,17 @@ Raspberry Pi OS (32-bit) with desktop an......
                     
                     
                     
-                    
-                    
                     <a href="/tags/#Docker" title="Docker"
                         rel="5">Docker</a>
                     
                     
                     
                     <a href="/tags/#WMS" title="WMS"
-                        rel="4">WMS</a>
+                        rel="5">WMS</a>
+                    
+                    
+                    
+                    
                     
                     
                     
@@ -514,12 +517,10 @@ Raspberry Pi OS (32-bit) with desktop an......
                     
                     
                     
-                    
-                    
-                    
-                    
                     <a href="/tags/#生活" title="生活"
                         rel="2">生活</a>
+                    
+                    
                     
                     
                     
