@@ -6,7 +6,7 @@
   <link href="https://www.giantliu.cn/atom.xml" rel="self"/>
   
   <link href="https://www.giantliu.cn/"/>
-  <updated>2021-08-06T07:38:39.991Z</updated>
+  <updated>2021-08-10T06:05:52.231Z</updated>
   <id>https://www.giantliu.cn/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>WMS报表开发流程</title>
+    <link href="https://www.giantliu.cn/2021/08/10/20210810WMSCreateReport/"/>
+    <id>https://www.giantliu.cn/2021/08/10/20210810WMSCreateReport/</id>
+    <published>2021-08-10T03:38:10.000Z</published>
+    <updated>2021-08-10T06:05:52.231Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;修改文件总览&quot;&gt;&lt;a href=&quot;#修改文件总览&quot; class=&quot;headerlink&quot; title=&quot;修改文件总览&quot;&gt;&lt;/a&gt;修改文件总览&lt;/h2&gt;&lt;p&gt;&lt;img src=&quot;1.png&quot; alt=&quot;报表开发&quot;&gt; &lt;img src=&quot;2.png&quot;</summary>
+        
+      
+    
+    
+    
+    
+    <category term="WMS" scheme="https://www.giantliu.cn/tags/WMS/"/>
+    
+  </entry>
   
   <entry>
     <title>WMS中单据打印功能</title>
@@ -428,13 +451,13 @@
     
     
     
-    <category term="NetCore" scheme="https://www.giantliu.cn/tags/NetCore/"/>
+    <category term="Docker" scheme="https://www.giantliu.cn/tags/Docker/"/>
     
     <category term="Ubuntu" scheme="https://www.giantliu.cn/tags/Ubuntu/"/>
     
-    <category term="PowerShell" scheme="https://www.giantliu.cn/tags/PowerShell/"/>
+    <category term="NetCore" scheme="https://www.giantliu.cn/tags/NetCore/"/>
     
-    <category term="Docker" scheme="https://www.giantliu.cn/tags/Docker/"/>
+    <category term="PowerShell" scheme="https://www.giantliu.cn/tags/PowerShell/"/>
     
   </entry>
   
@@ -487,33 +510,6 @@
     <category term="随笔" scheme="https://www.giantliu.cn/tags/%E9%9A%8F%E7%AC%94/"/>
     
     <category term="Docker" scheme="https://www.giantliu.cn/tags/Docker/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>部署Asp.Net Core到Docker</title>
-    <link href="https://www.giantliu.cn/2020/08/24/200824DeployWMSToDocker/"/>
-    <id>https://www.giantliu.cn/2020/08/24/200824DeployWMSToDocker/</id>
-    <published>2020-08-24T02:50:21.000Z</published>
-    <updated>2020-08-26T08:59:57.032Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h2 id=&quot;Dockerfile&quot;&gt;&lt;a href=&quot;#Dockerfile&quot; class=&quot;headerlink&quot; title=&quot;Dockerfile&quot;&gt;&lt;/a&gt;Dockerfile&lt;/h2&gt;&lt;figure class=&quot;highlight&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td</summary>
-        
-      
-    
-    
-    
-    
-    <category term="NetCore" scheme="https://www.giantliu.cn/tags/NetCore/"/>
-    
-    <category term="Docker" scheme="https://www.giantliu.cn/tags/Docker/"/>
-    
-    <category term="WMS" scheme="https://www.giantliu.cn/tags/WMS/"/>
     
   </entry>
   
