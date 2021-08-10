@@ -6,7 +6,7 @@
   <link href="https://www.giantliu.cn/atom.xml" rel="self"/>
   
   <link href="https://www.giantliu.cn/"/>
-  <updated>2021-08-10T06:05:52.231Z</updated>
+  <updated>2021-08-10T06:12:20.136Z</updated>
   <id>https://www.giantliu.cn/</id>
   
   <author>
@@ -21,7 +21,7 @@
     <link href="https://www.giantliu.cn/2021/08/10/20210810WMSCreateReport/"/>
     <id>https://www.giantliu.cn/2021/08/10/20210810WMSCreateReport/</id>
     <published>2021-08-10T03:38:10.000Z</published>
-    <updated>2021-08-10T06:05:52.231Z</updated>
+    <updated>2021-08-10T06:12:20.136Z</updated>
     
     
       
@@ -451,13 +451,13 @@
     
     
     
-    <category term="Docker" scheme="https://www.giantliu.cn/tags/Docker/"/>
+    <category term="NetCore" scheme="https://www.giantliu.cn/tags/NetCore/"/>
     
     <category term="Ubuntu" scheme="https://www.giantliu.cn/tags/Ubuntu/"/>
     
-    <category term="NetCore" scheme="https://www.giantliu.cn/tags/NetCore/"/>
-    
     <category term="PowerShell" scheme="https://www.giantliu.cn/tags/PowerShell/"/>
+    
+    <category term="Docker" scheme="https://www.giantliu.cn/tags/Docker/"/>
     
   </entry>
   
