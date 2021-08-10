@@ -522,3 +522,8 @@ builder.HasData(new Sys_Action() { Id = "50102", MenuId = "501", Name = "导出"
 ```
 
 3.给默认角色授权
+
+## 最终效果
+
+![报表开发](3.png)
+![报表开发](4.png)
