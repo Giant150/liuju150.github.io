@@ -6,7 +6,7 @@
   <link href="https://www.giantliu.cn/atom.xml" rel="self"/>
   
   <link href="https://www.giantliu.cn/"/>
-  <updated>2021-08-10T06:12:20.136Z</updated>
+  <updated>2021-08-17T08:54:38.553Z</updated>
   <id>https://www.giantliu.cn/</id>
   
   <author>
@@ -17,18 +17,41 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>使用IIS部署WebDAV</title>
+    <link href="https://www.giantliu.cn/2021/08/17/20210817IISDeployWebDAV/"/>
+    <id>https://www.giantliu.cn/2021/08/17/20210817IISDeployWebDAV/</id>
+    <published>2021-08-17T08:18:43.000Z</published>
+    <updated>2021-08-17T08:54:38.553Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;服务器开启WebDAV&quot;&gt;&lt;a href=&quot;#服务器开启WebDAV&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    
+    <category term="随笔" scheme="https://www.giantliu.cn/tags/%E9%9A%8F%E7%AC%94/"/>
+    
+  </entry>
+  
+  <entry>
     <title>WMS报表开发流程</title>
     <link href="https://www.giantliu.cn/2021/08/10/20210810WMSCreateReport/"/>
     <id>https://www.giantliu.cn/2021/08/10/20210810WMSCreateReport/</id>
     <published>2021-08-10T03:38:10.000Z</published>
-    <updated>2021-08-10T06:12:20.136Z</updated>
+    <updated>2021-08-10T06:19:48.915Z</updated>
     
     
       
       
         
         
-    <summary type="html">&lt;h2 id=&quot;修改文件总览&quot;&gt;&lt;a href=&quot;#修改文件总览&quot; class=&quot;headerlink&quot; title=&quot;修改文件总览&quot;&gt;&lt;/a&gt;修改文件总览&lt;/h2&gt;&lt;p&gt;&lt;img src=&quot;1.png&quot; alt=&quot;报表开发&quot;&gt; &lt;img src=&quot;2.png&quot;</summary>
+    <summary type="html">&lt;h2 id=&quot;修改文件总览&quot;&gt;&lt;a href=&quot;#修改文件总览&quot; class=&quot;headerlink&quot; title=&quot;修改文件总览&quot;&gt;&lt;/a&gt;修改文件总览&lt;/h2&gt;&lt;p&gt;&lt;img src=&quot;1.png&quot; alt=&quot;报表开发&quot;&gt;&lt;br&gt;&lt;img src=&quot;2.png&quot;</summary>
         
       
     
@@ -485,31 +508,6 @@
     <category term="Ubuntu" scheme="https://www.giantliu.cn/tags/Ubuntu/"/>
     
     <category term="SSH" scheme="https://www.giantliu.cn/tags/SSH/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Docker常用命令说明</title>
-    <link href="https://www.giantliu.cn/2020/08/24/DockerCommand/"/>
-    <id>https://www.giantliu.cn/2020/08/24/DockerCommand/</id>
-    <published>2020-08-24T04:34:38.000Z</published>
-    <updated>2020-08-26T09:01:13.175Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h2 id=&quot;查看当前已经安装的镜像&quot;&gt;&lt;a href=&quot;#查看当前已经安装的镜像&quot; class=&quot;headerlink&quot; title=&quot;查看当前已经安装的镜像&quot;&gt;&lt;/a&gt;查看当前已经安装的镜像&lt;/h2&gt;&lt;figure class=&quot;highlight</summary>
-        
-      
-    
-    
-    
-    
-    <category term="随笔" scheme="https://www.giantliu.cn/tags/%E9%9A%8F%E7%AC%94/"/>
-    
-    <category term="Docker" scheme="https://www.giantliu.cn/tags/Docker/"/>
     
   </entry>
   

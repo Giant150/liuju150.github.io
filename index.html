@@ -100,16 +100,6 @@
                     
 
                         
-                    
-
-                        
-                        <li>
-                            <a href="/about/">About</a>
-                        </li>
-                        
-                    
-
-                        
                         <li>
                             <a href="/archives/">Archives</a>
                         </li>
@@ -117,8 +107,18 @@
                     
 
                         
+                    
+
+                        
                         <li>
                             <a href="/tags/">Tags</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/about/">About</a>
                         </li>
                         
                     
@@ -202,6 +202,35 @@
 
 <div class="post-preview">
 
+    <a href="/2021/08/17/20210817IISDeployWebDAV/">
+        <h2 class="post-title">
+            使用IIS部署WebDAV
+        </h2>
+        <h3 class="post-subtitle">
+            使用WebDAV可以把服务器目录映射为本地虚拟硬盘
+        </h3>
+        <div class="post-content-preview">
+            服务器开启WebDAV在服务器安装IIS的同时要启用Windows身份验证与WebDAV发布
+如果不是服务器版本,参照下图
+在IIS中新建WebDAV网站配置好本地目录与端口
+启用Windows身份验证
+配置WebDAV1.添加创作规则2.启用WebDAV
+
+开放防火墙端口因为我们才配置的网站端口为8000所以我们把防火墙的入站规则允许8000端口通过
+到这里,服务器的配置就已经全部完成
+客......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by 刘巨 on
+        2021-08-17
+    </p>
+
+</div>
+<hr>
+
+<div class="post-preview">
+
     <a href="/2021/08/10/20210810WMSCreateReport/">
         <h2 class="post-title">
             WMS报表开发流程
@@ -210,9 +239,9 @@
             此示例为物料汇总报表
         </h3>
         <div class="post-content-preview">
-            修改文件总览 
+            修改文件总览
 建立查询实体与视图模型1.查询实体就是在前端界面上，有哪些查询条件 (查询实体QueryModel:QM)2.视图模型就是在前端界面上，列表要显示哪些数据 (视图模型ViewModel:QM)
-12345678910111213141516171819202122namespace Giant.Models&#123;    /// &lt;summary&gt;    //......
+12345678910111213141516171819202122namespace Giant.Models&#123;    /// &lt;summary&gt;    ///......
         </div>
     </a>
     <p class="post-meta">
@@ -405,40 +434,6 @@ Da......
 </div>
 <hr>
 
-<div class="post-preview">
-
-    <a href="/2020/09/28/200928RaspberryPiOSInstall/">
-        <h2 class="post-title">
-            树莓派系统安装
-        </h2>
-        <h3 class="post-subtitle">
-            Raspberry Pi OS (32-bit) Lite
-        </h3>
-        <div class="post-content-preview">
-            目录
-前言
-下载Raspberry Pi OS
-烧录Raspberry Pi OS
-配置启用SSH
-查找树莓派IP
-通过SSH连接到树莓派
-配置树莓派
-
-前言同事有一台闲置的树莓派3b正好近来有点时间。来研究一下。
-下载Raspberry Pi OSRaspberry Pi OS下载地址
-官网提供3个版本上载
-
-Raspberry Pi OS (32-bit) with desktop an......
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by 刘巨 on
-        2020-09-28
-    </p>
-
-</div>
-<hr>
-
 
 
 <!-- Pager -->
@@ -475,7 +470,7 @@ Raspberry Pi OS (32-bit) with desktop an......
                     
                     
                     <a href="/tags/#随笔" title="随笔"
-                        rel="20">随笔</a>
+                        rel="21">随笔</a>
                     
                     
                     
@@ -508,6 +503,8 @@ Raspberry Pi OS (32-bit) with desktop an......
                     
                     
                     
+                    
+                    
                     <a href="/tags/#SqlServer" title="SqlServer"
                         rel="2">SqlServer</a>
                     
@@ -515,12 +512,10 @@ Raspberry Pi OS (32-bit) with desktop an......
                     
                     
                     
-                    
-                    
-                    
-                    
                     <a href="/tags/#生活" title="生活"
                         rel="2">生活</a>
+                    
+                    
                     
                     
                     

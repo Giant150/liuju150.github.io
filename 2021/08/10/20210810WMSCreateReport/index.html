@@ -100,16 +100,6 @@
                     
 
                         
-                    
-
-                        
-                        <li>
-                            <a href="/about/">About</a>
-                        </li>
-                        
-                    
-
-                        
                         <li>
                             <a href="/archives/">Archives</a>
                         </li>
@@ -117,8 +107,18 @@
                     
 
                         
+                    
+
+                        
                         <li>
                             <a href="/tags/">Tags</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/about/">About</a>
                         </li>
                         
                     
@@ -207,7 +207,7 @@
                 col-md-12
                 post-container">
 
-                <h2 id="修改文件总览"><a href="#修改文件总览" class="headerlink" title="修改文件总览"></a>修改文件总览</h2><p><img src="1.png" alt="报表开发"> <img src="2.png" alt="报表开发"></p>
+                <h2 id="修改文件总览"><a href="#修改文件总览" class="headerlink" title="修改文件总览"></a>修改文件总览</h2><p><img src="1.png" alt="报表开发"><br><img src="2.png" alt="报表开发"></p>
 <h2 id="建立查询实体与视图模型"><a href="#建立查询实体与视图模型" class="headerlink" title="建立查询实体与视图模型"></a>建立查询实体与视图模型</h2><p>1.查询实体就是在前端界面上，有哪些查询条件 (查询实体QueryModel:QM)<br>2.视图模型就是在前端界面上，列表要显示哪些数据 (视图模型ViewModel:QM)</p>
 <figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">namespace</span> <span class="title">Giant.Models</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> 物料汇总报表查询实体</span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">class</span> <span class="title">Rpt_InvSkuQM</span> : <span class="title">BaseQM</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line">        <span class="comment"><span class="doctag">///</span> 仓库ID</span></span><br><span class="line">        <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line">        [<span class="meta">Required</span>]</span><br><span class="line">        <span class="keyword">public</span> <span class="keyword">string</span> WhseId &#123; <span class="keyword">get</span>; <span class="keyword">set</span>; &#125;</span><br><span class="line">        <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line">        <span class="comment"><span class="doctag">///</span> 货主Id</span></span><br><span class="line">        <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line">        <span class="keyword">public</span> <span class="keyword">string</span> StorerId &#123; <span class="keyword">get</span>; <span class="keyword">set</span>; &#125;</span><br><span class="line">        <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line">        <span class="comment"><span class="doctag">///</span> 物料Id</span></span><br><span class="line">        <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line">        <span class="keyword">public</span> <span class="keyword">string</span> SkuId &#123; <span class="keyword">get</span>; <span class="keyword">set</span>; &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
@@ -236,6 +236,10 @@
 
                 <hr>
                 <ul class="pager">
+                    
+                        <li class="previous">
+                            <a href="/2021/08/17/20210817IISDeployWebDAV/" data-toggle="tooltip" data-placement="top" title="使用IIS部署WebDAV">&larr; 上一篇</a>
+                        </li>
                     
                     
                         <li class="next">
