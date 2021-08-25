@@ -6,7 +6,7 @@
   <link href="https://www.giantliu.cn/atom.xml" rel="self"/>
   
   <link href="https://www.giantliu.cn/"/>
-  <updated>2021-08-17T08:54:38.553Z</updated>
+  <updated>2021-08-25T07:07:39.061Z</updated>
   <id>https://www.giantliu.cn/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>WMS切换至MySql数据库</title>
+    <link href="https://www.giantliu.cn/2021/08/25/20210825WMSDatabaseUseMySql/"/>
+    <id>https://www.giantliu.cn/2021/08/25/20210825WMSDatabaseUseMySql/</id>
+    <published>2021-08-25T06:31:33.000Z</published>
+    <updated>2021-08-25T07:07:39.061Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    
+    <category term="WMS" scheme="https://www.giantliu.cn/tags/WMS/"/>
+    
+  </entry>
   
   <entry>
     <title>使用IIS部署WebDAV</title>
@@ -481,33 +504,6 @@
     <category term="PowerShell" scheme="https://www.giantliu.cn/tags/PowerShell/"/>
     
     <category term="Docker" scheme="https://www.giantliu.cn/tags/Docker/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Ubuntu系统配置SSH服务</title>
-    <link href="https://www.giantliu.cn/2020/08/24/200824UbuntuSSHConfig/"/>
-    <id>https://www.giantliu.cn/2020/08/24/200824UbuntuSSHConfig/</id>
-    <published>2020-08-24T07:53:31.000Z</published>
-    <updated>2020-08-26T09:00:36.436Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h2 id=&quot;实现目标&quot;&gt;&lt;a href=&quot;#实现目标&quot; class=&quot;headerlink&quot;</summary>
-        
-      
-    
-    
-    
-    
-    <category term="随笔" scheme="https://www.giantliu.cn/tags/%E9%9A%8F%E7%AC%94/"/>
-    
-    <category term="Ubuntu" scheme="https://www.giantliu.cn/tags/Ubuntu/"/>
-    
-    <category term="SSH" scheme="https://www.giantliu.cn/tags/SSH/"/>
     
   </entry>
   
