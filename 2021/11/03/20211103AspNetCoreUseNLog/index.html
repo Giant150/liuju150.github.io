@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="奕晨博苑 Giant Blog">
+    <meta name="keyword"  content="">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+          在Asp.Net Core中使用NLog记录日志 - Giant Blog
+        
+    </title>
+
+    <link rel="canonical" href="https://www.giantliu.cn/2021/11/03/20211103AspNetCoreUseNLog/">
+
+    <!-- Bootstrap Core CSS -->
+    
+<link rel="stylesheet" href="/css/bootstrap.min.css">
+
+
+    <!-- Custom CSS -->
+    
+<link rel="stylesheet" href="/css/hux-blog.min.css">
+
+
+    <!-- Pygments Highlight CSS -->
+    
+<link rel="stylesheet" href="/css/highlight.css">
+
+
+    <!-- Custom Fonts -->
+    <!-- <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+    <!-- Hux change font-awesome CDN to qiniu -->
+    <link href="https://cdn.staticfile.org/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+
+    <!-- Hux Delete, sad but pending in China
+    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/
+    css'>
+    -->
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- ga & ba script hoook -->
+    <script>
+      var _hmt = _hmt || [];
+      (function() {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?d82d45effacb37116464fe90db51d3da";
+        var s = document.getElementsByTagName("script")[0]; 
+        s.parentNode.insertBefore(hm, s);
+      })();
+      </script>
+<meta name="generator" content="Hexo 5.0.0"><link rel="alternate" href="/atom.xml" title="Giant Blog" type="application/atom+xml">
+</head>
+
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Giant Blog</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+
+                    
+
+                        
+                        <li>
+                            <a href="/archives/">Archives</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/about/">About</a>
+                        </li>
+                        
+                    
+
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/tags/">Tags</a>
+                        </li>
+                        
+                    
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+    <!-- Main Content -->
+    
+<!-- Image to hack wechat -->
+<!-- <img src="https://www.giantliu.cn/img/icon_wechat.png" width="0" height="0"> -->
+<!-- <img src="{{ site.baseurl }}/{% if page.header-img %}{{ page.header-img }}{% else %}{{ site.header-img }}{% endif %}" width="0" height="0"> -->
+
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        
+            background-image: url('https://open.saintic.com/api/bingPic/')
+        
+    }
+</style>
+<header class="intro-header" >
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 col-md-12">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                          <a class="tag" href="/tags/#随笔" title="随笔">随笔</a>
+                        
+                    </div>
+                    <h1>在Asp.Net Core中使用NLog记录日志</h1>
+                    <h2 class="subheading">使用NLog把日志写入数据库并按天自动分表</h2>
+                    <span class="meta">
+                        Posted by 刘巨 on
+                        2021-11-03
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+    <!-- Post Container -->
+            <div class="
+                col-lg-12
+                col-md-12
+                post-container">
+
+                <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>最近用Asp.net Core开发程序的时候<br>因为时间的关系，就没有过多的去关注日志方面的功能<br>都是直接用系统的ILogger先记录着，然后看日志的时候就先在命令行看日志<br>在开发阶段没有什么问题，但是到了系统上线后<br>总不能一直在命令行看日志。总要把日志输出到一个方便查看的地方</p>
+<h2 id="开始"><a href="#开始" class="headerlink" title="开始"></a>开始</h2><p>直接引用NLog.Web.AspNetCore组件<br>然后编写nlog.config文件放到程序的根目录</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot; ?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">nlog</span> <span class="attr">xmlns</span>=<span class="string">&quot;http://www.nlog-project.org/schemas/NLog.xsd&quot;</span></span></span><br><span class="line"><span class="tag">      <span class="attr">xmlns:xsi</span>=<span class="string">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span></span></span><br><span class="line"><span class="tag">      <span class="attr">autoReload</span>=<span class="string">&quot;true&quot;</span></span></span><br><span class="line"><span class="tag">      <span class="attr">internalLogLevel</span>=<span class="string">&quot;Info&quot;</span></span></span><br><span class="line"><span class="tag">      <span class="attr">internalLogFile</span>=<span class="string">&quot;$&#123;basedir&#125;\..\Log\$&#123;date:format=yyyyMM&#125;\WMSAPI-internal.txt&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">extensions</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">add</span> <span class="attr">assembly</span>=<span class="string">&quot;NLog.Web.AspNetCore&quot;</span>/&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">extensions</span>&gt;</span></span><br><span class="line">  <span class="comment">&lt;!-- 定义变量当前应用程序名称 --&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">variable</span> <span class="attr">name</span>=<span class="string">&quot;AppName&quot;</span> <span class="attr">value</span>=<span class="string">&quot;WMSAPI&quot;</span> /&gt;</span></span><br><span class="line">  <span class="comment">&lt;!-- 日志输出目标 --&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">targets</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- 把日志记录到文件(通用) --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">target</span> <span class="attr">xsi:type</span>=<span class="string">&quot;File&quot;</span> <span class="attr">name</span>=<span class="string">&quot;allfile&quot;</span> <span class="attr">fileName</span>=<span class="string">&quot;$&#123;basedir&#125;\..\Log\$&#123;date:format=yyyyMM&#125;\$&#123;var:AppName&#125;-all-$&#123;shortdate&#125;.txt&quot;</span> <span class="attr">encoding</span>=<span class="string">&quot;UTF-8&quot;</span></span></span><br><span class="line"><span class="tag">            <span class="attr">archiveFileName</span>=<span class="string">&quot;$&#123;basedir&#125;\..\Log\WMSAPI-all-$&#123;shortdate&#125;.&#123;#&#125;.txt&quot;</span> <span class="attr">archiveAboveSize</span>=<span class="string">&quot;10485760&quot;</span></span></span><br><span class="line"><span class="tag">            <span class="attr">layout</span>=<span class="string">&quot;$&#123;longdate&#125;|$&#123;event-properties:item=EventId_Id:whenEmpty=0&#125;|$&#123;uppercase:$&#123;level&#125;&#125;|$&#123;logger&#125;|$&#123;message&#125; $&#123;exception:format=tostring&#125;&quot;</span> /&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">&lt;!-- 把日志输出到文件 (Asp.Net Core) --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">target</span> <span class="attr">xsi:type</span>=<span class="string">&quot;File&quot;</span> <span class="attr">name</span>=<span class="string">&quot;ownFile-web&quot;</span> <span class="attr">fileName</span>=<span class="string">&quot;$&#123;basedir&#125;\..\Log\$&#123;date:format=yyyyMM&#125;\$&#123;var:AppName&#125;-own-$&#123;shortdate&#125;.txt&quot;</span> <span class="attr">encoding</span>=<span class="string">&quot;UTF-8&quot;</span></span></span><br><span class="line"><span class="tag">            <span class="attr">archiveFileName</span>=<span class="string">&quot;$&#123;basedir&#125;\..\Log\WMSAPI-own-$&#123;shortdate&#125;.&#123;#&#125;.txt&quot;</span> <span class="attr">archiveAboveSize</span>=<span class="string">&quot;10485760&quot;</span></span></span><br><span class="line"><span class="tag">            <span class="attr">layout</span>=<span class="string">&quot;$&#123;longdate&#125;|$&#123;event-properties:item=EventId_Id:whenEmpty=0&#125;|$&#123;uppercase:$&#123;level&#125;&#125;|$&#123;logger&#125;|$&#123;message&#125; $&#123;exception:format=tostring&#125;|url: $&#123;aspnet-request-url&#125;|action: $&#123;aspnet-mvc-action&#125;|$&#123;callsite&#125;| body: $&#123;aspnet-request-posted-body&#125;&quot;</span> /&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">&lt;!--把日志输出到控制台 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">target</span> <span class="attr">xsi:type</span>=<span class="string">&quot;Console&quot;</span> <span class="attr">name</span>=<span class="string">&quot;lifetimeConsole&quot;</span> <span class="attr">layout</span>=<span class="string">&quot;$&#123;level:truncate=4:tolower=true&#125;: $&#123;logger&#125;[0]$&#123;newline&#125;      $&#123;message&#125;$&#123;exception:format=tostring&#125;&quot;</span> /&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">&lt;!--把日志输出到数据库 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">target</span> <span class="attr">xsi:type</span>=<span class="string">&quot;Database&quot;</span> <span class="attr">name</span>=<span class="string">&quot;database&quot;</span> <span class="attr">dbProvider</span>=<span class="string">&quot;MySqlConnector.MySqlConnection, MySqlConnector&quot;</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">connectionString</span>&gt;</span>$&#123;configsetting:item=ConnectionStrings.GDbContext&#125;<span class="tag">&lt;/<span class="name">connectionString</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">install-command</span> <span class="attr">ignoreFailures</span>=<span class="string">&quot;true&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">text</span>&gt;</span></span><br><span class="line">          <span class="comment">&lt;!-- <span class="doctag">NOTE:</span> call LogManager.Configuration.Install(new InstallationContext()); to execute this query. --&gt;</span></span><br><span class="line">          CREATE TABLE IF NOT EXISTS `Sys_Log$&#123;date:format=yyyyMMdd&#125;`  (</span><br><span class="line">          `Id` bigint NOT NULL AUTO_INCREMENT,</span><br><span class="line">          `CreateTime` datetime NOT NULL,</span><br><span class="line">          `AppName` varchar(50) NOT NULL,</span><br><span class="line">          `Level` varchar(50) NOT NULL,</span><br><span class="line">          `Logger` varchar(1024) NULL DEFAULT NULL,</span><br><span class="line">          `Msg` text NULL,</span><br><span class="line">          `Exception` text NULL,</span><br><span class="line">          `UserId` varchar(50) NULL DEFAULT NULL,</span><br><span class="line">          `Url` varchar(1024) NULL DEFAULT NULL,</span><br><span class="line">          `IP` varchar(255) NULL DEFAULT NULL,</span><br><span class="line">          PRIMARY KEY (`Id`) USING BTREE</span><br><span class="line">          );</span><br><span class="line">        <span class="tag">&lt;/<span class="name">text</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">install-command</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">commandText</span>&gt;</span></span><br><span class="line">        INSERT INTO `Sys_Log$&#123;date:format=yyyyMMdd&#125;`(`CreateTime`, `AppName`, `Level`, `Logger`, `Msg`, `Exception`, `UserId`, `Url`, `IP`) VALUES (@CreateTime, @AppName, @Level, @Logger, @Msg, @Exception, @UserId, @Url, @IP);</span><br><span class="line">      <span class="tag">&lt;/<span class="name">commandText</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">parameter</span> <span class="attr">name</span>=<span class="string">&quot;@CreateTime&quot;</span> <span class="attr">layout</span>=<span class="string">&quot;$&#123;longdate&#125;&quot;</span> /&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">parameter</span> <span class="attr">name</span>=<span class="string">&quot;@AppName&quot;</span> <span class="attr">layout</span>=<span class="string">&quot;$&#123;var:AppName&#125;&quot;</span> /&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">parameter</span> <span class="attr">name</span>=<span class="string">&quot;@Level&quot;</span> <span class="attr">layout</span>=<span class="string">&quot;$&#123;level&#125;&quot;</span> /&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">parameter</span> <span class="attr">name</span>=<span class="string">&quot;@Logger&quot;</span> <span class="attr">layout</span>=<span class="string">&quot;$&#123;logger&#125;&quot;</span> <span class="attr">allowDbNull</span>=<span class="string">&quot;true&quot;</span> /&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">parameter</span> <span class="attr">name</span>=<span class="string">&quot;@Msg&quot;</span> <span class="attr">layout</span>=<span class="string">&quot;$&#123;message&#125;&quot;</span> <span class="attr">allowDbNull</span>=<span class="string">&quot;true&quot;</span> /&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">parameter</span> <span class="attr">name</span>=<span class="string">&quot;@Exception&quot;</span> <span class="attr">layout</span>=<span class="string">&quot;$&#123;exception:format=tostring&#125;&quot;</span> <span class="attr">allowDbNull</span>=<span class="string">&quot;true&quot;</span> /&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">parameter</span> <span class="attr">name</span>=<span class="string">&quot;@UserId&quot;</span> <span class="attr">layout</span>=<span class="string">&quot;$&#123;aspnet-user-claim:userId&#125;&quot;</span> <span class="attr">allowDbNull</span>=<span class="string">&quot;true&quot;</span> /&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">parameter</span> <span class="attr">name</span>=<span class="string">&quot;@Url&quot;</span> <span class="attr">layout</span>=<span class="string">&quot;$&#123;aspnet-request-url&#125;&quot;</span> <span class="attr">allowDbNull</span>=<span class="string">&quot;true&quot;</span> /&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">parameter</span> <span class="attr">name</span>=<span class="string">&quot;@IP&quot;</span> <span class="attr">layout</span>=<span class="string">&quot;$&#123;aspnet-request-ip&#125;&quot;</span> <span class="attr">allowDbNull</span>=<span class="string">&quot;true&quot;</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">target</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">targets</span>&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">&lt;!-- 日志输出规则 --&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">rules</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--All logs, including from Microsoft--&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--&lt;logger name=&quot;*&quot; minlevel=&quot;Trace&quot; writeTo=&quot;allfile&quot; /&gt;--&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">&lt;!--Output hosting lifetime messages to console target for faster startup detection --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">logger</span> <span class="attr">name</span>=<span class="string">&quot;Microsoft.Hosting.Lifetime&quot;</span> <span class="attr">minlevel</span>=<span class="string">&quot;Info&quot;</span> <span class="attr">writeTo</span>=<span class="string">&quot;lifetimeConsole, ownFile-web, database&quot;</span> <span class="attr">final</span>=<span class="string">&quot;true&quot;</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">logger</span> <span class="attr">name</span>=<span class="string">&quot;Microsoft.EntityFrameworkCore.Model.Validation&quot;</span> <span class="attr">maxlevel</span>=<span class="string">&quot;Error&quot;</span> <span class="attr">final</span>=<span class="string">&quot;true&quot;</span> /&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">&lt;!--Skip non-critical Microsoft logs and so log only own logs (BlackHole) --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">logger</span> <span class="attr">name</span>=<span class="string">&quot;Microsoft.*&quot;</span> <span class="attr">maxlevel</span>=<span class="string">&quot;Info&quot;</span> <span class="attr">final</span>=<span class="string">&quot;true&quot;</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">logger</span> <span class="attr">name</span>=<span class="string">&quot;System.Net.Http.*&quot;</span> <span class="attr">maxlevel</span>=<span class="string">&quot;Info&quot;</span> <span class="attr">final</span>=<span class="string">&quot;true&quot;</span> /&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">logger</span> <span class="attr">name</span>=<span class="string">&quot;*&quot;</span> <span class="attr">minlevel</span>=<span class="string">&quot;Trace&quot;</span> <span class="attr">writeTo</span>=<span class="string">&quot;ownFile-web, database&quot;</span> /&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">rules</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">nlog</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>可以看到我们定义了4个输出目标，前2个是文件，一个是控制台，一个是数据库</p>
+<h3 id="输出到文件基本定义"><a href="#输出到文件基本定义" class="headerlink" title="输出到文件基本定义"></a>输出到文件基本定义</h3><p>fileName：输出的文件名<br>archiveFileName，archiveAboveSize这两个参数是当文件超过archiveAboveSize大小的时候<br>就对文件进行分割，然后分割的文件名是用archiveFileName来定义<br>layout就是日志文件内容，其中以${}闭合的内容就是NLog提供的参数<br>具体可以参考<br><a target="_blank" rel="noopener" href="https://nlog-project.org/config/?tab=layout-renderers">https://nlog-project.org/config/?tab=layout-renderers</a></p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">target</span> <span class="attr">xsi:type</span>=<span class="string">&quot;File&quot;</span> <span class="attr">name</span>=<span class="string">&quot;ownFile-web&quot;</span> <span class="attr">fileName</span>=<span class="string">&quot;$&#123;basedir&#125;\..\Log\$&#123;date:format=yyyyMM&#125;\$&#123;var:AppName&#125;-own-$&#123;shortdate&#125;.txt&quot;</span> <span class="attr">encoding</span>=<span class="string">&quot;UTF-8&quot;</span></span></span><br><span class="line"><span class="tag">            <span class="attr">archiveFileName</span>=<span class="string">&quot;$&#123;basedir&#125;\..\Log\WMSAPI-own-$&#123;shortdate&#125;.&#123;#&#125;.txt&quot;</span> <span class="attr">archiveAboveSize</span>=<span class="string">&quot;10485760&quot;</span></span></span><br><span class="line"><span class="tag">            <span class="attr">layout</span>=<span class="string">&quot;$&#123;longdate&#125;|$&#123;event-properties:item=EventId_Id:whenEmpty=0&#125;|$&#123;uppercase:$&#123;level&#125;&#125;|$&#123;logger&#125;|$&#123;message&#125; $&#123;exception:format=tostring&#125;|url: $&#123;aspnet-request-url&#125;|action: $&#123;aspnet-mvc-action&#125;|$&#123;callsite&#125;| body: $&#123;aspnet-request-posted-body&#125;&quot;</span> /&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="输出到数据库基本定义"><a href="#输出到数据库基本定义" class="headerlink" title="输出到数据库基本定义"></a>输出到数据库基本定义</h3><p>dbProvider：使用数据库组件<br>connectionString：连接字符串<br>install-command：安装脚本（用这个来自动创建表）<br>commandText：日志插入到数据表的脚本<br>parameter：插入脚本的参数</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">target</span> <span class="attr">xsi:type</span>=<span class="string">&quot;Database&quot;</span> <span class="attr">name</span>=<span class="string">&quot;database&quot;</span> <span class="attr">dbProvider</span>=<span class="string">&quot;MySqlConnector.MySqlConnection, MySqlConnector&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">connectionString</span>&gt;</span>$&#123;configsetting:item=ConnectionStrings.GDbContext&#125;<span class="tag">&lt;/<span class="name">connectionString</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">install-command</span> <span class="attr">ignoreFailures</span>=<span class="string">&quot;true&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">text</span>&gt;</span></span><br><span class="line">      <span class="comment">&lt;!-- <span class="doctag">NOTE:</span> call LogManager.Configuration.Install(new InstallationContext()); to execute this query. --&gt;</span></span><br><span class="line">      CREATE TABLE IF NOT EXISTS `Sys_Log$&#123;date:format=yyyyMMdd&#125;`  (</span><br><span class="line">      `Id` bigint NOT NULL AUTO_INCREMENT,</span><br><span class="line">      `CreateTime` datetime NOT NULL,</span><br><span class="line">      `AppName` varchar(50) NOT NULL,</span><br><span class="line">      `Level` varchar(50) NOT NULL,</span><br><span class="line">      `Logger` varchar(1024) NULL DEFAULT NULL,</span><br><span class="line">      `Msg` text NULL,</span><br><span class="line">      `Exception` text NULL,</span><br><span class="line">      `UserId` varchar(50) NULL DEFAULT NULL,</span><br><span class="line">      `Url` varchar(1024) NULL DEFAULT NULL,</span><br><span class="line">      `IP` varchar(255) NULL DEFAULT NULL,</span><br><span class="line">      PRIMARY KEY (`Id`) USING BTREE</span><br><span class="line">      );</span><br><span class="line">    <span class="tag">&lt;/<span class="name">text</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">install-command</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">commandText</span>&gt;</span></span><br><span class="line">    INSERT INTO `Sys_Log$&#123;date:format=yyyyMMdd&#125;`(`CreateTime`, `AppName`, `Level`, `Logger`, `Msg`, `Exception`, `UserId`, `Url`, `IP`) VALUES (@CreateTime, @AppName, @Level, @Logger, @Msg, @Exception, @UserId, @Url, @IP);</span><br><span class="line">  <span class="tag">&lt;/<span class="name">commandText</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">parameter</span> <span class="attr">name</span>=<span class="string">&quot;@CreateTime&quot;</span> <span class="attr">layout</span>=<span class="string">&quot;$&#123;longdate&#125;&quot;</span> /&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">parameter</span> <span class="attr">name</span>=<span class="string">&quot;@AppName&quot;</span> <span class="attr">layout</span>=<span class="string">&quot;$&#123;var:AppName&#125;&quot;</span> /&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">parameter</span> <span class="attr">name</span>=<span class="string">&quot;@Level&quot;</span> <span class="attr">layout</span>=<span class="string">&quot;$&#123;level&#125;&quot;</span> /&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">parameter</span> <span class="attr">name</span>=<span class="string">&quot;@Logger&quot;</span> <span class="attr">layout</span>=<span class="string">&quot;$&#123;logger&#125;&quot;</span> <span class="attr">allowDbNull</span>=<span class="string">&quot;true&quot;</span> /&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">parameter</span> <span class="attr">name</span>=<span class="string">&quot;@Msg&quot;</span> <span class="attr">layout</span>=<span class="string">&quot;$&#123;message&#125;&quot;</span> <span class="attr">allowDbNull</span>=<span class="string">&quot;true&quot;</span> /&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">parameter</span> <span class="attr">name</span>=<span class="string">&quot;@Exception&quot;</span> <span class="attr">layout</span>=<span class="string">&quot;$&#123;exception:format=tostring&#125;&quot;</span> <span class="attr">allowDbNull</span>=<span class="string">&quot;true&quot;</span> /&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">parameter</span> <span class="attr">name</span>=<span class="string">&quot;@UserId&quot;</span> <span class="attr">layout</span>=<span class="string">&quot;$&#123;aspnet-user-claim:userId&#125;&quot;</span> <span class="attr">allowDbNull</span>=<span class="string">&quot;true&quot;</span> /&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">parameter</span> <span class="attr">name</span>=<span class="string">&quot;@Url&quot;</span> <span class="attr">layout</span>=<span class="string">&quot;$&#123;aspnet-request-url&#125;&quot;</span> <span class="attr">allowDbNull</span>=<span class="string">&quot;true&quot;</span> /&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">parameter</span> <span class="attr">name</span>=<span class="string">&quot;@IP&quot;</span> <span class="attr">layout</span>=<span class="string">&quot;$&#123;aspnet-request-ip&#125;&quot;</span> <span class="attr">allowDbNull</span>=<span class="string">&quot;true&quot;</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">target</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>可以看到我们这里通过install-command编写的建表SQL脚本<br>表名是Sys_Log${date:format=yyyyMMdd}，这样我们创建出来的表名就是Sys_Log20211103(根据日间格式化)<br>但是NLog不会自动帮我们运行这个建表脚本，要我们在代码里调用<br>LogManager.Configuration.Install(new InstallationContext());<br>这个方法，他才会运行install-command里面的脚本。</p>
+<p>因为我们是按天来进行分表的，那就相当于我每天要运行一次<br>LogManager.Configuration.Install(new InstallationContext());</p>
+<p>所以我就写了一个定时的HostedService。来每天自动运行NLog的Install方法</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">LogHostedService</span> : <span class="title">IHostedService</span>, <span class="title">IAsyncDisposable</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">private</span> Timer RunTimer &#123; <span class="keyword">get</span>; <span class="keyword">set</span>; &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> Task <span class="title">StartAsync</span>(<span class="params">CancellationToken cancellationToken</span>)</span></span><br><span class="line"><span class="function"></span>    &#123;</span><br><span class="line">        LogManager.Configuration.Install(<span class="keyword">new</span> NLog.Config.InstallationContext());<span class="comment">//启动后执行一次</span></span><br><span class="line">        <span class="keyword">this</span>.RunTimer = <span class="keyword">new</span> Timer(LogInstall, <span class="literal">null</span>, DateTime.Now.AddDays(<span class="number">1</span>).Date - DateTime.Now, TimeSpan.FromHours(<span class="number">1</span>));</span><br><span class="line">        <span class="keyword">return</span> Task.CompletedTask;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">LogInstall</span>(<span class="params"><span class="keyword">object</span> state</span>)</span></span><br><span class="line"><span class="function"></span>    &#123;</span><br><span class="line">        LogManager.Configuration.Install(<span class="keyword">new</span> NLog.Config.InstallationContext());<span class="comment">//每天0点执行一次</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> Task <span class="title">StopAsync</span>(<span class="params">CancellationToken cancellationToken</span>)</span></span><br><span class="line"><span class="function"></span>    &#123;</span><br><span class="line">        <span class="keyword">this</span>.RunTimer?.Change(Timeout.Infinite, <span class="number">0</span>);</span><br><span class="line">        <span class="keyword">return</span> Task.CompletedTask;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> ValueTask <span class="title">DisposeAsync</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>    &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.RunTimer.DisposeAsync();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这样就会在系统启动时和每天的0点的时候，创建当天的日志表<br>然后我们的插入语句INSERT INTO <code>Sys_Log$&#123;date:format=yyyyMMdd&#125;</code><br>就会自动插入到每天的日志表里面</p>
+<h3 id="代码启用NLog"><a href="#代码启用NLog" class="headerlink" title="代码启用NLog"></a>代码启用NLog</h3><p>我们在Program.cs文件里使用UseNLog()启用NLog组件</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> IHostBuilder <span class="title">CreateHostBuilder</span>(<span class="params"><span class="keyword">string</span>[] args</span>)</span> =&gt;</span><br><span class="line">    Host.CreateDefaultBuilder(args)</span><br><span class="line">        .ConfigureWebHostDefaults(webBuilder =&gt;</span><br><span class="line">        &#123;</span><br><span class="line">            webBuilder.UseStartup&lt;Startup&gt;();</span><br><span class="line">        &#125;)</span><br><span class="line">        .UseNLog();</span><br></pre></td></tr></table></figure>
+
+<p>然后在Startup.cs里启用HostedService来定时创建每天的日志表</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">ConfigureServices</span>(<span class="params">IServiceCollection services</span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    services.AddHostedService&lt;LogHostedService&gt;();<span class="comment">//每天自动创建日志表</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="成果"><a href="#成果" class="headerlink" title="成果"></a>成果</h2><p><img src="1.png" alt="NLog"></p>
+
+                <hr>
+                <ul class="pager">
+                    
+                    
+                        <li class="next">
+                            <a href="/2021/08/25/20210825WMSDatabaseUseMySql/" data-toggle="tooltip" data-placement="top" title="WMS切换至MySql数据库">下一篇 &rarr;</a>
+                        </li>
+                    
+                </ul>
+            </div>
+    <!-- Side Catalog Container -->
+        
+
+    <!-- Sidebar Container -->
+
+            <div class="
+                col-lg-12
+                col-md-12
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                       
+                          <a class="tag" href="/tags/#随笔" title="随笔">随笔</a>
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+                <hr>
+                <h5>FRIENDS</h5>
+                <ul class="list-inline">
+
+                    
+                        <li><a href="https://www.cnblogs.com/liuju150/" target="_blank">博客园</a></li>
+                    
+                        <li><a href="https://www.zhihu.com/people/giant150" target="_blank">知呼</a></li>
+                    
+                        <li><a href="https://weibo.com/liuju150" target="_blank">微博</a></li>
+                    
+                        <li><a href="https://github.com/liuju150" target="_blank">GitHub</a></li>
+                    
+                        <li><a href="https://gitee.com/GiantLiu" target="_blank">Gitee</a></li>
+                    
+                        <li><a href="https://giantliu.gitee.io" target="_blank">Gitee Blog</a></li>
+                    
+                        <li><a href="https://blog.giantliu.cn" target="_blank">Blog</a></li>
+                    
+                </ul>
+                
+            </div>
+
+        </div>
+    </div>
+</article>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("https://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js",function(){
+        anchors.options = {
+          visible: 'always',
+          placement: 'right',
+          icon: '#'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+<style>
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
+
+
+
+    <!-- Footer -->
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                
+                
+                
+                    <li>
+                        <a target="_blank" href="https://www.zhihu.com/people/giant150">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa  fa-stack-1x fa-inverse">知</i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+                    <li>
+                        <a target="_blank" href="http://weibo.com/liuju150">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-weibo fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                
+                    <li>
+                        <a target="_blank"  href="https://github.com/liuju150">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; Giant Blog 2021 <br />
+                    <a target="_blank" href="http://www.beian.miit.gov.cn/">湘ICP备20015826号-1</a>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+
+<script src="/js/jquery.min.js"></script>
+
+
+<!-- Bootstrap Core JavaScript -->
+
+<script src="/js/bootstrap.min.js"></script>
+
+
+<!-- Custom Theme JavaScript -->
+
+<script src="/js/hux-blog.min.js"></script>
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- 
+     Because of the native support for backtick-style fenced code blocks 
+     right within the Markdown is landed in Github Pages, 
+     From V1.6, There is no need for Highlight.js, 
+     so Huxblog drops it officially.
+
+     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0  
+     - https://help.github.com/articles/creating-and-highlighting-code-blocks/    
+-->
+<!--
+    <script>
+        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
+            hljs.initHighlightingOnLoad();
+        })
+    </script>
+    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
+-->
+
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("https://www.giantliu.cn/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("https://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+<!-- Side Catalog -->
+
+
+
+</body>
+
+</html>
