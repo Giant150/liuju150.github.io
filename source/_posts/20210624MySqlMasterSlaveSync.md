@@ -21,6 +21,7 @@ date: 2021-06-24 13:12:16
 1.找到MySql的配置文件my.ini,加入/修改为以下配置
 
 ```ini
+[mysqld]
 server-id=1
 log-bin=mysql-bin
 binlog-ignore-db=mysql,information_schema
@@ -38,6 +39,8 @@ slave-skip-errors=all
 
 ```shell
 #授权
+#grant replication slave on *.* to root@'%';
+#grant replication client on *.* to root@'%';
 grant replication slave,replication client on *.* to root@'%' identified by "root password";
 #刷新权限
 flush privileges;
@@ -56,6 +59,7 @@ show master status;
 1.找到MySql的配置文件my.ini,加入/修改为以下配置
 
 ```ini
+[mysqld]
 server-id=2
 log-bin=mysql-bin
 binlog-ignore-db=mysql,information_schema
@@ -73,6 +77,8 @@ slave-skip-errors=all
 
 ```shell
 #授权
+#grant replication slave on *.* to root@'%';
+#grant replication client on *.* to root@'%';
 grant replication slave,replication client on *.* to root@'%' identified by "root password";
 #刷新权限
 flush privileges;
