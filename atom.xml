@@ -6,7 +6,7 @@
   <link href="https://www.giantliu.cn/atom.xml" rel="self"/>
   
   <link href="https://www.giantliu.cn/"/>
-  <updated>2021-11-03T09:12:45.537Z</updated>
+  <updated>2021-11-26T02:31:26.447Z</updated>
   <id>https://www.giantliu.cn/</id>
   
   <author>
@@ -15,6 +15,36 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>MySql数据库安装</title>
+    <link href="https://www.giantliu.cn/2021/11/25/20211125MySqlInstall/"/>
+    <id>https://www.giantliu.cn/2021/11/25/20211125MySqlInstall/</id>
+    <published>2021-11-25T09:10:38.000Z</published>
+    <updated>2021-11-26T02:31:26.447Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;目录&quot;&gt;&lt;a href=&quot;#目录&quot; class=&quot;headerlink&quot; title=&quot;目录&quot;&gt;&lt;/a&gt;目录&lt;/h2&gt;&lt;ol&gt;
+&lt;li&gt;下载MySql&lt;/li&gt;
+&lt;li&gt;配置文件&lt;/li&gt;
+&lt;li&gt;安装MySql&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2</summary>
+        
+      
+    
+    
+    
+    
+    <category term="随笔" scheme="https://www.giantliu.cn/tags/%E9%9A%8F%E7%AC%94/"/>
+    
+    <category term="MySql" scheme="https://www.giantliu.cn/tags/MySql/"/>
+    
+  </entry>
   
   <entry>
     <title>在Asp.Net Core中使用NLog记录日志</title>
@@ -470,34 +500,6 @@
     
     
     <category term="随笔" scheme="https://www.giantliu.cn/tags/%E9%9A%8F%E7%AC%94/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Ubuntu设置固定IP地址</title>
-    <link href="https://www.giantliu.cn/2020/08/26/200826UbuntuIPConfig/"/>
-    <id>https://www.giantliu.cn/2020/08/26/200826UbuntuIPConfig/</id>
-    <published>2020-08-26T00:52:03.000Z</published>
-    <updated>2020-08-26T09:01:00.778Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h2 id=&quot;Ubuntu基本信息&quot;&gt;&lt;a href=&quot;#Ubuntu基本信息&quot; class=&quot;headerlink&quot; title=&quot;Ubuntu基本信息&quot;&gt;&lt;/a&gt;Ubuntu基本信息&lt;/h2&gt;&lt;ul&gt;
-&lt;li&gt;版本：18.04&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;img</summary>
-        
-      
-    
-    
-    
-    
-    <category term="随笔" scheme="https://www.giantliu.cn/tags/%E9%9A%8F%E7%AC%94/"/>
-    
-    <category term="Ubuntu" scheme="https://www.giantliu.cn/tags/Ubuntu/"/>
     
   </entry>
   
