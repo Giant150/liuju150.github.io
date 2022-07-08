@@ -100,12 +100,12 @@
                     
 
                         
-                    
-
-                        
                         <li>
                             <a href="/archives/">Archives</a>
                         </li>
+                        
+                    
+
                         
                     
 
@@ -199,6 +199,33 @@
 
             <!-- Main Content -->
 
+
+<div class="post-preview">
+
+    <a href="/2022/07/08/20220708MySqlRestartFailed/">
+        <h2 class="post-title">
+            记一次线上项目MySql重启失败恢复过程
+        </h2>
+        <h3 class="post-subtitle">
+            注意备份,数据无价
+        </h3>
+        <div class="post-content-preview">
+            目录
+事故过程
+恢复过程
+总结经验(教训)
+
+事故过程昨天下午3点，同事打我电话说项目上的MySql数据库启动不了了。事后才知道是因为客户机房昨天临时断电，然后我们服务器的UPS不知道为什么在断电后没有启动应急供电。导致了服务器非正常关机，之后直接导致MySql服务启动失败。
+听到MySql服务启动失败就感觉有大事要发生。因为这个项目才上线不久。就出现了系统启动不了，停止使用的线上故障。幸好......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by 刘巨 on
+        2022-07-08
+    </p>
+
+</div>
+<hr>
 
 <div class="post-preview">
 
@@ -420,28 +447,6 @@ ExporterHeader:导出时Excel的表头 Format说明:”@”是表示文本,”#,
 </div>
 <hr>
 
-<div class="post-preview">
-
-    <a href="/2021/06/18/20210618WMSAddExpandAttr/">
-        <h2 class="post-title">
-            为模型添加通用扩展属性
-        </h2>
-        <h3 class="post-subtitle">
-            当有客户有自定义扩展属性的时候,又不方便修改表的情况下使用
-        </h3>
-        <div class="post-content-preview">
-            扩展属性介绍在系统开发过程中,模型定义的字段大多只是通用业务字段而当在实施过程中,项目有些属性在模型中未定义,又不方便修改业务模型的情况下通过配置扩展属性,就可以把特定项目的一些非业务属性维护进系统
-扩展属性使用扩展类型我们在通用扩展实体(ExpandEntity)中.为系统定义了扩展实体分别为String,Enum,Int,Num,Date几个大类,每个大类有6个扩展字段,共30个扩展字段......
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by 刘巨 on
-        2021-06-18
-    </p>
-
-</div>
-<hr>
-
 
 
 <!-- Pager -->
@@ -478,7 +483,7 @@ ExporterHeader:导出时Excel的表头 Format说明:”@”是表示文本,”#,
                     
                     
                     <a href="/tags/#随笔" title="随笔"
-                        rel="23">随笔</a>
+                        rel="24">随笔</a>
                     
                     
                     
@@ -497,13 +502,13 @@ ExporterHeader:导出时Excel的表头 Format说明:”@”是表示文本,”#,
                     
                     
                     
-                    <a href="/tags/#WMS" title="WMS"
-                        rel="7">WMS</a>
-                    
-                    
-                    
                     <a href="/tags/#Docker" title="Docker"
                         rel="5">Docker</a>
+                    
+                    
+                    
+                    <a href="/tags/#WMS" title="WMS"
+                        rel="7">WMS</a>
                     
                     
                     
@@ -512,7 +517,7 @@ ExporterHeader:导出时Excel的表头 Format说明:”@”是表示文本,”#,
                     
                     
                     <a href="/tags/#MySql" title="MySql"
-                        rel="2">MySql</a>
+                        rel="3">MySql</a>
                     
                     
                     
@@ -688,7 +693,7 @@ ExporterHeader:导出时Excel的表头 Format说明:”@”是表示文本,”#,
 
                 </ul>
                 <p class="copyright text-muted">
-                    Copyright &copy; Giant Blog 2021 <br />
+                    Copyright &copy; Giant Blog 2022 <br />
                     <a target="_blank" href="https://beian.miit.gov.cn/">湘ICP备20015826号-2</a>
                 </p>
             </div>

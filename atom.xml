@@ -6,7 +6,7 @@
   <link href="https://www.giantliu.cn/atom.xml" rel="self"/>
   
   <link href="https://www.giantliu.cn/"/>
-  <updated>2021-11-26T02:31:26.447Z</updated>
+  <updated>2022-07-08T06:25:51.104Z</updated>
   <id>https://www.giantliu.cn/</id>
   
   <author>
@@ -15,6 +15,36 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>记一次线上项目MySql重启失败恢复过程</title>
+    <link href="https://www.giantliu.cn/2022/07/08/20220708MySqlRestartFailed/"/>
+    <id>https://www.giantliu.cn/2022/07/08/20220708MySqlRestartFailed/</id>
+    <published>2022-07-08T01:28:13.000Z</published>
+    <updated>2022-07-08T06:25:51.104Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;目录&quot;&gt;&lt;a href=&quot;#目录&quot; class=&quot;headerlink&quot; title=&quot;目录&quot;&gt;&lt;/a&gt;目录&lt;/h2&gt;&lt;ol&gt;
+&lt;li&gt;事故过程&lt;/li&gt;
+&lt;li&gt;恢复过程&lt;/li&gt;
+&lt;li&gt;总结经验(教训)&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2</summary>
+        
+      
+    
+    
+    
+    
+    <category term="随笔" scheme="https://www.giantliu.cn/tags/%E9%9A%8F%E7%AC%94/"/>
+    
+    <category term="MySql" scheme="https://www.giantliu.cn/tags/MySql/"/>
+    
+  </entry>
   
   <entry>
     <title>MySql数据库安装</title>
@@ -477,29 +507,6 @@
     <category term="WMS" scheme="https://www.giantliu.cn/tags/WMS/"/>
     
     <category term="Vue" scheme="https://www.giantliu.cn/tags/Vue/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Git命令说明</title>
-    <link href="https://www.giantliu.cn/2020/08/26/GitCommand/"/>
-    <id>https://www.giantliu.cn/2020/08/26/GitCommand/</id>
-    <published>2020-08-26T08:16:18.000Z</published>
-    <updated>2020-08-26T11:39:16.535Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h2 id=&quot;Git同步源仓库代码&quot;&gt;&lt;a href=&quot;#Git同步源仓库代码&quot; class=&quot;headerlink&quot; title=&quot;Git同步源仓库代码&quot;&gt;&lt;/a&gt;Git同步源仓库代码&lt;/h2&gt;&lt;figure class=&quot;highlight</summary>
-        
-      
-    
-    
-    
-    
-    <category term="随笔" scheme="https://www.giantliu.cn/tags/%E9%9A%8F%E7%AC%94/"/>
     
   </entry>
   
