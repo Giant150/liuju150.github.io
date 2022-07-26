@@ -202,6 +202,29 @@
 
 <div class="post-preview">
 
+    <a href="/2021/06/24/20210624MySqlMasterSlaveSync/">
+        <h2 class="post-title">
+            MySql数据库主从同步/双向同步
+        </h2>
+        <h3 class="post-subtitle">
+            主从同步,主主同步,双向同步,双机热备
+        </h3>
+        <div class="post-content-preview">
+            前言最近做个项目,买了两台服务器做双机热备服务器1IP(Master):192.168.21.245服务器2IP(Slave) : 192.168.21.244
+配置Master修改配置文件my.ini1.找到MySql的配置文件my.ini,加入/修改为以下配置
+12345678910[mysqld]server-id=1log-bin=mysql-binbinlog-ignore-db=......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by 刘巨 on
+        2021-06-24
+    </p>
+
+</div>
+<hr>
+
+<div class="post-preview">
+
     <a href="/2021/06/18/20210618WMSAddExpandAttr/">
         <h2 class="post-title">
             为模型添加通用扩展属性
@@ -413,29 +436,6 @@ Raspberry Pi OS (32-bit) with desktop an......
 </div>
 <hr>
 
-<div class="post-preview">
-
-    <a href="/2020/08/27/200827ZEQPWMS/">
-        <h2 class="post-title">
-            ZEQP WMS仓储管理系统简介
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            ZEQP仓储管理系统代码框架是用的前后台分离的方式后台使用的是Asp.Net Core平台，开发所有业务，向前台提供Rest API接口。使用的认证方式是JWT前端有两个项目，一个是Web端，一个是Mobile端都是使用Vue + Ant Design of Vue架构
-后端的开发工具使用的是Visual Studio 2019前端的开发工具使用的是Visual Studio Code
-开源......
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by 刘巨 on
-        2020-08-27
-    </p>
-
-</div>
-<hr>
-
 
 
 <!-- Pager -->
@@ -476,7 +476,7 @@ Raspberry Pi OS (32-bit) with desktop an......
                     
                     
                     <a href="/tags/#随笔" title="随笔"
-                        rel="24">随笔</a>
+                        rel="25">随笔</a>
                     
                     
                     
@@ -495,17 +495,8 @@ Raspberry Pi OS (32-bit) with desktop an......
                     
                     
                     
-                    <a href="/tags/#WMS" title="WMS"
-                        rel="7">WMS</a>
-                    
-                    
-                    
                     <a href="/tags/#Docker" title="Docker"
                         rel="5">Docker</a>
-                    
-                    
-                    
-                    
                     
                     
                     
@@ -514,8 +505,17 @@ Raspberry Pi OS (32-bit) with desktop an......
                     
                     
                     
+                    <a href="/tags/#WMS" title="WMS"
+                        rel="7">WMS</a>
+                    
+                    
+                    
+                    
+                    
                     <a href="/tags/#SqlServer" title="SqlServer"
                         rel="2">SqlServer</a>
+                    
+                    
                     
                     
                     

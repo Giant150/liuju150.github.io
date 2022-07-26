@@ -6,7 +6,7 @@
   <link href="https://www.giantliu.cn/atom.xml" rel="self"/>
   
   <link href="https://www.giantliu.cn/"/>
-  <updated>2022-07-08T06:25:51.104Z</updated>
+  <updated>2022-07-26T03:01:43.871Z</updated>
   <id>https://www.giantliu.cn/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>国家中小学智慧教育平台视频课程下载</title>
+    <link href="https://www.giantliu.cn/2022/07/26/20220726SmartEduVideoDownload/"/>
+    <id>https://www.giantliu.cn/2022/07/26/20220726SmartEduVideoDownload/</id>
+    <published>2022-07-26T02:07:53.000Z</published>
+    <updated>2022-07-26T03:01:43.871Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    
+    <category term="随笔" scheme="https://www.giantliu.cn/tags/%E9%9A%8F%E7%AC%94/"/>
+    
+  </entry>
   
   <entry>
     <title>记一次线上项目MySql重启失败恢复过程</title>
@@ -478,35 +501,6 @@
     <category term="Docker" scheme="https://www.giantliu.cn/tags/Docker/"/>
     
     <category term="MySql" scheme="https://www.giantliu.cn/tags/MySql/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>ZEQP WMS仓储管理系统简介</title>
-    <link href="https://www.giantliu.cn/2020/08/27/200827ZEQPWMS/"/>
-    <id>https://www.giantliu.cn/2020/08/27/200827ZEQPWMS/</id>
-    <published>2020-08-27T03:22:19.000Z</published>
-    <updated>2020-08-27T06:13:49.165Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h2 id=&quot;ZEQP仓储管理系统&quot;&gt;&lt;a href=&quot;#ZEQP仓储管理系统&quot; class=&quot;headerlink&quot; title=&quot;ZEQP仓储管理系统&quot;&gt;&lt;/a&gt;ZEQP仓储管理系统&lt;/h2&gt;&lt;p&gt;代码框架是用的前后台分离的方式&lt;br&gt;后台使用的是Asp.Net</summary>
-        
-      
-    
-    
-    
-    
-    <category term="随笔" scheme="https://www.giantliu.cn/tags/%E9%9A%8F%E7%AC%94/"/>
-    
-    <category term="NetCore" scheme="https://www.giantliu.cn/tags/NetCore/"/>
-    
-    <category term="WMS" scheme="https://www.giantliu.cn/tags/WMS/"/>
-    
-    <category term="Vue" scheme="https://www.giantliu.cn/tags/Vue/"/>
     
   </entry>
   

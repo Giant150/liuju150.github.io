@@ -12,11 +12,11 @@
 
     <title>
         
-          记一次线上项目MySql重启失败恢复过程 - Giant Blog
+          国家中小学智慧教育平台视频课程下载 - Giant Blog
         
     </title>
 
-    <link rel="canonical" href="https://www.giantliu.cn/2022/07/08/20220708MySqlRestartFailed/">
+    <link rel="canonical" href="https://www.giantliu.cn/2022/07/26/20220726SmartEduVideoDownload/">
 
     <!-- Bootstrap Core CSS -->
     
@@ -183,14 +183,12 @@
                         
                           <a class="tag" href="/tags/#随笔" title="随笔">随笔</a>
                         
-                          <a class="tag" href="/tags/#MySql" title="MySql">MySql</a>
-                        
                     </div>
-                    <h1>记一次线上项目MySql重启失败恢复过程</h1>
-                    <h2 class="subheading">注意备份,数据无价</h2>
+                    <h1>国家中小学智慧教育平台视频课程下载</h1>
+                    <h2 class="subheading">批量下载课程视频</h2>
                     <span class="meta">
                         Posted by 刘巨 on
-                        2022-07-08
+                        2022-07-26
                     </span>
                 </div>
             </div>
@@ -209,56 +207,23 @@
                 col-md-12
                 post-container">
 
-                <h2 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h2><ol>
-<li>事故过程</li>
-<li>恢复过程</li>
-<li>总结经验(教训)</li>
-</ol>
-<h2 id="事故过程"><a href="#事故过程" class="headerlink" title="事故过程"></a>事故过程</h2><p>昨天下午3点，同事打我电话说项目上的MySql数据库启动不了了。<br>事后才知道是因为客户机房昨天临时断电，<br>然后我们服务器的UPS不知道为什么在断电后没有启动应急供电。<br>导致了服务器非正常关机，之后直接导致MySql服务启动失败。</p>
-<p>听到MySql服务启动失败就感觉有大事要发生。因为这个项目才上线不久。<br>就出现了系统启动不了，停止使用的线上故障。<br>幸好的事，因为我们是内部系统，在当时客户的使用高峰期已经过去。<br>主要业务已经处理完成。在这个时间内没有实时在线使用终端。<br>我们可以放心处理问题。</p>
-<p>当我远程连接上客户的服务器的时候，发现MySql数据服务没有启动。<br>当我手工重新启动后，会在内秒钟内再次停止。<br>跑到事件查看器里看到下图所未的错误<br><img src="1.png" alt="MySql"></p>
-<p>然后我找到MySql的错误日志文件，发现如下错误信息<br>2022-07-08T01:54:13.495374Z 0 [ERROR] [MY-013183] [InnoDB] Assertion failure: dict0dict.cc:3378:for_table || ref_table thread 4280</p>
-<h2 id="恢复过程"><a href="#恢复过程" class="headerlink" title="恢复过程"></a>恢复过程</h2><h3 id="binlog-（此路不通）"><a href="#binlog-（此路不通）" class="headerlink" title="binlog （此路不通）"></a>binlog （此路不通）</h3><p>到了这里，我就已经知道这个MySql服务已经不可能正常启动了。<br>但是又有一个新的问题来了。这个数据库<strong>没有做定时备份</strong><br>没有一个可以还原的备份文件。<br>那么要使用MySql的<strong>备份全量还原+binlog增量恢复</strong>的路就行不通了。</p>
-<p>第一种方式行不通了。我就想是不是可以通过binlog全量恢复<br>然后我去看数据目录下的binlog日志文件<br><img src="2.png" alt="MySql"><br>发现binlog日志最早也只有6月8号的日志，更早的日志已经找不到了。<br>所以<strong>binlog全量恢复</strong>的路也走不通了。</p>
-<p>到此为止，发现通过备份还原和日志还原的路已经不行了。<br>只能在物料数据文件上找突破了。<br>因为我们MySql的数据目录物理文件还是全都在。<br>所以我马上把MySql数据目录全都打成了一个压缩包备份了出来。<br><img src="3.png" alt="MySql"></p>
-<h3 id="迁移数据物理文件（失败）"><a href="#迁移数据物理文件（失败）" class="headerlink" title="迁移数据物理文件（失败）"></a>迁移数据物理文件（失败）</h3><p>我的想法是可不可以在自己的电脑上，安装同样版本的MySql服务<br>然后把数据物理文件迁移，到新的MySql服务上，可以把数据重新加载出来<br><img src="4.png" alt="MySql"></p>
-<p>我先是在新的机器上重新安装了同样版本的MySql数据库<br><img src="5.png" alt="MySql"><br>然后把对应的数据目录与对应的ib文件迁移到新的数据库服务下面<br><img src="6.png" alt="MySql"><br>然后重启MySql服务，我再用命令行进入到mysql里，还是没有发现我迁移的数据库<br><img src="7.png" alt="MySql"><br>到此，迁移数据物理文件还原的方式已经失败</p>
-<h3 id="重建数据库，重新新加载表空间-（失败）"><a href="#重建数据库，重新新加载表空间-（失败）" class="headerlink" title="重建数据库，重新新加载表空间 （失败）"></a>重建数据库，重新新加载表空间 （失败）</h3><p>其实从我们备份的物理文件可以看到，在我们的对应要还原的数据库目录下面<br>每个表都是有对应的ibd物理文件，与我对应的数据库表是一一对应的<br>所以我们可以重建数据库与数据表，还后把对应数据表的文件替换为备份的表文件<br>再通过重建表空间来还原数据<br><img src="8.png" alt="MySql"><br><img src="9.png" alt="MySql"></p>
-<p>因为我用的是EFCore Code First模式，所以重建数据库还是很简单的<br>通过用EFCore的<strong>Script-Migration -From 0</strong>就可以把所有数据库的迁移脚本全都生成<br>然后在新构建的数据里执行脚本，所有的数据表就都重新构建完了<br><img src="10.png" alt="MySql"><br><img src="11.png" alt="MySql"></p>
-<p>重构完数据库与表后，我们就可以在MySql的数据目录下看到所有数据表的ibd文件<br>只是这些ibd文件都是新的，没有数据的空表<br>然后我们就可以通过用<br><strong>ALTER TABLE tablename DISCARD TABLESPACE;</strong><br>来分离表空间，每个表执行一次，分享后，在MySql的数据目录下对应表的ibd文件就是清除<br><strong>SELECT CONCAT(‘ALTER TABLE ‘,TABLE_NAME,’ DISCARD TABLESPACE;’) AS DiscardSQL FROM information_schema.<code>TABLES</code> WHERE TABLE_SCHEMA=’22CTSX006’</strong><br>用上面的脚本可以把所有表的对应分离表空间语句一次生成，<br>然后我们在数据库里执行分离表空间<br><img src="12.png" alt="MySql"><br>然后我们把正式服务器备份下来的ibd文件复制到对应数据库目录下面</p>
-<p>接下来我们就要用IMPORT TABLESPACE重新导入表空间<br><strong>ALTER TABLE tablename IMPORT TABLESPACE;</strong><br>然后我们在执行表空间重新导入的时候，一部分表导入成功<br>但是又遇到了有几个关键的表导入失败<br><img src="13.png" alt="MySql"><br>然后就发现MySql数据库服务已经停止运行。<br>然后看到MySql里的错误日志出现这样的日志<br>2022-07-08T03:46:12.679493Z 12 [ERROR] [MY-013183] [InnoDB] Assertion failure: dict0stats.cc:868:btr_page_get_level(page, mtr) == level thread 13516<br>把MySql重启了几次，然后重新导入表空间，还是一样，<br>所以到这里，重新导入表空间的路也遇到了死胡同。</p>
-<h3 id="使用innodb-force-recovery修复数据库-成功"><a href="#使用innodb-force-recovery修复数据库-成功" class="headerlink" title="使用innodb_force_recovery修复数据库 (成功)"></a>使用innodb_force_recovery修复数据库 (成功)</h3><p>对于innodb_force_recovery的理解是<br>当MySQL服务异常重启失败后，可以通过配置参数innodb_force_recovery来对MySQL服务进行修复启动。<br>参数innodb_force_recovery选项：</p>
-<ol>
-<li>(SRV_FORCE_IGNORE_CORRUPT): 忽略检查到的 corrupt 页。尽管检测到了损坏的 page 仍强制服务运行。一般设置为该值即可，然后 dump 出库表进行重建。</li>
-<li>(SRV_FORCE_NO_BACKGROUND): 阻止主线程的运行，如主线程需要执行 full purge 操作，会导致 crash。 阻止 master thread 和任何 purge thread 运行。若 crash 发生在 purge 环节则使用该值。</li>
-<li>(SRV_FORCE_NO_TRX_UNDO): 不执行事务回滚操作。</li>
-<li>(SRV_FORCE_NO_IBUF_MERGE): 不执行插入缓冲的合并操作。如果可能导致崩溃则不要做这些操作。不要进行统计操作。该值可能永久损坏数据文件。若使用了该值，则将来要删除和重建辅助索引。</li>
-<li>(SRV_FORCE_NO_UNDO_LOG_SCAN): 不查看重做日志，InnoDB 存储引擎会将未提交的事务视为已提交。此时 InnoDB 甚至把未完成的事务按照提交处理。该值可能永久性的损坏数据文件。</li>
-<li>(SRV_FORCE_NO_LOG_REDO): 不执行前滚的操作。恢复时不做 redo log roll-forward。使数据库页处于废止状态，继而可能引起 B 树或者其他数据库结构更多的损坏。</li>
-</ol>
-<p>所以我们在my.ini配置文件里加上<br><strong>innodb_force_recovery=2</strong><br>然后重启数据库服务器，这个时候数据库就可以正常启动<br>这个时候，我们就可以通过Navicat工具连接上MySql数据库进行备份<br><img src="14.png" alt="MySql"><br>如上图，我们把数据库已经备份完成了。接下来处理就简单了。<br>当然我们也可以通过命令行mysqldump工具进行备份<br><strong>mysqldump -u root -p 22CTSX006 &gt; 22CTSX006.sql</strong> #备份22CTSX006到22CTSX006.sql文件<br><img src="15.png" alt="MySql"></p>
-<p>只用把线上的MySql服务重新安装，然后把备份文件恢复<br>这样线上的MySql服务就正常运行了。</p>
-<p>此处要感谢我们峰哥的江湖救急，晚上11点多了还在陪我一起恢复数据<br><img src="16.png" alt="MySql"></p>
-<h2 id="总结经验-教训"><a href="#总结经验-教训" class="headerlink" title="总结经验(教训)"></a>总结经验(教训)</h2><h3 id="总结原因"><a href="#总结原因" class="headerlink" title="总结原因"></a>总结原因</h3><ol>
-<li>没有定时自动备份数据机制</li>
-<li>UPS没有正常启动应急供电</li>
-</ol>
-<h3 id="经验教训"><a href="#经验教训" class="headerlink" title="经验教训"></a>经验教训</h3><ol>
-<li>定时备份数据</li>
-<li>定时备份数据</li>
-<li>定时备份数据<br>重要的事情要说3遍<br>虽然平常看起来备份数据没有什么作用，<br>但是到了关键时刻，那是无价之宝</li>
-</ol>
+                <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>最近家里有一台10年前的老电视机，因为不能连接无线网络。<br>家里也没有用有线电视机顶盒了。只能播放一些本地视频了。<br>再加上小孩子现在正在放暑假，所以想搞些学习视频给他看一下。<br>正好有国家中小学智慧教育平台，里面的同步课程视频都是可以免费看的。<br>所以我打算把他全部下载到U盘里在电视机上播放。<br><img src="1.png" alt="智慧教育"></p>
+<h2 id="开始"><a href="#开始" class="headerlink" title="开始"></a>开始</h2><p>一个学期一门课程的同步课程视频大约有50~80个视频，如果一个个下载的话。没个半天是搞不完的。<br>但是一个学期不只有一门课，就算只下语文数学的话，那一天时间就全完在这上面了。<br>这到还不是重点，重点是一天都在做重复的劳动<br>打开一个课程，然后找到视频下载地址，然后用下载工具把视频下载下来。<br>重复这个动作大约百来次，每次要等个几分钟下载。<br>做为一个程序员的我，这个是接受不了的。<br>所以我就打算写个程序，可以批量把所有视频批量下载。<br><img src="2.png" alt="智慧教育"></p>
+<h2 id="分析视频下载地址"><a href="#分析视频下载地址" class="headerlink" title="分析视频下载地址"></a>分析视频下载地址</h2><p>打开第一个课程，我们发现有个请求地址为<br><a target="_blank" rel="noopener" href="https://s-file-1.ykt.cbern.com.cn/zxx/s_course/v1/x_class_hour_activity/89306b9d-db26-4db5-9f39-54865d43314b/resources.json">https://s-file-1.ykt.cbern.com.cn/zxx/s_course/v1/x_class_hour_activity/89306b9d-db26-4db5-9f39-54865d43314b/resources.json</a><br>返回的内容为视频的下载地址<br><img src="3.png" alt="智慧教育"></p>
+<p>一看就知道89306b9d-db26-4db5-9f39-54865d43314b这个Id为此课程的Id<br>如果我要批量下载的话。那么我就要找到当前学科的所有课程Id<br>这样的话，我就能找到所有的视频地址<br>于是，我又在网络请求里找到了一个这样的地址<br><a target="_blank" rel="noopener" href="https://s-file-1.ykt.cbern.com.cn/zxx/s_course/v2/activity_sets/75f96245-8136-457e-b8dd-626fe960d131/fulls.json">https://s-file-1.ykt.cbern.com.cn/zxx/s_course/v2/activity_sets/75f96245-8136-457e-b8dd-626fe960d131/fulls.json</a><br>这个地址返回的是当前课程的所有信息，所以通过这个就可以找到一门课程的所有视频Id了<br><img src="4.png" alt="智慧教育"></p>
+<p>当然找到这里，就能完成我所有的需求了。<br>我只要找到这个课程的目录把对应的课程信息fulls.json拿到<br>就可以找到所有视频的Id，然后通过每个视频Id去请求对应视频的resources.json<br>就可以拿到所有的视频地址了。</p>
+<h2 id="下载视频"><a href="#下载视频" class="headerlink" title="下载视频"></a>下载视频</h2><p>我们通过分析下载的视频地址为<br><a target="_blank" rel="noopener" href="https://r3-ndr.ykt.cbern.com.cn/edu_product/65/video/17b72ffb547a11eb96b8fa20200c3759/5bf35e06793611b4383bdf3bf9b550ea.1280.720.false/5bf35e06793611b4383bdf3bf9b550ea.1280.720.m3u8">https://r3-ndr.ykt.cbern.com.cn/edu_product/65/video/17b72ffb547a11eb96b8fa20200c3759/5bf35e06793611b4383bdf3bf9b550ea.1280.720.false/5bf35e06793611b4383bdf3bf9b550ea.1280.720.m3u8</a><br>像这样的m3u8格式地址。这样的地址并不能下载为完整的mp4格式视频<br>因为m3u8是视频的分片格式，把一个视频文件分片了很多小片段，<br>片段内容记录到了m3u8文件里，所以我们要把m3u8里的每一个分片都下载下来，<br>然后再合成一个mp4文件<br>所以我们就请出了在GitHub上最火的m3u8视频下载器<br><a target="_blank" rel="noopener" href="https://github.com/nilaoda/N_m3u8DL-CLI">https://github.com/nilaoda/N_m3u8DL-CLI</a><br>通过这个工具只要传一个m3u8地址，他就会自动帮你下载所有分片<br>最后合成一个mp4视频。</p>
+<h2 id="One-More-Time"><a href="#One-More-Time" class="headerlink" title="One More Time"></a>One More Time</h2><p>都已经做到了可以拿到一门课程就可以把课程的所有视频批量下载<br>那进一步是不是可以把所有课程信息都拿下来，是不是就可以下载全部视频了。<br>所以通过分析，我们又发现了一个牛B接口<br><a target="_blank" rel="noopener" href="https://s-file-1.ykt.cbern.com.cn/zxx/api_static/tag_views/trees/sync-course.json">https://s-file-1.ykt.cbern.com.cn/zxx/api_static/tag_views/trees/sync-course.json</a><br>通过这个接口，我们可以知道所有学段、年级、学科、版本、册次信息<br>这样我们就可以知道所有课程了。<br><img src="5.png" alt="智慧教育"></p>
+<h2 id="结束"><a href="#结束" class="headerlink" title="结束"></a>结束</h2><p>最后根据以上信息，花一天天时间，就完成了国家中小学智慧教育平台视频所有课程批量下载工具<br>第一步选择要下载的课程<br><img src="6.png" alt="智慧教育"></p>
+<p>选择好之后，工具会自动帮你分析出所有视频的下载的址<br>并按对应的学科、单元、课程创建对应的视频目录与文件<br><img src="7.png" alt="智慧教育"><br>这样所有的视频都下载完成后<br>就可以保存到U盘，放到我的老电视机上播放了。</p>
+<p><img src="0.jpg" alt="智慧教育"></p>
 
                 <hr>
                 <ul class="pager">
                     
-                        <li class="previous">
-                            <a href="/2022/07/26/20220726SmartEduVideoDownload/" data-toggle="tooltip" data-placement="top" title="国家中小学智慧教育平台视频课程下载">&larr; 上一篇</a>
-                        </li>
-                    
                     
                         <li class="next">
-                            <a href="/2021/11/25/20211125MySqlInstall/" data-toggle="tooltip" data-placement="top" title="MySql数据库安装">下一篇 &rarr;</a>
+                            <a href="/2022/07/08/20220708MySqlRestartFailed/" data-toggle="tooltip" data-placement="top" title="记一次线上项目MySql重启失败恢复过程">下一篇 &rarr;</a>
                         </li>
                     
                 </ul>
@@ -281,8 +246,6 @@
                     <div class="tags">
                        
                           <a class="tag" href="/tags/#随笔" title="随笔">随笔</a>
-                        
-                          <a class="tag" href="/tags/#MySql" title="MySql">MySql</a>
                         
                     </div>
                 </section>
