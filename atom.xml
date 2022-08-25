@@ -6,7 +6,7 @@
   <link href="https://www.giantliu.cn/atom.xml" rel="self"/>
   
   <link href="https://www.giantliu.cn/"/>
-  <updated>2022-07-26T03:57:06.468Z</updated>
+  <updated>2022-08-25T06:27:09.757Z</updated>
   <id>https://www.giantliu.cn/</id>
   
   <author>
@@ -17,11 +17,34 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>记一次云服务器木马查杀</title>
+    <link href="https://www.giantliu.cn/2022/07/27/20220727SystemScriptKill/"/>
+    <id>https://www.giantliu.cn/2022/07/27/20220727SystemScriptKill/</id>
+    <published>2022-07-27T07:38:20.000Z</published>
+    <updated>2022-08-25T06:27:09.757Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;开始&quot;&gt;&lt;a href=&quot;#开始&quot; class=&quot;headerlink&quot; title=&quot;开始&quot;&gt;&lt;/a&gt;开始&lt;/h2&gt;&lt;p&gt;前几天忽然收到华为云的短信通知&lt;br&gt;说我的云服务器存在对外攻击行为&lt;br&gt;一下就感觉是服务器被人黑了.&lt;br&gt;&lt;img</summary>
+        
+      
+    
+    
+    
+    
+    <category term="随笔" scheme="https://www.giantliu.cn/tags/%E9%9A%8F%E7%AC%94/"/>
+    
+  </entry>
+  
+  <entry>
     <title>国家中小学智慧教育平台视频课程下载</title>
     <link href="https://www.giantliu.cn/2022/07/26/20220726SmartEduVideoDownload/"/>
     <id>https://www.giantliu.cn/2022/07/26/20220726SmartEduVideoDownload/</id>
     <published>2022-07-26T02:07:53.000Z</published>
-    <updated>2022-07-26T03:57:06.468Z</updated>
+    <updated>2022-08-25T06:26:33.375Z</updated>
     
     
       
@@ -474,33 +497,6 @@
     <category term="随笔" scheme="https://www.giantliu.cn/tags/%E9%9A%8F%E7%AC%94/"/>
     
     <category term="SqlServer" scheme="https://www.giantliu.cn/tags/SqlServer/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>在Docker中安装MySql</title>
-    <link href="https://www.giantliu.cn/2020/08/28/200828DockerInstallMySql/"/>
-    <id>https://www.giantliu.cn/2020/08/28/200828DockerInstallMySql/</id>
-    <published>2020-08-28T01:15:51.000Z</published>
-    <updated>2020-09-03T01:59:13.775Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h2 id=&quot;安装代码&quot;&gt;&lt;a href=&quot;#安装代码&quot; class=&quot;headerlink&quot; title=&quot;安装代码&quot;&gt;&lt;/a&gt;安装代码&lt;/h2&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td</summary>
-        
-      
-    
-    
-    
-    
-    <category term="随笔" scheme="https://www.giantliu.cn/tags/%E9%9A%8F%E7%AC%94/"/>
-    
-    <category term="Docker" scheme="https://www.giantliu.cn/tags/Docker/"/>
-    
-    <category term="MySql" scheme="https://www.giantliu.cn/tags/MySql/"/>
     
   </entry>
   

@@ -104,13 +104,6 @@
 
                         
                         <li>
-                            <a href="/about/">About</a>
-                        </li>
-                        
-                    
-
-                        
-                        <li>
                             <a href="/archives/">Archives</a>
                         </li>
                         
@@ -119,6 +112,13 @@
                         
                         <li>
                             <a href="/tags/">Tags</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/about/">About</a>
                         </li>
                         
                     
@@ -188,7 +188,7 @@
             <!-- 标签云 -->
             <div id='tag_cloud' class="tags">
                 
-                    <a href="#随笔" title="随笔" rel="25">随笔</a>
+                    <a href="#随笔" title="随笔" rel="26">随笔</a>
                 
                     <a href="#NetCore" title="NetCore" rel="5">NetCore</a>
                 
@@ -198,23 +198,25 @@
                 
                     <a href="#Docker" title="Docker" rel="5">Docker</a>
                 
-                    <a href="#SSH" title="SSH" rel="1">SSH</a>
-                
                     <a href="#WMS" title="WMS" rel="7">WMS</a>
                 
                     <a href="#Vue" title="Vue" rel="1">Vue</a>
                 
-                    <a href="#MySql" title="MySql" rel="3">MySql</a>
-                
                     <a href="#SqlServer" title="SqlServer" rel="2">SqlServer</a>
                 
+                    <a href="#MySql" title="MySql" rel="3">MySql</a>
+                
                     <a href="#树莓派" title="树莓派" rel="1">树莓派</a>
+                
+                    <a href="#SSH" title="SSH" rel="1">SSH</a>
+                
+                    <a href="#Hyper-V" title="Hyper-V" rel="1">Hyper-V</a>
+                
+                    <a href="#生活" title="生活" rel="2">生活</a>
                 
                     <a href="#前端开发" title="前端开发" rel="3">前端开发</a>
                 
                     <a href="#JavaScript" title="JavaScript" rel="3">JavaScript</a>
-                
-                    <a href="#生活" title="生活" rel="2">生活</a>
                 
                     <a href="#翻译" title="翻译" rel="1">翻译</a>
                 
@@ -223,8 +225,6 @@
                     <a href="#Unix" title="Unix" rel="1">Unix</a>
                 
                     <a href="#Linux" title="Linux" rel="1">Linux</a>
-                
-                    <a href="#Hyper-V" title="Hyper-V" rel="1">Hyper-V</a>
                 
             </div>
 
@@ -256,9 +256,9 @@
                   <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
                   </li> -->
                  <div class="post-preview">
-                     <a href="/2020/08/24/200824UbuntuSSHConfig/">
+                     <a href="/2020/08/24/200824InstallDockerToUbuntu/">
                         <h2 class="post-title">
-                            Ubuntu系统配置SSH服务
+                            Ubuntu安装Docker
                         </h2>
                         
                     </a>
@@ -286,10 +286,14 @@
                   <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
                   </li> -->
                  <div class="post-preview">
-                     <a href="/2020/08/28/200828DockerInstallMySql/">
+                     <a href="/2020/09/03/200903SQLServerForeachItem/">
                         <h2 class="post-title">
-                            在Docker中安装MySql
+                            SqlServer遍历数据
                         </h2>
+                        
+                            <h3 class="post-subtitle">
+                                批量修改数据库表名前缀为大写
+                            </h3>
                         
                     </a>
                     <!-- <p class="post-meta">{{ post.date | date:"%Y-%m-%d" }}</p> -->
@@ -301,9 +305,9 @@
                   <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
                   </li> -->
                  <div class="post-preview">
-                     <a href="/2020/08/24/200824InstallDockerToUbuntu/">
+                     <a href="/2020/08/28/200828DockerInstallMySql/">
                         <h2 class="post-title">
-                            Ubuntu安装Docker
+                            在Docker中安装MySql
                         </h2>
                         
                     </a>
@@ -369,6 +373,25 @@
                   <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
                   </li> -->
                  <div class="post-preview">
+                     <a href="/2021/06/24/20210624MySqlMasterSlaveSync/">
+                        <h2 class="post-title">
+                            MySql数据库主从同步/双向同步
+                        </h2>
+                        
+                            <h3 class="post-subtitle">
+                                主从同步,主主同步,双向同步,双机热备
+                            </h3>
+                        
+                    </a>
+                    <!-- <p class="post-meta">{{ post.date | date:"%Y-%m-%d" }}</p> -->
+                </div>
+                <hr>
+                
+                  <!-- <li class="listing-item">
+                  <time datetime="{{ post.date | date:"%Y-%m-%d" }}">{{ post.date | date:"%Y-%m-%d" }}</time>
+                  <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
+                  </li> -->
+                 <div class="post-preview">
                      <a href="/2021/07/30/20210730DockerDeployZenTao/">
                         <h2 class="post-title">
                             Docker部署禅道系统
@@ -388,14 +411,10 @@
                   <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
                   </li> -->
                  <div class="post-preview">
-                     <a href="/2020/09/03/200903SQLServerForeachItem/">
+                     <a href="/2020/08/24/200824UbuntuSSHConfig/">
                         <h2 class="post-title">
-                            SqlServer遍历数据
+                            Ubuntu系统配置SSH服务
                         </h2>
-                        
-                            <h3 class="post-subtitle">
-                                批量修改数据库表名前缀为大写
-                            </h3>
                         
                     </a>
                     <!-- <p class="post-meta">{{ post.date | date:"%Y-%m-%d" }}</p> -->
@@ -407,14 +426,10 @@
                   <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
                   </li> -->
                  <div class="post-preview">
-                     <a href="/2021/06/24/20210624MySqlMasterSlaveSync/">
+                     <a href="/2020/09/04/200904InstallUOS/">
                         <h2 class="post-title">
-                            MySql数据库主从同步/双向同步
+                            国产系统UOS安装体验
                         </h2>
-                        
-                            <h3 class="post-subtitle">
-                                主从同步,主主同步,双向同步,双机热备
-                            </h3>
                         
                     </a>
                     <!-- <p class="post-meta">{{ post.date | date:"%Y-%m-%d" }}</p> -->
@@ -464,13 +479,32 @@
                   <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
                   </li> -->
                  <div class="post-preview">
-                     <a href="/2021/11/25/20211125MySqlInstall/">
+                     <a href="/2022/07/26/20220726SmartEduVideoDownload/">
                         <h2 class="post-title">
-                            MySql数据库安装
+                            国家中小学智慧教育平台视频课程下载
                         </h2>
                         
                             <h3 class="post-subtitle">
-                                在Windows下以命令行方式安装
+                                批量下载课程视频
+                            </h3>
+                        
+                    </a>
+                    <!-- <p class="post-meta">{{ post.date | date:"%Y-%m-%d" }}</p> -->
+                </div>
+                <hr>
+                
+                  <!-- <li class="listing-item">
+                  <time datetime="{{ post.date | date:"%Y-%m-%d" }}">{{ post.date | date:"%Y-%m-%d" }}</time>
+                  <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
+                  </li> -->
+                 <div class="post-preview">
+                     <a href="/2022/07/27/20220727SystemScriptKill/">
+                        <h2 class="post-title">
+                            记一次云服务器木马查杀
+                        </h2>
+                        
+                            <h3 class="post-subtitle">
+                                记录木马查杀过程
                             </h3>
                         
                     </a>
@@ -502,25 +536,14 @@
                   <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
                   </li> -->
                  <div class="post-preview">
-                     <a href="/2020/09/04/200904InstallUOS/">
+                     <a href="/2021/11/25/20211125MySqlInstall/">
                         <h2 class="post-title">
-                            国产系统UOS安装体验
+                            MySql数据库安装
                         </h2>
                         
-                    </a>
-                    <!-- <p class="post-meta">{{ post.date | date:"%Y-%m-%d" }}</p> -->
-                </div>
-                <hr>
-                
-                  <!-- <li class="listing-item">
-                  <time datetime="{{ post.date | date:"%Y-%m-%d" }}">{{ post.date | date:"%Y-%m-%d" }}</time>
-                  <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
-                  </li> -->
-                 <div class="post-preview">
-                     <a href="/2020/08/24/DockerCommand/">
-                        <h2 class="post-title">
-                            Docker常用命令说明
-                        </h2>
+                            <h3 class="post-subtitle">
+                                在Windows下以命令行方式安装
+                            </h3>
                         
                     </a>
                     <!-- <p class="post-meta">{{ post.date | date:"%Y-%m-%d" }}</p> -->
@@ -551,13 +574,13 @@
                   <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
                   </li> -->
                  <div class="post-preview">
-                     <a href="/2022/07/26/20220726SmartEduVideoDownload/">
+                     <a href="/2022/07/08/20220708MySqlRestartFailed/">
                         <h2 class="post-title">
-                            国家中小学智慧教育平台视频课程下载
+                            记一次线上项目MySql重启失败恢复过程
                         </h2>
                         
                             <h3 class="post-subtitle">
-                                批量下载课程视频
+                                注意备份,数据无价
                             </h3>
                         
                     </a>
@@ -585,14 +608,25 @@
                   <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
                   </li> -->
                  <div class="post-preview">
-                     <a href="/2022/07/08/20220708MySqlRestartFailed/">
+                     <a href="/2020/08/24/DockerCommand/">
                         <h2 class="post-title">
-                            记一次线上项目MySql重启失败恢复过程
+                            Docker常用命令说明
                         </h2>
                         
-                            <h3 class="post-subtitle">
-                                注意备份,数据无价
-                            </h3>
+                    </a>
+                    <!-- <p class="post-meta">{{ post.date | date:"%Y-%m-%d" }}</p> -->
+                </div>
+                <hr>
+                
+                  <!-- <li class="listing-item">
+                  <time datetime="{{ post.date | date:"%Y-%m-%d" }}">{{ post.date | date:"%Y-%m-%d" }}</time>
+                  <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
+                  </li> -->
+                 <div class="post-preview">
+                     <a href="/2020/08/19/InstallPowerShell/">
+                        <h2 class="post-title">
+                            使用PowerShell操作Ubuntu
+                        </h2>
                         
                     </a>
                     <!-- <p class="post-meta">{{ post.date | date:"%Y-%m-%d" }}</p> -->
@@ -622,21 +656,6 @@
                      <a href="/2020/08/20/InstallUbuntu18Server/">
                         <h2 class="post-title">
                             在Hyper-V中安装Ubuntu Server 18.04
-                        </h2>
-                        
-                    </a>
-                    <!-- <p class="post-meta">{{ post.date | date:"%Y-%m-%d" }}</p> -->
-                </div>
-                <hr>
-                
-                  <!-- <li class="listing-item">
-                  <time datetime="{{ post.date | date:"%Y-%m-%d" }}">{{ post.date | date:"%Y-%m-%d" }}</time>
-                  <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
-                  </li> -->
-                 <div class="post-preview">
-                     <a href="/2020/08/19/InstallPowerShell/">
-                        <h2 class="post-title">
-                            使用PowerShell操作Ubuntu
                         </h2>
                         
                     </a>
@@ -795,21 +814,6 @@
                   <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
                   </li> -->
                  <div class="post-preview">
-                     <a href="/2020/08/24/200824UbuntuSSHConfig/">
-                        <h2 class="post-title">
-                            Ubuntu系统配置SSH服务
-                        </h2>
-                        
-                    </a>
-                    <!-- <p class="post-meta">{{ post.date | date:"%Y-%m-%d" }}</p> -->
-                </div>
-                <hr>
-                
-                  <!-- <li class="listing-item">
-                  <time datetime="{{ post.date | date:"%Y-%m-%d" }}">{{ post.date | date:"%Y-%m-%d" }}</time>
-                  <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
-                  </li> -->
-                 <div class="post-preview">
                      <a href="/2020/08/24/200824InstallDockerToUbuntu/">
                         <h2 class="post-title">
                             Ubuntu安装Docker
@@ -840,9 +844,9 @@
                   <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
                   </li> -->
                  <div class="post-preview">
-                     <a href="/2020/08/20/InstallUbuntu18Server/">
+                     <a href="/2020/08/24/200824UbuntuSSHConfig/">
                         <h2 class="post-title">
-                            在Hyper-V中安装Ubuntu Server 18.04
+                            Ubuntu系统配置SSH服务
                         </h2>
                         
                     </a>
@@ -858,6 +862,21 @@
                      <a href="/2020/08/19/InstallPowerShell/">
                         <h2 class="post-title">
                             使用PowerShell操作Ubuntu
+                        </h2>
+                        
+                    </a>
+                    <!-- <p class="post-meta">{{ post.date | date:"%Y-%m-%d" }}</p> -->
+                </div>
+                <hr>
+                
+                  <!-- <li class="listing-item">
+                  <time datetime="{{ post.date | date:"%Y-%m-%d" }}">{{ post.date | date:"%Y-%m-%d" }}</time>
+                  <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
+                  </li> -->
+                 <div class="post-preview">
+                     <a href="/2020/08/20/InstallUbuntu18Server/">
+                        <h2 class="post-title">
+                            在Hyper-V中安装Ubuntu Server 18.04
                         </h2>
                         
                     </a>
@@ -967,9 +986,9 @@
                   <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
                   </li> -->
                  <div class="post-preview">
-                     <a href="/2020/08/28/200828DockerInstallMySql/">
+                     <a href="/2020/08/24/200824InstallDockerToUbuntu/">
                         <h2 class="post-title">
-                            在Docker中安装MySql
+                            Ubuntu安装Docker
                         </h2>
                         
                     </a>
@@ -982,9 +1001,9 @@
                   <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
                   </li> -->
                  <div class="post-preview">
-                     <a href="/2020/08/24/200824InstallDockerToUbuntu/">
+                     <a href="/2020/08/28/200828DockerInstallMySql/">
                         <h2 class="post-title">
-                            Ubuntu安装Docker
+                            在Docker中安装MySql
                         </h2>
                         
                     </a>
@@ -1015,28 +1034,6 @@
                      <a href="/2020/08/24/DockerCommand/">
                         <h2 class="post-title">
                             Docker常用命令说明
-                        </h2>
-                        
-                    </a>
-                    <!-- <p class="post-meta">{{ post.date | date:"%Y-%m-%d" }}</p> -->
-                </div>
-                <hr>
-                
-            </div>
-            
-            <div class="one-tag-list">
-                <span class="fa fa-tag listing-seperator" id="SSH">
-                    <span class="tag-text">SSH</span>
-                </span>
-                
-                  <!-- <li class="listing-item">
-                  <time datetime="{{ post.date | date:"%Y-%m-%d" }}">{{ post.date | date:"%Y-%m-%d" }}</time>
-                  <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
-                  </li> -->
-                 <div class="post-preview">
-                     <a href="/2020/08/24/200824UbuntuSSHConfig/">
-                        <h2 class="post-title">
-                            Ubuntu系统配置SSH服务
                         </h2>
                         
                     </a>
@@ -1105,25 +1102,6 @@
                   <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
                   </li> -->
                  <div class="post-preview">
-                     <a href="/2021/08/03/20210803WMSExcelImportExport/">
-                        <h2 class="post-title">
-                            使用Excel做数据导入导出操作
-                        </h2>
-                        
-                            <h3 class="post-subtitle">
-                                在WMS中如果有数据要做批量维护的情况下,使用Excel做导出导入
-                            </h3>
-                        
-                    </a>
-                    <!-- <p class="post-meta">{{ post.date | date:"%Y-%m-%d" }}</p> -->
-                </div>
-                <hr>
-                
-                  <!-- <li class="listing-item">
-                  <time datetime="{{ post.date | date:"%Y-%m-%d" }}">{{ post.date | date:"%Y-%m-%d" }}</time>
-                  <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
-                  </li> -->
-                 <div class="post-preview">
                      <a href="/2021/08/25/20210825WMSDatabaseUseMySql/">
                         <h2 class="post-title">
                             WMS切换至MySql数据库
@@ -1176,6 +1154,25 @@
                 </div>
                 <hr>
                 
+                  <!-- <li class="listing-item">
+                  <time datetime="{{ post.date | date:"%Y-%m-%d" }}">{{ post.date | date:"%Y-%m-%d" }}</time>
+                  <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
+                  </li> -->
+                 <div class="post-preview">
+                     <a href="/2021/08/03/20210803WMSExcelImportExport/">
+                        <h2 class="post-title">
+                            使用Excel做数据导入导出操作
+                        </h2>
+                        
+                            <h3 class="post-subtitle">
+                                在WMS中如果有数据要做批量维护的情况下,使用Excel做导出导入
+                            </h3>
+                        
+                    </a>
+                    <!-- <p class="post-meta">{{ post.date | date:"%Y-%m-%d" }}</p> -->
+                </div>
+                <hr>
+                
             </div>
             
             <div class="one-tag-list">
@@ -1192,6 +1189,51 @@
                         <h2 class="post-title">
                             ZEQP WMS仓储管理系统简介
                         </h2>
+                        
+                    </a>
+                    <!-- <p class="post-meta">{{ post.date | date:"%Y-%m-%d" }}</p> -->
+                </div>
+                <hr>
+                
+            </div>
+            
+            <div class="one-tag-list">
+                <span class="fa fa-tag listing-seperator" id="SqlServer">
+                    <span class="tag-text">SqlServer</span>
+                </span>
+                
+                  <!-- <li class="listing-item">
+                  <time datetime="{{ post.date | date:"%Y-%m-%d" }}">{{ post.date | date:"%Y-%m-%d" }}</time>
+                  <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
+                  </li> -->
+                 <div class="post-preview">
+                     <a href="/2020/09/03/200903SQLServerForeachItem/">
+                        <h2 class="post-title">
+                            SqlServer遍历数据
+                        </h2>
+                        
+                            <h3 class="post-subtitle">
+                                批量修改数据库表名前缀为大写
+                            </h3>
+                        
+                    </a>
+                    <!-- <p class="post-meta">{{ post.date | date:"%Y-%m-%d" }}</p> -->
+                </div>
+                <hr>
+                
+                  <!-- <li class="listing-item">
+                  <time datetime="{{ post.date | date:"%Y-%m-%d" }}">{{ post.date | date:"%Y-%m-%d" }}</time>
+                  <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
+                  </li> -->
+                 <div class="post-preview">
+                     <a href="/2020/09/14/200914SSMSTableDesignAddDescription/">
+                        <h2 class="post-title">
+                            SSMS表设计器显示说明(注释)字段
+                        </h2>
+                        
+                            <h3 class="post-subtitle">
+                                SQL Server Management Studio
+                            </h3>
                         
                     </a>
                     <!-- <p class="post-meta">{{ post.date | date:"%Y-%m-%d" }}</p> -->
@@ -1261,51 +1303,6 @@
             </div>
             
             <div class="one-tag-list">
-                <span class="fa fa-tag listing-seperator" id="SqlServer">
-                    <span class="tag-text">SqlServer</span>
-                </span>
-                
-                  <!-- <li class="listing-item">
-                  <time datetime="{{ post.date | date:"%Y-%m-%d" }}">{{ post.date | date:"%Y-%m-%d" }}</time>
-                  <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
-                  </li> -->
-                 <div class="post-preview">
-                     <a href="/2020/09/14/200914SSMSTableDesignAddDescription/">
-                        <h2 class="post-title">
-                            SSMS表设计器显示说明(注释)字段
-                        </h2>
-                        
-                            <h3 class="post-subtitle">
-                                SQL Server Management Studio
-                            </h3>
-                        
-                    </a>
-                    <!-- <p class="post-meta">{{ post.date | date:"%Y-%m-%d" }}</p> -->
-                </div>
-                <hr>
-                
-                  <!-- <li class="listing-item">
-                  <time datetime="{{ post.date | date:"%Y-%m-%d" }}">{{ post.date | date:"%Y-%m-%d" }}</time>
-                  <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
-                  </li> -->
-                 <div class="post-preview">
-                     <a href="/2020/09/03/200903SQLServerForeachItem/">
-                        <h2 class="post-title">
-                            SqlServer遍历数据
-                        </h2>
-                        
-                            <h3 class="post-subtitle">
-                                批量修改数据库表名前缀为大写
-                            </h3>
-                        
-                    </a>
-                    <!-- <p class="post-meta">{{ post.date | date:"%Y-%m-%d" }}</p> -->
-                </div>
-                <hr>
-                
-            </div>
-            
-            <div class="one-tag-list">
                 <span class="fa fa-tag listing-seperator" id="树莓派">
                     <span class="tag-text">树莓派</span>
                 </span>
@@ -1322,6 +1319,95 @@
                         
                             <h3 class="post-subtitle">
                                 Raspberry Pi OS (32-bit) Lite
+                            </h3>
+                        
+                    </a>
+                    <!-- <p class="post-meta">{{ post.date | date:"%Y-%m-%d" }}</p> -->
+                </div>
+                <hr>
+                
+            </div>
+            
+            <div class="one-tag-list">
+                <span class="fa fa-tag listing-seperator" id="SSH">
+                    <span class="tag-text">SSH</span>
+                </span>
+                
+                  <!-- <li class="listing-item">
+                  <time datetime="{{ post.date | date:"%Y-%m-%d" }}">{{ post.date | date:"%Y-%m-%d" }}</time>
+                  <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
+                  </li> -->
+                 <div class="post-preview">
+                     <a href="/2020/08/24/200824UbuntuSSHConfig/">
+                        <h2 class="post-title">
+                            Ubuntu系统配置SSH服务
+                        </h2>
+                        
+                    </a>
+                    <!-- <p class="post-meta">{{ post.date | date:"%Y-%m-%d" }}</p> -->
+                </div>
+                <hr>
+                
+            </div>
+            
+            <div class="one-tag-list">
+                <span class="fa fa-tag listing-seperator" id="Hyper-V">
+                    <span class="tag-text">Hyper-V</span>
+                </span>
+                
+                  <!-- <li class="listing-item">
+                  <time datetime="{{ post.date | date:"%Y-%m-%d" }}">{{ post.date | date:"%Y-%m-%d" }}</time>
+                  <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
+                  </li> -->
+                 <div class="post-preview">
+                     <a href="/2020/08/20/InstallUbuntu18Server/">
+                        <h2 class="post-title">
+                            在Hyper-V中安装Ubuntu Server 18.04
+                        </h2>
+                        
+                    </a>
+                    <!-- <p class="post-meta">{{ post.date | date:"%Y-%m-%d" }}</p> -->
+                </div>
+                <hr>
+                
+            </div>
+            
+            <div class="one-tag-list">
+                <span class="fa fa-tag listing-seperator" id="生活">
+                    <span class="tag-text">生活</span>
+                </span>
+                
+                  <!-- <li class="listing-item">
+                  <time datetime="{{ post.date | date:"%Y-%m-%d" }}">{{ post.date | date:"%Y-%m-%d" }}</time>
+                  <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
+                  </li> -->
+                 <div class="post-preview">
+                     <a href="/2014/01/29/hello-2015/">
+                        <h2 class="post-title">
+                            Welcome to Giant Blog
+                        </h2>
+                        
+                            <h3 class="post-subtitle">
+                                 "Hello World, Hello Blog"
+                            </h3>
+                        
+                    </a>
+                    <!-- <p class="post-meta">{{ post.date | date:"%Y-%m-%d" }}</p> -->
+                </div>
+                <hr>
+                
+                  <!-- <li class="listing-item">
+                  <time datetime="{{ post.date | date:"%Y-%m-%d" }}">{{ post.date | date:"%Y-%m-%d" }}</time>
+                  <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
+                  </li> -->
+                 <div class="post-preview">
+                     <a href="/2020/01/29/hello-world/">
+                        <h2 class="post-title">
+                            Hello World
+                        </h2>
+                        
+                            <h3 class="post-subtitle">
+                                 "Hello World, Hello Giant Blog"
                             </h3>
                         
                     </a>
@@ -1452,51 +1538,6 @@
             </div>
             
             <div class="one-tag-list">
-                <span class="fa fa-tag listing-seperator" id="生活">
-                    <span class="tag-text">生活</span>
-                </span>
-                
-                  <!-- <li class="listing-item">
-                  <time datetime="{{ post.date | date:"%Y-%m-%d" }}">{{ post.date | date:"%Y-%m-%d" }}</time>
-                  <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
-                  </li> -->
-                 <div class="post-preview">
-                     <a href="/2014/01/29/hello-2015/">
-                        <h2 class="post-title">
-                            Welcome to Giant Blog
-                        </h2>
-                        
-                            <h3 class="post-subtitle">
-                                 "Hello World, Hello Blog"
-                            </h3>
-                        
-                    </a>
-                    <!-- <p class="post-meta">{{ post.date | date:"%Y-%m-%d" }}</p> -->
-                </div>
-                <hr>
-                
-                  <!-- <li class="listing-item">
-                  <time datetime="{{ post.date | date:"%Y-%m-%d" }}">{{ post.date | date:"%Y-%m-%d" }}</time>
-                  <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
-                  </li> -->
-                 <div class="post-preview">
-                     <a href="/2020/01/29/hello-world/">
-                        <h2 class="post-title">
-                            Hello World
-                        </h2>
-                        
-                            <h3 class="post-subtitle">
-                                 "Hello World, Hello Giant Blog"
-                            </h3>
-                        
-                    </a>
-                    <!-- <p class="post-meta">{{ post.date | date:"%Y-%m-%d" }}</p> -->
-                </div>
-                <hr>
-                
-            </div>
-            
-            <div class="one-tag-list">
                 <span class="fa fa-tag listing-seperator" id="翻译">
                     <span class="tag-text">翻译</span>
                 </span>
@@ -1588,28 +1629,6 @@
                             <h3 class="post-subtitle">
                                 不适合人类阅读，非常水的自我笔记
                             </h3>
-                        
-                    </a>
-                    <!-- <p class="post-meta">{{ post.date | date:"%Y-%m-%d" }}</p> -->
-                </div>
-                <hr>
-                
-            </div>
-            
-            <div class="one-tag-list">
-                <span class="fa fa-tag listing-seperator" id="Hyper-V">
-                    <span class="tag-text">Hyper-V</span>
-                </span>
-                
-                  <!-- <li class="listing-item">
-                  <time datetime="{{ post.date | date:"%Y-%m-%d" }}">{{ post.date | date:"%Y-%m-%d" }}</time>
-                  <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
-                  </li> -->
-                 <div class="post-preview">
-                     <a href="/2020/08/20/InstallUbuntu18Server/">
-                        <h2 class="post-title">
-                            在Hyper-V中安装Ubuntu Server 18.04
-                        </h2>
                         
                     </a>
                     <!-- <p class="post-meta">{{ post.date | date:"%Y-%m-%d" }}</p> -->

