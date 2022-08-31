@@ -9,8 +9,7 @@ date: 2022-07-26 10:07:53
 
 ## 工具下载
 
-链接：https://pan.baidu.com/s/1RwUAifUxlxDunRx3qvg1-w?pwd=1234 
-提取码：1234
+链接：[https://github.com/LiuJu150/smartedu/releases](https://github.com/LiuJu150/smartedu/releases)
 
 ## 前言
 
@@ -38,7 +37,6 @@ date: 2022-07-26 10:07:53
 https://s-file-1.ykt.cbern.com.cn/zxx/s_course/v1/x_class_hour_activity/89306b9d-db26-4db5-9f39-54865d43314b/resources.json
 返回的内容为视频的下载地址
 ![智慧教育](3.png)
-
 
 一看就知道89306b9d-db26-4db5-9f39-54865d43314b这个Id为此课程的Id
 如果我要批量下载的话。那么我就要找到当前学科的所有课程Id
