@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="奕晨博苑 Giant Blog">
+    <meta name="keyword"  content="">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+          使用MAUI接收Android PDA设备广播消息并转发至Web页面 - Giant Blog
+        
+    </title>
+
+    <link rel="canonical" href="https://www.giantliu.cn/2023/05/11/20230511AndroidBroadcastReceiverByMAUI/">
+
+    <!-- Bootstrap Core CSS -->
+    
+<link rel="stylesheet" href="/css/bootstrap.min.css">
+
+
+    <!-- Custom CSS -->
+    
+<link rel="stylesheet" href="/css/hux-blog.min.css">
+
+
+    <!-- Pygments Highlight CSS -->
+    
+<link rel="stylesheet" href="/css/highlight.css">
+
+
+    <!-- Custom Fonts -->
+    <!-- <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+    <!-- Hux change font-awesome CDN to qiniu -->
+    <link href="https://cdn.staticfile.org/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+
+    <!-- Hux Delete, sad but pending in China
+    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/
+    css'>
+    -->
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- ga & ba script hoook -->
+    <script>
+      var _hmt = _hmt || [];
+      (function() {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?24856c1d0b87969df4b666e8aa18cff9";
+        var s = document.getElementsByTagName("script")[0]; 
+        s.parentNode.insertBefore(hm, s);
+      })();
+      </script>      
+<meta name="generator" content="Hexo 5.0.0"><link rel="alternate" href="/atom.xml" title="Giant Blog" type="application/atom+xml">
+</head>
+
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Giant Blog</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+
+                    
+
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/archives/">Archives</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/about/">About</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/tags/">Tags</a>
+                        </li>
+                        
+                    
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+    <!-- Main Content -->
+    
+<!-- Image to hack wechat -->
+<!-- <img src="https://www.giantliu.cn/img/icon_wechat.png" width="0" height="0"> -->
+<!-- <img src="{{ site.baseurl }}/{% if page.header-img %}{{ page.header-img }}{% else %}{{ site.header-img }}{% endif %}" width="0" height="0"> -->
+
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        
+            background-image: url('https://open.saintic.com/api/bingPic/')
+        
+    }
+</style>
+<header class="intro-header" >
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 col-md-12">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                          <a class="tag" href="/tags/#WMS" title="WMS">WMS</a>
+                        
+                          <a class="tag" href="/tags/#MAUI" title="MAUI">MAUI</a>
+                        
+                          <a class="tag" href="/tags/#Android" title="Android">Android</a>
+                        
+                    </div>
+                    <h1>使用MAUI接收Android PDA设备广播消息并转发至Web页面</h1>
+                    <h2 class="subheading">解决Web页面不能接收PDA扫码的广播信息</h2>
+                    <span class="meta">
+                        Posted by 刘巨 on
+                        2023-05-11
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+    <!-- Post Container -->
+            <div class="
+                col-lg-12
+                col-md-12
+                post-container">
+
+                <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>公司系统的手持终端(PDA)是用的Vue写的前端代码<br>在PDA上用浏览器直接打开Web页面<br>PDA扫码的时候,输出模式直接用模拟键盘按键的方式输出<br>这样在Web页面上，如果一个输入框在当前有焦点的情况下<br>PDA扫码的内容会直接填充至对应的输入框<br>正常的话这样没有问题</p>
+<p>但是最近有一个项目，PDA不是我们提供。<br>而是使用现有PDA，要把我们的系统在现有PDA上使用<br>但是现有PDA使用的扫码输出方式是用的Andorid广播</p>
+<p>因为现有PDA不只有我们一家系统，所以不能修改扫码输出方式<br>这样就使得我们不得不对系统进行改造</p>
+<p><img src="1.png" alt="PDA广播"><br><img src="2.png" alt="PDA广播"></p>
+<h2 id="思考方法"><a href="#思考方法" class="headerlink" title="思考方法"></a>思考方法</h2><p>因为系统已经使用Vue框架已经开发好的。不可能为了这么点事情<br>把PDA上的系统全用Android重新来开发一次，那样成本太大</p>
+<p>所以想的办法也很简单。<br>就是做一个Andorid的程序套壳，然后在程序里使用WebView加载现有系统<br>这样在Andorid程序里接收PDA扫码的广播信号<br>然后收到信号后，把扫码到的内容使用WebView的JavaScript调用方式<br>传输到Web页面接收。<br>这样就实现了在Web页面上接收Andorid的广播消息功能</p>
+<h2 id="实现过程"><a href="#实现过程" class="headerlink" title="实现过程"></a>实现过程</h2><p>因为我们没有Andorid的开发人员，<br>只有前端的NodeJs和后端的.Net开发人员<br>所以开发Android程序框架也很自然<br>只能是.Net开发人员使用 Xamarin.Android 或者 MAUI 这两种方式</p>
+<p>因为只是一个Android的程序套壳，界面也不是很难<br>所以就当一次小试验，自然也就想尝试一下微软最新的MAUI了</p>
+<h3 id="安装MAUI"><a href="#安装MAUI" class="headerlink" title="安装MAUI"></a>安装MAUI</h3><p>因为我们原来开发没有使用过MAUI,虽然机器上有VS2022<br>但是也要添加MAUI的开发功能<br><a target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-cn/dotnet/maui/get-started/installation?tabs=vswin">安装MAUI参考链接</a><br><img src="3.png" alt="安装MAUI"></p>
+<h3 id="创建MAUI应用"><a href="#创建MAUI应用" class="headerlink" title="创建MAUI应用"></a>创建MAUI应用</h3><p>参照微软的文档一步步操作创建MAUI应用<br><a target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-cn/dotnet/maui/get-started/first-app?pivots=devices-android&tabs=vswin">创建MAUI应用参考链接</a></p>
+<h3 id="在主界面添加WebView"><a href="#在主界面添加WebView" class="headerlink" title="在主界面添加WebView"></a>在主界面添加WebView</h3><p><img src="4.png" alt="WebView"><br><a target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-cn/dotnet/maui/user-interface/controls/webview?pivots=devices-android">WebView参考文档</a></p>
+<p>我们设置WebView的浏览地址为我们系统的Web地址<br>此处设置为：<a target="_blank" rel="noopener" href="http://10.76.99.70:8081/">http://10.76.99.70:8081/</a> </p>
+<p>把MainPage.xaml文件修改如下</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot; ?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">ContentPage</span> <span class="attr">xmlns</span>=<span class="string">&quot;http://schemas.microsoft.com/dotnet/2021/maui&quot;</span></span></span><br><span class="line"><span class="tag">             <span class="attr">xmlns:x</span>=<span class="string">&quot;http://schemas.microsoft.com/winfx/2009/xaml&quot;</span></span></span><br><span class="line"><span class="tag">             <span class="attr">x:Class</span>=<span class="string">&quot;WMS.RFWrap.MainPage&quot;</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">ScrollView</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">StackLayout</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">WebView</span> <span class="attr">x:Name</span>=<span class="string">&quot;mainWeb&quot;</span> <span class="attr">Source</span>=<span class="string">&quot;http://10.76.99.70:8081/&quot;</span> <span class="attr">VerticalOptions</span>=<span class="string">&quot;FillAndExpand&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">WebView</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">StackLayout</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">ScrollView</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">ContentPage</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="接收Android广播消息"><a href="#接收Android广播消息" class="headerlink" title="接收Android广播消息"></a>接收Android广播消息</h3><p>在Platforms.Andorid目录下创建广播消息接收代码<br>其中，IntentFilter设置的值要与PDA上配置的广播消息代码一至</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">namespace</span> <span class="title">WMS.RFWrap.Platforms.Android</span>;</span><br><span class="line"></span><br><span class="line">[<span class="meta">BroadcastReceiver(Enabled = true, Exported = true)</span>]</span><br><span class="line">[<span class="meta">IntentFilter(new[</span>] &#123; <span class="string">&quot;android.intent.ACTION_DECODE_DATA&quot;</span> &#125;)]</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">ScanBroadcastReceiver</span> : <span class="title">BroadcastReceiver</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">private</span> Action&lt;<span class="keyword">string</span>&gt; ScanDataAccepted;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">ScanBroadcastReceiver</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>    &#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">ScanBroadcastReceiver</span>(<span class="params">Action&lt;<span class="keyword">string</span>&gt; action</span>)</span></span><br><span class="line"><span class="function"></span>    &#123;</span><br><span class="line">        <span class="keyword">this</span>.ScanDataAccepted = action;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">override</span> <span class="keyword">void</span> <span class="title">OnReceive</span>(<span class="params">Context context, Intent intent</span>)</span></span><br><span class="line"><span class="function"></span>    &#123;</span><br><span class="line">        <span class="keyword">var</span> <span class="keyword">value</span> = intent.GetStringExtra(<span class="string">&quot;barcode_string&quot;</span>);</span><br><span class="line">        ScanDataAccepted?.Invoke(<span class="keyword">value</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在Platforms.Andorid.MainActivity.cs文件注册广播接收</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">MainActivity</span> : <span class="title">MauiAppCompatActivity</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">public</span> ScanBroadcastReceiver scanReceiver &#123; <span class="keyword">get</span>; <span class="keyword">set</span>; &#125;</span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> 委托事件</span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> Action&lt;<span class="keyword">string</span>&gt; ScanDeviceRecevied;</span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">override</span> <span class="keyword">void</span> <span class="title">OnCreate</span>(<span class="params">Bundle savedInstanceState</span>)</span></span><br><span class="line"><span class="function"></span>    &#123;</span><br><span class="line">        <span class="keyword">base</span>.OnCreate(savedInstanceState);</span><br><span class="line">        scanReceiver = <span class="keyword">new</span> ScanBroadcastReceiver((barcode) =&gt;</span><br><span class="line">        &#123;</span><br><span class="line">            ScanDeviceRecevied?.Invoke(barcode);</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">override</span> <span class="keyword">void</span> <span class="title">OnResume</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>    &#123;</span><br><span class="line">        <span class="keyword">base</span>.OnResume();</span><br><span class="line">        RegisterReceiver(scanReceiver, <span class="keyword">new</span> Android.Content.IntentFilter(<span class="string">&quot;android.intent.ACTION_DECODE_DATA&quot;</span>));</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">override</span> <span class="keyword">void</span> <span class="title">OnPause</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>    &#123;</span><br><span class="line">        UnregisterReceiver(scanReceiver);</span><br><span class="line">        <span class="keyword">base</span>.OnPause();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在MainPage.xaml.cs文件里编写接收代码<br>接收到广播扫码内容后，通过WebView的Eval方法来执行Web页面方法<br>我们这里使用的是window.postMessage协议通讯<br><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/API/Window/postMessage">window.postMessage参考文档</a><br>我们调用postMessage方法，把内容传输到Web页面</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">partial</span> <span class="keyword">class</span> <span class="title">MainPage</span> : <span class="title">ContentPage</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">MainPage</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>    &#123;</span><br><span class="line">        InitializeComponent();</span><br><span class="line"><span class="meta">#<span class="meta-keyword">if</span> ANDROID</span></span><br><span class="line">        <span class="comment">//var mainActivity = Platform.CurrentActivity as MainActivity;</span></span><br><span class="line">        MainActivity.ScanDeviceRecevied = (barcode) =&gt; &#123;</span><br><span class="line">            Console.WriteLine(barcode);</span><br><span class="line">            OnScanBarcode(barcode);</span><br><span class="line">        &#125;;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">OnScanBarcode</span>(<span class="params"><span class="keyword">string</span> barcode</span>)</span></span><br><span class="line"><span class="function"></span>    &#123;</span><br><span class="line">        <span class="keyword">if</span> (mainWeb != <span class="literal">null</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">var</span> data = <span class="keyword">new</span> &#123; type = <span class="string">&quot;barcode&quot;</span>, data = barcode &#125;;</span><br><span class="line">            <span class="keyword">var</span> json = JsonSerializer.Serialize(data);</span><br><span class="line">            <span class="keyword">var</span> script = <span class="string">$&quot;postMessage(<span class="subst">&#123;json&#125;</span>,&#x27;*&#x27;)&quot;</span>;</span><br><span class="line">            mainWeb.Eval(script);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在前端Vue页面接收WebView传过来的postMessage信号<br>因为我们使用的是postMessage信号，所以在前端只要监听message事件就可以了<br>message事件与Vue无关，所有Web页都可以使用<br>然后在onScanMsg回调方法里面处理对应的数据，就能正常接收信息了<br>window.addEventListener(‘message’, onScanMsg)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;router-view &#x2F;&gt;</span><br><span class="line">&lt;&#x2F;template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line">import &#123; provide, ref, reactive, toRaw, onMounted, onUnmounted &#125; from &#39;vue&#39;</span><br><span class="line">import &#123; useStore &#125; from &#39;vuex&#39;</span><br><span class="line">export default &#123;</span><br><span class="line">  setup() &#123;</span><br><span class="line">    const store &#x3D; useStore() &#x2F;&#x2F;使用store</span><br><span class="line">    onMounted(() &#x3D;&gt; &#123;</span><br><span class="line">      window.addEventListener(&#39;message&#39;, onScanMsg)</span><br><span class="line">    &#125;)</span><br><span class="line">    const onScanMsg &#x3D; (e) &#x3D;&gt; &#123;</span><br><span class="line">      console.log(&#39;onScanMsg&#39;, e)</span><br><span class="line">      if (typeof e.data &#x3D;&#x3D;&#x3D; &#39;object&#39; &amp;&amp; e.data.type &#x3D;&#x3D;&#x3D; &#39;barcode&#39;)</span><br><span class="line">        store.commit(&#39;SET_SCANCODE&#39;, e.data.data)</span><br><span class="line">    &#125;</span><br><span class="line">    return &#123;&#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">&lt;&#x2F;script&gt;</span><br><span class="line"></span><br><span class="line">&lt;style&gt;</span><br><span class="line">&lt;&#x2F;style&gt;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>本示例是接收到信息后，通过vuex设置全局Store值<br>这样在要获取扫码的页面只用监听Store值变化，就可以接收到最新的扫码结果</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;van-nav-bar title&#x3D;&quot;扫码&quot; left-text&#x3D;&quot;数据&quot; left-arrow fixed placeholder @click-left&#x3D;&quot;$router.replace(&#123; path: &#39;&#x2F;Home&#x2F;DataIndex&#39; &#125;)&quot; &#x2F;&gt;</span><br><span class="line">  &lt;van-field v-model&#x3D;&quot;scancode&quot; label&#x3D;&quot;数据&quot; placeholder&#x3D;&quot;请扫码&quot; &#x2F;&gt;</span><br><span class="line">  &lt;van-list&gt;</span><br><span class="line">    &lt;van-cell-group&gt;</span><br><span class="line">      &lt;van-cell v-for&#x3D;&quot;item in list&quot; :key&#x3D;&quot;item&quot; :title&#x3D;&quot;item&quot; &#x2F;&gt;</span><br><span class="line">    &lt;&#x2F;van-cell-group&gt;</span><br><span class="line">  &lt;&#x2F;van-list&gt;</span><br><span class="line">&lt;&#x2F;template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line">import &#123; defineComponent, reactive, ref, toRefs, toRaw, onMounted, watch, computed, getCurrentInstance &#125; from &#39;vue&#39;</span><br><span class="line">import &#123; useStore &#125; from &#39;vuex&#39;</span><br><span class="line">import &#123; useRouter, useRoute &#125; from &#39;vue-router&#39;</span><br><span class="line">import &#123; Toast &#125; from &#39;vant&#39;</span><br><span class="line">export default &#123;</span><br><span class="line">  setup() &#123;</span><br><span class="line">    const store &#x3D; useStore()&#x2F;&#x2F;使用store</span><br><span class="line">    const defaultWhseId &#x3D; computed(() &#x3D;&gt; store.getters.whseId)</span><br><span class="line">    const defaultStorerId &#x3D; computed(() &#x3D;&gt; store.getters.storerId)</span><br><span class="line">    const router &#x3D; useRouter()&#x2F;&#x2F;使用router</span><br><span class="line">    const route &#x3D; useRoute()&#x2F;&#x2F;使用route</span><br><span class="line"></span><br><span class="line">    const scancode &#x3D; computed(() &#x3D;&gt; store.getters.scancode)</span><br><span class="line">    const list &#x3D; ref([])</span><br><span class="line">    watch(() &#x3D;&gt; store.getters.scancode, (newValue) &#x3D;&gt; &#123;</span><br><span class="line">      list.value.push(newValue)</span><br><span class="line">    &#125;)</span><br><span class="line">    return &#123;</span><br><span class="line">      scancode,</span><br><span class="line">      list</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">&lt;&#x2F;script&gt;</span><br><span class="line"></span><br><span class="line">&lt;style&gt;</span><br><span class="line">&lt;&#x2F;style&gt;</span><br></pre></td></tr></table></figure>
+
+<p>最终实现结果<br><img src="5.png" alt="WebView"></p>
+
+                <hr>
+                <ul class="pager">
+                    
+                    
+                        <li class="next">
+                            <a href="/2022/12/21/20221221frp/" data-toggle="tooltip" data-placement="top" title="FRP使用教程">下一篇 &rarr;</a>
+                        </li>
+                    
+                </ul>
+            </div>
+    <!-- Side Catalog Container -->
+        
+
+    <!-- Sidebar Container -->
+
+            <div class="
+                col-lg-12
+                col-md-12
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                       
+                          <a class="tag" href="/tags/#WMS" title="WMS">WMS</a>
+                        
+                          <a class="tag" href="/tags/#MAUI" title="MAUI">MAUI</a>
+                        
+                          <a class="tag" href="/tags/#Android" title="Android">Android</a>
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+                <hr>
+                <h5>FRIENDS</h5>
+                <ul class="list-inline">
+
+                    
+                        <li><a href="https://www.cnblogs.com/liuju150/" target="_blank">博客园</a></li>
+                    
+                        <li><a href="https://www.zhihu.com/people/giant150" target="_blank">知呼</a></li>
+                    
+                        <li><a href="https://weibo.com/liuju150" target="_blank">微博</a></li>
+                    
+                        <li><a href="https://github.com/liuju150" target="_blank">GitHub</a></li>
+                    
+                        <li><a href="https://gitee.com/GiantLiu" target="_blank">Gitee</a></li>
+                    
+                        <li><a href="https://giantliu.gitee.io" target="_blank">Gitee Blog</a></li>
+                    
+                        <li><a href="https://blog.giantliu.cn" target="_blank">Blog</a></li>
+                    
+                </ul>
+                
+            </div>
+
+        </div>
+    </div>
+</article>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("https://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js",function(){
+        anchors.options = {
+          visible: 'always',
+          placement: 'right',
+          icon: '#'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+<style>
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
+
+
+
+    <!-- Footer -->
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                
+                
+                
+                    <li>
+                        <a target="_blank" href="https://www.zhihu.com/people/giant150">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa  fa-stack-1x fa-inverse">知</i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+                    <li>
+                        <a target="_blank" href="http://weibo.com/liuju150">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-weibo fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                
+                    <li>
+                        <a target="_blank"  href="https://github.com/liuju150">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; Giant Blog 2023 <br />
+                    <a target="_blank" href="https://beian.miit.gov.cn/">湘ICP备20015826号-2</a>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+
+<script src="/js/jquery.min.js"></script>
+
+
+<!-- Bootstrap Core JavaScript -->
+
+<script src="/js/bootstrap.min.js"></script>
+
+
+<!-- Custom Theme JavaScript -->
+
+<script src="/js/hux-blog.min.js"></script>
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- 
+     Because of the native support for backtick-style fenced code blocks 
+     right within the Markdown is landed in Github Pages, 
+     From V1.6, There is no need for Highlight.js, 
+     so Huxblog drops it officially.
+
+     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0  
+     - https://help.github.com/articles/creating-and-highlighting-code-blocks/    
+-->
+<!--
+    <script>
+        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
+            hljs.initHighlightingOnLoad();
+        })
+    </script>
+    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
+-->
+
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("https://www.giantliu.cn/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("https://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+<!-- Side Catalog -->
+
+
+
+</body>
+
+</html>

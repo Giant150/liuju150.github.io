@@ -6,7 +6,7 @@
   <link href="https://www.giantliu.cn/atom.xml" rel="self"/>
   
   <link href="https://www.giantliu.cn/"/>
-  <updated>2022-08-25T06:27:09.757Z</updated>
+  <updated>2023-05-12T02:17:32.288Z</updated>
   <id>https://www.giantliu.cn/</id>
   
   <author>
@@ -15,6 +15,56 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>使用MAUI接收Android PDA设备广播消息并转发至Web页面</title>
+    <link href="https://www.giantliu.cn/2023/05/11/20230511AndroidBroadcastReceiverByMAUI/"/>
+    <id>https://www.giantliu.cn/2023/05/11/20230511AndroidBroadcastReceiverByMAUI/</id>
+    <published>2023-05-11T08:41:23.000Z</published>
+    <updated>2023-05-12T02:17:32.288Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    
+    <category term="WMS" scheme="https://www.giantliu.cn/tags/WMS/"/>
+    
+    <category term="MAUI" scheme="https://www.giantliu.cn/tags/MAUI/"/>
+    
+    <category term="Android" scheme="https://www.giantliu.cn/tags/Android/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>FRP使用教程</title>
+    <link href="https://www.giantliu.cn/2022/12/21/20221221frp/"/>
+    <id>https://www.giantliu.cn/2022/12/21/20221221frp/</id>
+    <published>2022-12-21T07:53:04.000Z</published>
+    <updated>2023-05-11T08:39:30.695Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;占坑&quot;&gt;&lt;a href=&quot;#占坑&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    
+    <category term="随笔" scheme="https://www.giantliu.cn/tags/%E9%9A%8F%E7%AC%94/"/>
+    
+  </entry>
   
   <entry>
     <title>记一次云服务器木马查杀</title>
@@ -448,59 +498,6 @@
     
     
     <category term="随笔" scheme="https://www.giantliu.cn/tags/%E9%9A%8F%E7%AC%94/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>SqlServer遍历数据</title>
-    <link href="https://www.giantliu.cn/2020/09/03/200903SQLServerForeachItem/"/>
-    <id>https://www.giantliu.cn/2020/09/03/200903SQLServerForeachItem/</id>
-    <published>2020-09-03T00:51:31.000Z</published>
-    <updated>2020-09-03T07:11:14.230Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h2 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h2&gt;&lt;p&gt;数据库原有表名为：bas_LocTemp&lt;br&gt;要修改后表名为：BAS_LocTemp&lt;/p&gt;
-&lt;h2 id=&quot;代码&quot;&gt;&lt;a</summary>
-        
-      
-    
-    
-    
-    
-    <category term="随笔" scheme="https://www.giantliu.cn/tags/%E9%9A%8F%E7%AC%94/"/>
-    
-    <category term="SqlServer" scheme="https://www.giantliu.cn/tags/SqlServer/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>在Docker中安装MySql</title>
-    <link href="https://www.giantliu.cn/2020/08/28/200828DockerInstallMySql/"/>
-    <id>https://www.giantliu.cn/2020/08/28/200828DockerInstallMySql/</id>
-    <published>2020-08-28T01:15:51.000Z</published>
-    <updated>2020-09-03T01:59:13.775Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h2 id=&quot;安装代码&quot;&gt;&lt;a href=&quot;#安装代码&quot; class=&quot;headerlink&quot; title=&quot;安装代码&quot;&gt;&lt;/a&gt;安装代码&lt;/h2&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td</summary>
-        
-      
-    
-    
-    
-    
-    <category term="随笔" scheme="https://www.giantliu.cn/tags/%E9%9A%8F%E7%AC%94/"/>
-    
-    <category term="Docker" scheme="https://www.giantliu.cn/tags/Docker/"/>
-    
-    <category term="MySql" scheme="https://www.giantliu.cn/tags/MySql/"/>
     
   </entry>
   
