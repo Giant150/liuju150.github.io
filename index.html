@@ -104,14 +104,14 @@
 
                         
                         <li>
-                            <a href="/about/">About</a>
+                            <a href="/archives/">Archives</a>
                         </li>
                         
                     
 
                         
                         <li>
-                            <a href="/archives/">Archives</a>
+                            <a href="/about/">About</a>
                         </li>
                         
                     
@@ -199,6 +199,29 @@
 
             <!-- Main Content -->
 
+
+<div class="post-preview">
+
+    <a href="/2023/07/01/20230701RequestValidSign/">
+        <h2 class="post-title">
+            WebAPI公开接口请求签名验证
+        </h2>
+        <h3 class="post-subtitle">
+            对于没有身份认证的公开接口做合法签名验证
+        </h3>
+        <div class="post-content-preview">
+            前言现在的系统后端开发的时候,会公开很多API接口对于要登录认证后才能访问的接口,这样的请求验证就由身份认证模块完成但是也有些接口是对外公开的,没有身份认证的接口我们怎么保证接口的请求是合法的,有效的.这样我们一般就是对请求的合法性做签名验证.
+实现原理为保证接口安全，每次请求必带以下header
+| header名 | 类型 | 描述 || AppId | string | 应用Id ||......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by 刘巨 on
+        2023-07-01
+    </p>
+
+</div>
+<hr>
 
 <div class="post-preview">
 
@@ -431,29 +454,6 @@ ECS主机已确认被入侵了,然后华为云就把我的外网IP给禁用了.�
 </div>
 <hr>
 
-<div class="post-preview">
-
-    <a href="/2021/08/10/20210810WMSCreateReport/">
-        <h2 class="post-title">
-            WMS报表开发流程
-        </h2>
-        <h3 class="post-subtitle">
-            此示例为物料汇总报表
-        </h3>
-        <div class="post-content-preview">
-            修改文件总览
-建立查询实体与视图模型1.查询实体就是在前端界面上，有哪些查询条件 (查询实体QueryModel:QM)2.视图模型就是在前端界面上，列表要显示哪些数据 (视图模型ViewModel:QM)
-12345678910111213141516171819202122namespace Giant.Models&#123;    /// &lt;summary&gt;    ///......
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by 刘巨 on
-        2021-08-10
-    </p>
-
-</div>
-<hr>
-
 
 
 <!-- Pager -->
@@ -521,8 +521,6 @@ ECS主机已确认被入侵了,然后华为云就把我的外网IP给禁用了.�
                     
                     
                     
-                    
-                    
                     <a href="/tags/#MySql" title="MySql"
                         rel="3">MySql</a>
                     
@@ -530,6 +528,10 @@ ECS主机已确认被入侵了,然后华为云就把我的外网IP给禁用了.�
                     
                     <a href="/tags/#SqlServer" title="SqlServer"
                         rel="2">SqlServer</a>
+                    
+                    
+                    
+                    
                     
                     
                     

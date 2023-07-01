@@ -104,14 +104,14 @@
 
                         
                         <li>
-                            <a href="/about/">About</a>
+                            <a href="/archives/">Archives</a>
                         </li>
                         
                     
 
                         
                         <li>
-                            <a href="/archives/">Archives</a>
+                            <a href="/about/">About</a>
                         </li>
                         
                     
@@ -199,6 +199,29 @@
 
             <!-- Main Content -->
 
+
+<div class="post-preview">
+
+    <a href="/2020/09/14/200914SSMSTableDesignAddDescription/">
+        <h2 class="post-title">
+            SSMS表设计器显示说明(注释)字段
+        </h2>
+        <h3 class="post-subtitle">
+            SQL Server Management Studio
+        </h3>
+        <div class="post-content-preview">
+            SSMS表设计器默认当我们新建表/设计表 的时候，SSMS会帮我们打开默认表设计器如下图。只会显示“列名”，“数据类型”，“允许Null值”这三个列
+但是大多数的时候，我们还要修改表字段的“默认值”，“说明/注释”每次都要到设计器下面的“列属性”里去找默认值/说明然后去修改。不能直接在设计器主界面修改。所以我们希望在表设计器后面加上“默认值”，“说明”字段，这样加快设计
+修改方法打开“注册表......
+        </div>
+    </a>
+    <p class="post-meta">
+        Posted by 刘巨 on
+        2020-09-14
+    </p>
+
+</div>
+<hr>
 
 <div class="post-preview">
 
@@ -422,27 +445,6 @@
 </div>
 <hr>
 
-<div class="post-preview">
-
-    <a href="/2020/08/24/200824DeployWMSToDocker/">
-        <h2 class="post-title">
-            部署Asp.Net Core到Docker
-        </h2>
-        <h3 class="post-subtitle">
-            
-        </h3>
-        <div class="post-content-preview">
-            Dockerfile123456FROM mcr.microsoft.com/dotnet/core/aspnet:3.1ENV DOTNET_SYSTEM_GLOBALIZATION_INVARIANT=falseWORKDIR /appCOPY . .EXPOSE 5000ENTRYPOINT [&quot;dotnet&quot;,&quot;Coldairarrow.Api.dll&......
-        </div>
-    </a>
-    <p class="post-meta">
-        Posted by 刘巨 on
-        2020-08-24
-    </p>
-
-</div>
-<hr>
-
 
 
 <!-- Pager -->
@@ -514,8 +516,6 @@
                     
                     
                     
-                    
-                    
                     <a href="/tags/#MySql" title="MySql"
                         rel="3">MySql</a>
                     
@@ -523,6 +523,10 @@
                     
                     <a href="/tags/#SqlServer" title="SqlServer"
                         rel="2">SqlServer</a>
+                    
+                    
+                    
+                    
                     
                     
                     

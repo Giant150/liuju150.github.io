@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="奕晨博苑 Giant Blog">
+    <meta name="keyword"  content="">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+          WebAPI公开接口请求签名验证 - Giant Blog
+        
+    </title>
+
+    <link rel="canonical" href="https://www.giantliu.cn/2023/07/01/20230701RequestValidSign/">
+
+    <!-- Bootstrap Core CSS -->
+    
+<link rel="stylesheet" href="/css/bootstrap.min.css">
+
+
+    <!-- Custom CSS -->
+    
+<link rel="stylesheet" href="/css/hux-blog.min.css">
+
+
+    <!-- Pygments Highlight CSS -->
+    
+<link rel="stylesheet" href="/css/highlight.css">
+
+
+    <!-- Custom Fonts -->
+    <!-- <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+    <!-- Hux change font-awesome CDN to qiniu -->
+    <link href="https://cdn.staticfile.org/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+
+    <!-- Hux Delete, sad but pending in China
+    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/
+    css'>
+    -->
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- ga & ba script hoook -->
+    <script>
+      var _hmt = _hmt || [];
+      (function() {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?24856c1d0b87969df4b666e8aa18cff9";
+        var s = document.getElementsByTagName("script")[0]; 
+        s.parentNode.insertBefore(hm, s);
+      })();
+      </script>      
+<meta name="generator" content="Hexo 5.0.0"><link rel="alternate" href="/atom.xml" title="Giant Blog" type="application/atom+xml">
+</head>
+
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Giant Blog</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+
+                    
+
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/archives/">Archives</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/about/">About</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/tags/">Tags</a>
+                        </li>
+                        
+                    
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+    <!-- Main Content -->
+    
+<!-- Image to hack wechat -->
+<!-- <img src="https://www.giantliu.cn/img/icon_wechat.png" width="0" height="0"> -->
+<!-- <img src="{{ site.baseurl }}/{% if page.header-img %}{{ page.header-img }}{% else %}{{ site.header-img }}{% endif %}" width="0" height="0"> -->
+
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        
+            background-image: url('https://open.saintic.com/api/bingPic/')
+        
+    }
+</style>
+<header class="intro-header" >
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 col-md-12">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                          <a class="tag" href="/tags/#Asp.Net" title="Asp.Net">Asp.Net</a>
+                        
+                    </div>
+                    <h1>WebAPI公开接口请求签名验证</h1>
+                    <h2 class="subheading">对于没有身份认证的公开接口做合法签名验证</h2>
+                    <span class="meta">
+                        Posted by 刘巨 on
+                        2023-07-01
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+    <!-- Post Container -->
+            <div class="
+                col-lg-12
+                col-md-12
+                post-container">
+
+                <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>现在的系统后端开发的时候,会公开很多API接口<br>对于要登录认证后才能访问的接口,这样的请求验证就由身份认证模块完成<br>但是也有些接口是对外公开的,没有身份认证的接口<br>我们怎么保证接口的请求是合法的,有效的.<br>这样我们一般就是对请求的合法性做签名验证.</p>
+<h2 id="实现原理"><a href="#实现原理" class="headerlink" title="实现原理"></a>实现原理</h2><p>为保证接口安全，每次请求必带以下header</p>
+<p>| header名 | 类型 | 描述 |<br>| AppId | string | 应用Id |<br>| Ticks | string | 时间戳为1970年1月1日到现在时间的毫秒数（UTC时间） |<br>| RequestId | string | GUID字符串,作为请求唯一标志,防止重复请求 |<br>| Sign| string | 签名,签名算法如下 |</p>
+<ol>
+<li>拼接字符串”{AppId}{Ticks}{RequestId}{AppSecret}”</li>
+<li>把拼接后的字符串计算MD5值,此MD5值为请求Header的Sign参数传入</li>
+<li>后端把对应APP配置好(AppId,AppSecret),并提供给客户端</li>
+</ol>
+<h2 id="后端验证实现"><a href="#后端验证实现" class="headerlink" title="后端验证实现"></a>后端验证实现</h2><h3 id="验证AppId"><a href="#验证AppId" class="headerlink" title="验证AppId"></a>验证AppId</h3><ol>
+<li>先验证AppId是不是有,没有就直接返回失败</li>
+<li>如果有的话,就去缓存里取AppID对应的配置(如果缓存里没有,就去配置文件里取)</li>
+<li>如果没有对应AppId的配置,说明不是正确的请求,返回失败</li>
+</ol>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">model.AppId = context.Request.Headers[<span class="string">&quot;AppId&quot;</span>];</span><br><span class="line"><span class="keyword">if</span> (String.IsNullOrEmpty(model.AppId))</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">await</span> <span class="keyword">this</span>.ResponseValidFailedAsync(context, <span class="number">501</span>);</span><br><span class="line">    <span class="keyword">return</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> cacheSvc = context.RequestServices.GetRequiredService&lt;IMemoryCache&gt;();</span><br><span class="line"><span class="keyword">var</span> cacheAppIdKey = <span class="string">$&quot;RequestValidSign:APPID:<span class="subst">&#123;model.AppId&#125;</span>&quot;</span>;</span><br><span class="line"><span class="keyword">var</span> curConfig = cacheSvc.GetOrCreate&lt;AppConfigModel&gt;(cacheAppIdKey, (e) =&gt;</span><br><span class="line">&#123;</span><br><span class="line">    e.SlidingExpiration = TimeSpan.FromHours(<span class="number">1</span>);</span><br><span class="line">    <span class="keyword">var</span> configuration = context.RequestServices.GetRequiredService&lt;IConfiguration&gt;();</span><br><span class="line">    <span class="keyword">var</span> listAppConfig = configuration.GetSection(AppConfigModel.ConfigSectionKey).Get&lt;AppConfigModel[]&gt;();</span><br><span class="line">    <span class="keyword">return</span> listAppConfig.SingleOrDefault(x =&gt; x.AppId == model.AppId);</span><br><span class="line">&#125;);</span><br><span class="line"><span class="keyword">if</span> (curConfig == <span class="literal">null</span>)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">await</span> <span class="keyword">this</span>.ResponseValidFailedAsync(context, <span class="number">502</span>);</span><br><span class="line">    <span class="keyword">return</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="验证时间戳"><a href="#验证时间戳" class="headerlink" title="验证时间戳"></a>验证时间戳</h3><ol>
+<li>验证时间戳是不是有在请求头里传过来，没有就返回失败</li>
+<li>验证时间戳与当前时间比较，如果不在过期时间(5分钟)之内的请求，就返回失败</li>
+<li>时间戳为1970年1月1日到现在时间的毫秒数（UTC时间）</li>
+</ol>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> ticksString = context.Request.Headers[<span class="string">&quot;Ticks&quot;</span>].ToString();</span><br><span class="line"><span class="keyword">if</span> (String.IsNullOrEmpty(ticksString))</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">await</span> <span class="keyword">this</span>.ResponseValidFailedAsync(context, <span class="number">503</span>);</span><br><span class="line">    <span class="keyword">return</span>;</span><br><span class="line">&#125;</span><br><span class="line">model.Ticks = <span class="keyword">long</span>.Parse(context.Request.Headers[<span class="string">&quot;Ticks&quot;</span>].ToString());</span><br><span class="line"><span class="keyword">var</span> diffTime = DateTime.UtcNow - (<span class="keyword">new</span> DateTime(<span class="number">1970</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, DateTimeKind.Utc).AddMilliseconds(model.Ticks));</span><br><span class="line"><span class="keyword">var</span> expirTime = TimeSpan.FromSeconds(<span class="number">300</span>);<span class="comment">//过期时间</span></span><br><span class="line"><span class="keyword">if</span> (diffTime &gt; expirTime)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">await</span> <span class="keyword">this</span>.ResponseValidFailedAsync(context, <span class="number">504</span>);</span><br><span class="line">    <span class="keyword">return</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="验证请求ID"><a href="#验证请求ID" class="headerlink" title="验证请求ID"></a>验证请求ID</h3><ol>
+<li>验证请求ID是不是有在请求头里传过来，没有就返回失败</li>
+<li>验证请求ID是不是已经在缓存里存在，如果存在就表示重复请求，那么就返回失败</li>
+<li>如果请求ID在缓存中不存在，那么就表示正常的请求，同时把请求ID添加到缓存</li>
+</ol>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">model.RequestId = context.Request.Headers[<span class="string">&quot;RequestId&quot;</span>];</span><br><span class="line"><span class="keyword">if</span> (String.IsNullOrEmpty(model.RequestId))</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">await</span> <span class="keyword">this</span>.ResponseValidFailedAsync(context, <span class="number">505</span>);</span><br><span class="line">    <span class="keyword">return</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> cacheKey = <span class="string">$&quot;RequestValidSign:RequestId:<span class="subst">&#123;model.AppId&#125;</span>:<span class="subst">&#123;model.RequestId&#125;</span>&quot;</span>;</span><br><span class="line"><span class="keyword">if</span> (cacheSvc.TryGetValue(cacheKey, <span class="keyword">out</span> _))</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">await</span> <span class="keyword">this</span>.ResponseValidFailedAsync(context, <span class="number">506</span>);</span><br><span class="line">    <span class="keyword">return</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">    cacheSvc.Set(cacheKey, model.RequestId, expirTime);</span><br></pre></td></tr></table></figure>
+
+<h3 id="验证签名"><a href="#验证签名" class="headerlink" title="验证签名"></a>验证签名</h3><p>1.验证签名是否正常<br>2.签名字符串是$”{AppId}{Ticks}{RequestId}{AppSecret}”组成<br>3.然后把签名字符串做MD5，再与请求传过来的Sign签名对比<br>4.如果一至就表示正常请求，请求通过。如果不一至，返回失败</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">bool</span> <span class="title">Valid</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">var</span> validStr = <span class="string">$&quot;<span class="subst">&#123;AppId&#125;</span><span class="subst">&#123;Ticks&#125;</span><span class="subst">&#123;RequestId&#125;</span><span class="subst">&#123;AppSecret&#125;</span>&quot;</span>;</span><br><span class="line">    <span class="keyword">return</span> validStr.ToMD5String() == Sign;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">        model.Sign = context.Request.Headers[<span class="string">&quot;Sign&quot;</span>];</span><br><span class="line">        <span class="keyword">if</span> (!model.Valid())</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">await</span> <span class="keyword">this</span>.ResponseValidFailedAsync(context, <span class="number">507</span>);</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="源代码"><a href="#源代码" class="headerlink" title="源代码"></a>源代码</h2><p>我们把所有代码写成一个Asp.Net Core的中间件</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> 请求签名验证</span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">RequestValidSignMiddleware</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">readonly</span> RequestDelegate _next;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">RequestValidSignMiddleware</span>(<span class="params">RequestDelegate next</span>)</span></span><br><span class="line"><span class="function"></span>    &#123;</span><br><span class="line">        _next = next;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">async</span> Task <span class="title">InvokeAsync</span>(<span class="params">HttpContext context</span>)</span></span><br><span class="line"><span class="function"></span>    &#123;</span><br><span class="line">        <span class="keyword">var</span> model = <span class="keyword">new</span> RequestValidSignModel();</span><br><span class="line">        <span class="comment">//1.先验证AppId是不是有,没有就直接返回失败</span></span><br><span class="line">        <span class="comment">//2.如果有的话,就去缓存里取AppID对应的配置(如果缓存里没有,就去配置文件里取)</span></span><br><span class="line">        <span class="comment">//3.如果没有对应AppId的配置,说明不是正确的请求,返回失败</span></span><br><span class="line">        model.AppId = context.Request.Headers[<span class="string">&quot;AppId&quot;</span>];</span><br><span class="line">        <span class="keyword">if</span> (String.IsNullOrEmpty(model.AppId))</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">await</span> <span class="keyword">this</span>.ResponseValidFailedAsync(context, <span class="number">501</span>);</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">var</span> cacheSvc = context.RequestServices.GetRequiredService&lt;IMemoryCache&gt;();</span><br><span class="line">        <span class="keyword">var</span> cacheAppIdKey = <span class="string">$&quot;RequestValidSign:APPID:<span class="subst">&#123;model.AppId&#125;</span>&quot;</span>;</span><br><span class="line">        <span class="keyword">var</span> curConfig = cacheSvc.GetOrCreate&lt;AppConfigModel&gt;(cacheAppIdKey, (e) =&gt;</span><br><span class="line">        &#123;</span><br><span class="line">            e.SlidingExpiration = TimeSpan.FromHours(<span class="number">1</span>);</span><br><span class="line">            <span class="keyword">var</span> configuration = context.RequestServices.GetRequiredService&lt;IConfiguration&gt;();</span><br><span class="line">            <span class="keyword">var</span> listAppConfig = configuration.GetSection(AppConfigModel.ConfigSectionKey).Get&lt;AppConfigModel[]&gt;();</span><br><span class="line">            <span class="keyword">return</span> listAppConfig.SingleOrDefault(x =&gt; x.AppId == model.AppId);</span><br><span class="line">        &#125;);</span><br><span class="line">        <span class="keyword">if</span> (curConfig == <span class="literal">null</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">await</span> <span class="keyword">this</span>.ResponseValidFailedAsync(context, <span class="number">502</span>);</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//1.把缓存/配置里面的APP配置取出来,拿到AppSecret</span></span><br><span class="line">        <span class="comment">//2.如果请求里附带了AppSecret(调试用),那么就只验证AppSecret是否正确</span></span><br><span class="line">        <span class="comment">//3.传过来的AppSecret必需是Base64编码后的</span></span><br><span class="line">        <span class="comment">//4.然后比对传过来的AppSecret是否与配置的AppSecret一至,如果一至就通过,不一至就返回失败</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">//5.如果请求里没有附带AppSecret,那么走其它验证逻辑.</span></span><br><span class="line">        model.AppSecret = curConfig.AppSecret;</span><br><span class="line">        <span class="keyword">var</span> headerSecret = context.Request.Headers[<span class="string">&quot;AppSecret&quot;</span>].ToString();</span><br><span class="line">        <span class="keyword">if</span> (!String.IsNullOrEmpty(headerSecret))</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">var</span> secretBuffer = <span class="keyword">new</span> <span class="keyword">byte</span>[<span class="number">1024</span>];</span><br><span class="line">            <span class="keyword">var</span> secretIsBase64 = Convert.TryFromBase64String(headerSecret, <span class="keyword">new</span> Span&lt;<span class="keyword">byte</span>&gt;(secretBuffer), <span class="keyword">out</span> <span class="keyword">var</span> bytesWritten);</span><br><span class="line">            <span class="keyword">if</span> (secretIsBase64 &amp;&amp; Encoding.UTF8.GetString(secretBuffer, <span class="number">0</span>, bytesWritten) == curConfig.AppSecret)</span><br><span class="line">                <span class="keyword">await</span> _next(context);</span><br><span class="line">            <span class="keyword">else</span></span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">await</span> <span class="keyword">this</span>.ResponseValidFailedAsync(context, <span class="number">508</span>);</span><br><span class="line">                <span class="keyword">return</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">        &#123;</span><br><span class="line">            <span class="comment">//1.验证时间戳是不是有在请求头里传过来，没有就返回失败</span></span><br><span class="line">            <span class="comment">//2.验证时间戳与当前时间比较，如果不在过期时间(5分钟)之内的请求，就返回失败</span></span><br><span class="line">            <span class="comment">//时间戳为1970年1月1日到现在时间的毫秒数（UTC时间）</span></span><br><span class="line">            <span class="keyword">var</span> ticksString = context.Request.Headers[<span class="string">&quot;Ticks&quot;</span>].ToString();</span><br><span class="line">            <span class="keyword">if</span> (String.IsNullOrEmpty(ticksString))</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">await</span> <span class="keyword">this</span>.ResponseValidFailedAsync(context, <span class="number">503</span>);</span><br><span class="line">                <span class="keyword">return</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            model.Ticks = <span class="keyword">long</span>.Parse(context.Request.Headers[<span class="string">&quot;Ticks&quot;</span>].ToString());</span><br><span class="line">            <span class="keyword">var</span> diffTime = DateTime.UtcNow - (<span class="keyword">new</span> DateTime(<span class="number">1970</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, DateTimeKind.Utc).AddMilliseconds(model.Ticks));</span><br><span class="line">            <span class="keyword">var</span> expirTime = TimeSpan.FromSeconds(<span class="number">300</span>);<span class="comment">//过期时间</span></span><br><span class="line">            <span class="keyword">if</span> (diffTime &gt; expirTime)</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">await</span> <span class="keyword">this</span>.ResponseValidFailedAsync(context, <span class="number">504</span>);</span><br><span class="line">                <span class="keyword">return</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">//1.验证请求ID是不是有在请求头里传过来，没有就返回失败</span></span><br><span class="line">            <span class="comment">//2.验证请求ID是不是已经在缓存里存在，如果存在就表示重复请求，那么就返回失败</span></span><br><span class="line">            <span class="comment">//3.如果请求ID在缓存中不存在，那么就表示正常的请求，同时把请求ID添加到缓存</span></span><br><span class="line">            model.RequestId = context.Request.Headers[<span class="string">&quot;RequestId&quot;</span>];</span><br><span class="line">            <span class="keyword">if</span> (String.IsNullOrEmpty(model.RequestId))</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">await</span> <span class="keyword">this</span>.ResponseValidFailedAsync(context, <span class="number">505</span>);</span><br><span class="line">                <span class="keyword">return</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">var</span> cacheKey = <span class="string">$&quot;RequestValidSign:RequestId:<span class="subst">&#123;model.AppId&#125;</span>:<span class="subst">&#123;model.RequestId&#125;</span>&quot;</span>;</span><br><span class="line">            <span class="keyword">if</span> (cacheSvc.TryGetValue(cacheKey, <span class="keyword">out</span> _))</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">await</span> <span class="keyword">this</span>.ResponseValidFailedAsync(context, <span class="number">506</span>);</span><br><span class="line">                <span class="keyword">return</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span></span><br><span class="line">                cacheSvc.Set(cacheKey, model.RequestId, expirTime);</span><br><span class="line">            <span class="comment">//1.验证签名是否正常</span></span><br><span class="line">            <span class="comment">//2.签名字符串是$&quot;&#123;AppId&#125;&#123;Ticks&#125;&#123;RequestId&#125;&#123;AppSecret&#125;&quot;组成</span></span><br><span class="line">            <span class="comment">//3.然后把签名字符串做MD5，再与请求传过来的Sign签名对比</span></span><br><span class="line">            <span class="comment">//4.如果一至就表示正常请求，请求通过。如果不一至，返回失败</span></span><br><span class="line">            model.Sign = context.Request.Headers[<span class="string">&quot;Sign&quot;</span>];</span><br><span class="line">            <span class="keyword">if</span> (!model.Valid())</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">await</span> <span class="keyword">this</span>.ResponseValidFailedAsync(context, <span class="number">507</span>);</span><br><span class="line">                <span class="keyword">return</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">await</span> _next(context);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> 返回验证失败</span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;param name=&quot;context&quot;&gt;</span><span class="doctag">&lt;/param&gt;</span></span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;param name=&quot;status&quot;&gt;</span><span class="doctag">&lt;/param&gt;</span></span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;returns&gt;</span><span class="doctag">&lt;/returns&gt;</span></span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">async</span> Task <span class="title">ResponseValidFailedAsync</span>(<span class="params">HttpContext context, <span class="keyword">int</span> status</span>)</span></span><br><span class="line"><span class="function"></span>    &#123;</span><br><span class="line">        context.Response.StatusCode = <span class="number">500</span>;</span><br><span class="line">        <span class="keyword">await</span> context.Response.WriteAsJsonAsync(<span class="keyword">new</span> ComResult() &#123; Success = <span class="literal">false</span>, Status = status, Msg = <span class="string">&quot;请求签名验证失败&quot;</span> &#125;, Extention.DefaultJsonSerializerOptions, context.RequestAborted);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">AppConfigModel</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">const</span> <span class="keyword">string</span> ConfigSectionKey = <span class="string">&quot;AppConfig&quot;</span>;</span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> 应用Id</span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">string</span> AppId &#123; <span class="keyword">get</span>; <span class="keyword">set</span>; &#125;</span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> 应用密钥</span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">string</span> AppSecret &#123; <span class="keyword">get</span>; <span class="keyword">set</span>; &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">RequestValidSignModel</span> : <span class="title">AppConfigModel</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> 前端时间戳</span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> Date.now()</span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> 1970 年 1 月 1 日 00:00:00 (UTC) 到当前时间的毫秒数</span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">long</span> Ticks &#123; <span class="keyword">get</span>; <span class="keyword">set</span>; &#125;</span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> 请求ID</span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">string</span> RequestId &#123; <span class="keyword">get</span>; <span class="keyword">set</span>; &#125;</span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> 签名</span></span><br><span class="line">    <span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">string</span> Sign &#123; <span class="keyword">get</span>; <span class="keyword">set</span>; &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">bool</span> <span class="title">Valid</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>    &#123;</span><br><span class="line">        <span class="keyword">var</span> validStr = <span class="string">$&quot;<span class="subst">&#123;AppId&#125;</span><span class="subst">&#123;Ticks&#125;</span><span class="subst">&#123;RequestId&#125;</span><span class="subst">&#123;AppSecret&#125;</span>&quot;</span>;</span><br><span class="line">        <span class="keyword">return</span> validStr.ToMD5String() == Sign;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="中间件注册扩展"><a href="#中间件注册扩展" class="headerlink" title="中间件注册扩展"></a>中间件注册扩展</h3><p>写一个中间件的扩展,这样我们在Program里可以方便的使用/停用中间件</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> 中间件注册扩展</span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">class</span> <span class="title">RequestValidSignMiddlewareExtensions</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> IApplicationBuilder <span class="title">UseRequestValidSign</span>(<span class="params"><span class="keyword">this</span> IApplicationBuilder builder</span>)</span></span><br><span class="line"><span class="function"></span>    &#123;</span><br><span class="line">        <span class="keyword">return</span> builder.UseMiddleware&lt;RequestValidSignMiddleware&gt;();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment"><span class="doctag">///</span>Program.cs</span></span><br><span class="line">app.UseRequestValidSign();</span><br></pre></td></tr></table></figure>
+
+<h3 id="与Swagger结合"><a href="#与Swagger结合" class="headerlink" title="与Swagger结合"></a>与Swagger结合</h3><p>我们一般对外提供在线的Swagger文档<br>如果我们增加了请求验证的Header,那么所有接口文档里面都要把验证的Header添加到在线文档里面</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;summary&gt;</span></span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> 请求签名验证添加Swagger请求头</span></span><br><span class="line"><span class="comment"><span class="doctag">///</span> <span class="doctag">&lt;/summary&gt;</span></span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">RequestValidSignSwaggerOperationFilter</span> : <span class="title">IOperationFilter</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">Apply</span>(<span class="params">OpenApiOperation operation, OperationFilterContext context</span>)</span></span><br><span class="line"><span class="function"></span>    &#123;</span><br><span class="line">        <span class="keyword">if</span> (operation.Parameters == <span class="literal">null</span>)</span><br><span class="line">            operation.Parameters = <span class="keyword">new</span> List&lt;OpenApiParameter&gt;();</span><br><span class="line"></span><br><span class="line">        operation.Parameters.Add(<span class="keyword">new</span> OpenApiParameter</span><br><span class="line">        &#123;</span><br><span class="line">            Name = <span class="string">&quot;AppId&quot;</span>,</span><br><span class="line">            In = ParameterLocation.Header,</span><br><span class="line">            Required = <span class="literal">true</span>,</span><br><span class="line">            Description = <span class="string">&quot;应用ID&quot;</span>,</span><br><span class="line">            Schema = <span class="keyword">new</span> OpenApiSchema</span><br><span class="line">            &#123;</span><br><span class="line">                Type = <span class="string">&quot;string&quot;</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">        operation.Parameters.Add(<span class="keyword">new</span> OpenApiParameter</span><br><span class="line">        &#123;</span><br><span class="line">            Name = <span class="string">&quot;Ticks&quot;</span>,</span><br><span class="line">            In = ParameterLocation.Header,</span><br><span class="line">            Required = <span class="literal">true</span>,</span><br><span class="line">            Description = <span class="string">&quot;时间戳&quot;</span>,</span><br><span class="line">            Example = <span class="keyword">new</span> OpenApiString(((<span class="keyword">long</span>)(DateTime.UtcNow - <span class="keyword">new</span> DateTime(<span class="number">1970</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, DateTimeKind.Utc)).TotalMilliseconds).ToString()),</span><br><span class="line">            Schema = <span class="keyword">new</span> OpenApiSchema</span><br><span class="line">            &#123;</span><br><span class="line">                Type = <span class="string">&quot;string&quot;</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">        operation.Parameters.Add(<span class="keyword">new</span> OpenApiParameter</span><br><span class="line">        &#123;</span><br><span class="line">            Name = <span class="string">&quot;RequestId&quot;</span>,</span><br><span class="line">            In = ParameterLocation.Header,</span><br><span class="line">            Required = <span class="literal">true</span>,</span><br><span class="line">            Description = <span class="string">&quot;请求ID&quot;</span>,</span><br><span class="line">            Example = <span class="keyword">new</span> OpenApiString(Guid.NewGuid().ToString()),</span><br><span class="line">            Schema = <span class="keyword">new</span> OpenApiSchema</span><br><span class="line">            &#123;</span><br><span class="line">                Type = <span class="string">&quot;string&quot;</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">        operation.Parameters.Add(<span class="keyword">new</span> OpenApiParameter</span><br><span class="line">        &#123;</span><br><span class="line">            Name = <span class="string">&quot;Sign&quot;</span>,</span><br><span class="line">            In = ParameterLocation.Header,</span><br><span class="line">            Required = <span class="literal">true</span>,</span><br><span class="line">            Description = <span class="string">&quot;请求签名&quot;</span>,</span><br><span class="line">            <span class="comment">//&#123;AppId&#125;&#123;Ticks&#125;&#123;RequestId&#125;&#123;AppSecret&#125;</span></span><br><span class="line">            Example = <span class="keyword">new</span> OpenApiString(<span class="string">&quot;MD5(&#123;AppId&#125;&#123;Ticks&#125;&#123;RequestId&#125;&#123;AppSecret&#125;)&quot;</span>),</span><br><span class="line">            Schema = <span class="keyword">new</span> OpenApiSchema</span><br><span class="line">            &#123;</span><br><span class="line">                Type = <span class="string">&quot;string&quot;</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">        operation.Parameters.Add(<span class="keyword">new</span> OpenApiParameter</span><br><span class="line">        &#123;</span><br><span class="line">            Name = <span class="string">&quot;AppSecret&quot;</span>,</span><br><span class="line">            In = ParameterLocation.Header,</span><br><span class="line">            Description = <span class="string">&quot;应用密钥(调试用)&quot;</span>,</span><br><span class="line">            Example = <span class="keyword">new</span> OpenApiString(<span class="string">&quot;BASE64(&#123;AppSecret&#125;)&quot;</span>),</span><br><span class="line">            Schema = <span class="keyword">new</span> OpenApiSchema</span><br><span class="line">            &#123;</span><br><span class="line">                Type = <span class="string">&quot;string&quot;</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment"><span class="doctag">///</span>在Program.cs里添加Swagger请求验证Header</span></span><br><span class="line">builder.Services.AddSwaggerGen(c =&gt;</span><br><span class="line">&#123;</span><br><span class="line">    c.OperationFilter&lt;RequestValidSignSwaggerOperationFilter&gt;();</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p><img src="1.jpg" alt="请求验证"></p>
+<h2 id="客户端调用实现"><a href="#客户端调用实现" class="headerlink" title="客户端调用实现"></a>客户端调用实现</h2><p>我们如果用HttpClient调用的话,就要在调用请求前<br>设置后请求头,AppId,Ticks,RequestId,Sign</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">async</span> Task&lt;<span class="keyword">string</span>&gt; <span class="title">GetIPAsync</span>(<span class="params">CancellationToken token</span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.SetSignHeader();</span><br><span class="line">    <span class="keyword">var</span> result = <span class="keyword">await</span> Client.GetStringAsync(<span class="string">&quot;/Get&quot;</span>, token);</span><br><span class="line">    <span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">SetSignHeader</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.Client.DefaultRequestHeaders.Clear();</span><br><span class="line">    <span class="keyword">var</span> ticks = ((<span class="keyword">long</span>)(DateTime.UtcNow - <span class="keyword">new</span> DateTime(<span class="number">1970</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, DateTimeKind.Utc)).TotalMilliseconds).ToString();</span><br><span class="line">    <span class="keyword">var</span> requestId = Guid.NewGuid().ToString();</span><br><span class="line">    <span class="keyword">var</span> signString = <span class="string">$&quot;<span class="subst">&#123;<span class="keyword">this</span>.Config.AppId&#125;</span><span class="subst">&#123;ticks&#125;</span><span class="subst">&#123;requestId&#125;</span><span class="subst">&#123;<span class="keyword">this</span>.Config.AppSecret&#125;</span>&quot;</span>;</span><br><span class="line">    <span class="keyword">var</span> sign = <span class="keyword">this</span>.GetMD5(signString);</span><br><span class="line">    <span class="keyword">this</span>.Client.DefaultRequestHeaders.Add(<span class="string">&quot;AppId&quot;</span>, <span class="keyword">this</span>.Config.AppId);</span><br><span class="line">    <span class="keyword">this</span>.Client.DefaultRequestHeaders.Add(<span class="string">&quot;Ticks&quot;</span>, ticks);</span><br><span class="line">    <span class="keyword">this</span>.Client.DefaultRequestHeaders.Add(<span class="string">&quot;RequestId&quot;</span>, requestId);</span><br><span class="line">    <span class="keyword">this</span>.Client.DefaultRequestHeaders.Add(<span class="string">&quot;Sign&quot;</span>, sign);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">string</span> <span class="title">GetMD5</span>(<span class="params"><span class="keyword">string</span> <span class="keyword">value</span></span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">using</span> (MD5 md5 = MD5.Create())</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">byte</span>[] inputBytes = Encoding.UTF8.GetBytes(<span class="keyword">value</span>);</span><br><span class="line">        <span class="keyword">byte</span>[] hashBytes = md5.ComputeHash(inputBytes);</span><br><span class="line"></span><br><span class="line">        StringBuilder sb = <span class="keyword">new</span> StringBuilder();</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; hashBytes.Length; i++)</span><br><span class="line">        &#123;</span><br><span class="line">            sb.Append(hashBytes[i].ToString(<span class="string">&quot;x2&quot;</span>));</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> sb.ToString();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+                <hr>
+                <ul class="pager">
+                    
+                    
+                        <li class="next">
+                            <a href="/2023/05/25/20230525LockBitVirus/" data-toggle="tooltip" data-placement="top" title="记一次服务器勒索病毒处理">下一篇 &rarr;</a>
+                        </li>
+                    
+                </ul>
+            </div>
+    <!-- Side Catalog Container -->
+        
+
+    <!-- Sidebar Container -->
+
+            <div class="
+                col-lg-12
+                col-md-12
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                       
+                          <a class="tag" href="/tags/#Asp.Net" title="Asp.Net">Asp.Net</a>
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+                <hr>
+                <h5>FRIENDS</h5>
+                <ul class="list-inline">
+
+                    
+                        <li><a href="https://www.cnblogs.com/liuju150/" target="_blank">博客园</a></li>
+                    
+                        <li><a href="https://www.zhihu.com/people/giant150" target="_blank">知呼</a></li>
+                    
+                        <li><a href="https://weibo.com/liuju150" target="_blank">微博</a></li>
+                    
+                        <li><a href="https://github.com/liuju150" target="_blank">GitHub</a></li>
+                    
+                        <li><a href="https://gitee.com/GiantLiu" target="_blank">Gitee</a></li>
+                    
+                        <li><a href="https://giantliu.gitee.io" target="_blank">Gitee Blog</a></li>
+                    
+                        <li><a href="https://blog.giantliu.cn" target="_blank">Blog</a></li>
+                    
+                </ul>
+                
+            </div>
+
+        </div>
+    </div>
+</article>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("https://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js",function(){
+        anchors.options = {
+          visible: 'always',
+          placement: 'right',
+          icon: '#'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+<style>
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
+
+
+
+    <!-- Footer -->
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                
+                
+                
+                    <li>
+                        <a target="_blank" href="https://www.zhihu.com/people/giant150">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa  fa-stack-1x fa-inverse">知</i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+                    <li>
+                        <a target="_blank" href="http://weibo.com/liuju150">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-weibo fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                
+                    <li>
+                        <a target="_blank"  href="https://github.com/liuju150">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; Giant Blog 2023 <br />
+                    <a target="_blank" href="https://beian.miit.gov.cn/">湘ICP备20015826号-2</a>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+
+<script src="/js/jquery.min.js"></script>
+
+
+<!-- Bootstrap Core JavaScript -->
+
+<script src="/js/bootstrap.min.js"></script>
+
+
+<!-- Custom Theme JavaScript -->
+
+<script src="/js/hux-blog.min.js"></script>
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- 
+     Because of the native support for backtick-style fenced code blocks 
+     right within the Markdown is landed in Github Pages, 
+     From V1.6, There is no need for Highlight.js, 
+     so Huxblog drops it officially.
+
+     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0  
+     - https://help.github.com/articles/creating-and-highlighting-code-blocks/    
+-->
+<!--
+    <script>
+        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
+            hljs.initHighlightingOnLoad();
+        })
+    </script>
+    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
+-->
+
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("https://www.giantliu.cn/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("https://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+<!-- Side Catalog -->
+
+
+
+</body>
+
+</html>

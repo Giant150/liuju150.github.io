@@ -6,7 +6,7 @@
   <link href="https://www.giantliu.cn/atom.xml" rel="self"/>
   
   <link href="https://www.giantliu.cn/"/>
-  <updated>2023-05-25T07:52:58.902Z</updated>
+  <updated>2023-07-01T03:04:18.706Z</updated>
   <id>https://www.giantliu.cn/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>WebAPI公开接口请求签名验证</title>
+    <link href="https://www.giantliu.cn/2023/07/01/20230701RequestValidSign/"/>
+    <id>https://www.giantliu.cn/2023/07/01/20230701RequestValidSign/</id>
+    <published>2023-07-01T02:07:20.000Z</published>
+    <updated>2023-07-01T03:04:18.706Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    
+    <category term="Asp.Net" scheme="https://www.giantliu.cn/tags/Asp-Net/"/>
+    
+  </entry>
   
   <entry>
     <title>记一次服务器勒索病毒处理</title>
@@ -475,31 +498,6 @@
     
     
     <category term="树莓派" scheme="https://www.giantliu.cn/tags/%E6%A0%91%E8%8E%93%E6%B4%BE/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>SSMS表设计器显示说明(注释)字段</title>
-    <link href="https://www.giantliu.cn/2020/09/14/200914SSMSTableDesignAddDescription/"/>
-    <id>https://www.giantliu.cn/2020/09/14/200914SSMSTableDesignAddDescription/</id>
-    <published>2020-09-14T03:23:00.000Z</published>
-    <updated>2020-09-14T05:43:22.185Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h2 id=&quot;SSMS表设计器默认&quot;&gt;&lt;a href=&quot;#SSMS表设计器默认&quot; class=&quot;headerlink&quot; title=&quot;SSMS表设计器默认&quot;&gt;&lt;/a&gt;SSMS表设计器默认&lt;/h2&gt;&lt;p&gt;当我们新建表/设计表</summary>
-        
-      
-    
-    
-    
-    
-    <category term="随笔" scheme="https://www.giantliu.cn/tags/%E9%9A%8F%E7%AC%94/"/>
-    
-    <category term="SqlServer" scheme="https://www.giantliu.cn/tags/SqlServer/"/>
     
   </entry>
   
