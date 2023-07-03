@@ -393,7 +393,7 @@ builder.Services.AddSwaggerGen(c =>
 });
 ```
 
-![请求验证](1.jpg)
+![请求验证](1.png)
 
 ## 客户端调用实现
 
@@ -435,3 +435,11 @@ builder.Services.AddSwaggerGen(c =>
             }
         }
 ```
+
+## 最终效果
+
+当我们没有传签名参数的时候,返回失败
+![请求验证](2.png)
+
+当我们把签名参数都传正确后,返回正确
+![请求验证](3.png)
