@@ -1,4 +1,4 @@
-name = "wild-dream-c295"
+name = "githubliujublog"
 compatibility_date = "2025-10-01"
 pages_build_output = "public"
 main = "./index.js"
