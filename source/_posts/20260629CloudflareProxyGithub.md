@@ -7,12 +7,11 @@ tags:
 date: 2026-06-29 10:55:17
 ---
 
+![alt text](./image.png)
 
-![alt text](./20260629CloudflareProxyGithub/image.png)
+![alt text](./image-1.png)
 
-![alt text](./20260629CloudflareProxyGithub/image-1.png)
-
-```
+```javascript
 let domainMaps = {};
 let reverseDomainMaps = {};
 const index = {
