@@ -51,15 +51,17 @@ Remove-PSSession -Session $Session
 
 ## 自动编译然后发布到指定服务器IIS站点
 
+示例为dotnet后端项目，实际支持任意言语项目，只用写特定语言的编译发布命令就行
 ```powershell
-#后台项目
 Start-DeployIIS -Session $Session -WebSiteName MyAPPWebSite -WebSitePort 8080 -ScriptBlock {
     param($o) dotnet publish -o $o -c "Debug" -f net8.0 --no-self-contained -v m --nologo /p:EnvironmentName=Test
 } -OutputPath .\bin\publish\ -RemotePath "D:\Publish\"
 ```
 
+### 前端项目
+
+示例为nodejs的项目用yarn编译，实际支持任意言语项目，只用写特定语言的编译发布命令就行
 ```powershell
-#前端项目
 Start-DeployIIS -Session $Session -WebSiteName MyUIWebSite -WebSitePort 8081 -ScriptBlock { 
     yarn run build:test 
 } -OutputPath .\dist\ -RemotePath "D:\Publish\"
