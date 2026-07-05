@@ -87,6 +87,7 @@ Start-DeployFile -Session $Session -Path D:\DeployFile\* -RemotePath "D:\Publish
 
 ### 直接部署IIS站点
 
+在目录下创建PowerShell脚本文件`Deploy.ps1`
 ```powershell
 $Credential = Get-Credential -UserName "Administrator" -Message "请输入部署服务器的用户名和密码"
 $SessionOption = New-PSSessionOption -SkipCACheck -SkipCNCheck -SkipRevocationCheck
@@ -99,6 +100,7 @@ Remove-PSSession -Session $Session
 
 ### 直接部署Windows服务
 
+在目录下创建PowerShell脚本文件`Deploy.ps1`
 ```powershell
 $Credential = Get-Credential -UserName "Administrator" -Message "请输入部署服务器的用户名和密码"
 $SessionOption = New-PSSessionOption -SkipCACheck -SkipCNCheck -SkipRevocationCheck
@@ -111,6 +113,7 @@ Remove-PSSession -Session $Session
 
 ### 批量部署多个服务
 
+在目录下创建PowerShell脚本文件`Deploy.ps1`
 ```powershell
 $Credential = Get-Credential -UserName "Administrator" -Message "请输入部署服务器的用户名和密码"
 $SessionOption = New-PSSessionOption -SkipCACheck -SkipCNCheck -SkipRevocationCheck
@@ -130,6 +133,7 @@ Start-DeploySvc -Session $Session -ServiceName MyAPPService -BinaryName "MyAPPSe
 
 Remove-PSSession -Session $Session
 ```
+![部署示例](./image.png)
 
 ## 方法描述
 
