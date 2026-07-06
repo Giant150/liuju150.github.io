@@ -221,6 +221,8 @@ Set-NetConnectionProfile -Name "{指定网络名称}" -NetworkCategory Private
 
 #在远程服务器运行此命令（用PowerShell以管理员方式运行）
 Enable-PSRemoting
+也可以用下面的参数，忽略网络环境检查，不管内外网环境
+Enable-PSRemoting -SkipNetworkProfileCheck -Force
 #信任指定host。*为所有  （本机和服务器都运行）
 Set-Item WSMan:\localhost\Client\TrustedHosts -Value *
 
